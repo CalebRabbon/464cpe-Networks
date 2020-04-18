@@ -1,0 +1,4641 @@
+
+Packet number: 1  Frame Len: 79
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 65 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0x1b06)
+		Sender IP: 192.168.1.102
+		Dest IP: 64.166.172.8
+
+	UDP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+
+Packet number: 2  Frame Len: 71
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 57 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xbf52)
+		Sender IP: 192.168.1.102
+		Dest IP: 206.13.29.12
+
+	UDP Header
+		Source Port: : 1300
+		Dest Port: : 53
+
+Packet number: 3  Frame Len: 430
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 247
+		IP PDU Len: 416 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0x4672)
+		Sender IP: 206.13.29.12
+		Dest IP: 192.168.1.102
+
+	UDP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+
+Packet number: 4  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0xd39b)
+		Sender IP: 192.168.1.102
+		Dest IP: 69.226.92.47
+
+	ICMP Header
+		Type: Request
+
+Packet number: 5  Frame Len: 82
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 56
+		IP PDU Len: 68 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x85c2)
+		Sender IP: 69.226.92.47
+		Dest IP: 192.168.1.102
+
+	ICMP Header
+		Type: (null)
+
+Packet number: 6  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0xd29b)
+		Sender IP: 192.168.1.102
+		Dest IP: 69.226.92.47
+
+	ICMP Header
+		Type: Request
+
+Packet number: 7  Frame Len: 82
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 56
+		IP PDU Len: 68 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x84c2)
+		Sender IP: 69.226.92.47
+		Dest IP: 192.168.1.102
+
+	ICMP Header
+		Type: (null)
+
+Packet number: 8  Frame Len: 71
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 57 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xbc52)
+		Sender IP: 192.168.1.102
+		Dest IP: 206.13.29.12
+
+	UDP Header
+		Source Port: : 1300
+		Dest Port: : 53
+
+Packet number: 9  Frame Len: 261
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 247
+		IP PDU Len: 247 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xa368)
+		Sender IP: 206.13.29.12
+		Dest IP: 192.168.1.102
+
+	UDP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+
+Packet number: 10  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x31f1)
+		Sender IP: 192.168.1.102
+		Dest IP: 199.181.132.250
+
+	ICMP Header
+		Type: Request
+
+Packet number: 11  Frame Len: 82
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 111
+		IP PDU Len: 68 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x34d6)
+		Sender IP: 199.181.132.250
+		Dest IP: 192.168.1.102
+
+	ICMP Header
+		Type: (null)
+
+Packet number: 12  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x30f1)
+		Sender IP: 192.168.1.102
+		Dest IP: 199.181.132.250
+
+	ICMP Header
+		Type: Request
+
+Packet number: 13  Frame Len: 82
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 111
+		IP PDU Len: 68 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0xecd5)
+		Sender IP: 199.181.132.250
+		Dest IP: 192.168.1.102
+
+	ICMP Header
+		Type: (null)
+
+Packet number: 14  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x2ff1)
+		Sender IP: 192.168.1.102
+		Dest IP: 199.181.132.250
+
+	ICMP Header
+		Type: Request
+
+Packet number: 15  Frame Len: 82
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 111
+		IP PDU Len: 68 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0xacd5)
+		Sender IP: 199.181.132.250
+		Dest IP: 192.168.1.102
+
+	ICMP Header
+		Type: (null)
+
+Packet number: 16  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x2ef1)
+		Sender IP: 192.168.1.102
+		Dest IP: 199.181.132.250
+
+	ICMP Header
+		Type: Request
+
+Packet number: 17  Frame Len: 82
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 111
+		IP PDU Len: 68 (bytes)
+		Protocol: ICMP
+		Checksum: NULL (0x75d5)
+		Sender IP: 199.181.132.250
+		Dest IP: 192.168.1.102
+
+	ICMP Header
+		Type: (null)
+
+Packet number: 18  Frame Len: 92
+
+	Ethernet Header
+		Dest MAC: ff:ff:ff:ff:ff:ff
+		Source MAC: 0:b:7d:9:dc:6
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 78 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xdbb9)
+		Sender IP: 192.168.1.103
+		Dest IP: 192.168.1.255
+
+	UDP Header
+		Source Port: : 137
+		Dest Port: : 137
+
+Packet number: 19  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: ff:ff:ff:ff:ff:ff
+		Source MAC: 0:20:18:dc:ae:ab
+		Type: ARP
+
+	ARP header
+		Opcode: Request
+		Sender MAC: 0:20:18:dc:ae:ab
+		Sender IP: 192.168.1.105
+		Target MAC: 0:0:0:0:0:0
+		Target IP: 192.168.1.103
+
+
+Packet number: 20  Frame Len: 84
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 70 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xaa52)
+		Sender IP: 192.168.1.102
+		Dest IP: 206.13.29.12
+
+	UDP Header
+		Source Port: : 1300
+		Dest Port: : 53
+
+Packet number: 21  Frame Len: 188
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 247
+		IP PDU Len: 174 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xf765)
+		Sender IP: 206.13.29.12
+		Dest IP: 192.168.1.102
+
+	UDP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+
+Packet number: 22  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x57d5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60341533
+		ACK Number: <not valid>
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16384
+		Checksum: (null) (0xed88)
+
+Packet number: 23  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 237
+		IP PDU Len: 52 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x27ee)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 23043
+		Checksum: (null) (0x9803)
+
+Packet number: 24  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x5ed5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60341534
+		ACK Number: 1013144068
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x2a1b)
+
+Packet number: 25  Frame Len: 152
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 138 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xf389)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 48414
+		Checksum: (null) (0x633c)
+
+Packet number: 26  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xca3d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013144068
+		ACK Number: 60341624
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 5840
+		Checksum: (null) (0x1048)
+
+Packet number: 27  Frame Len: 1000
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 986 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x0eef)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 23044
+		Checksum: (null) (0x9803)
+
+Packet number: 28  Frame Len: 266
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 252 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x88d4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60341624
+		ACK Number: 1013145006
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16486
+		Checksum: (null) (0x9d3f)
+
+Packet number: 29  Frame Len: 137
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 123 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x6cf2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 23982
+		Checksum: (null) (0x9803)
+
+Packet number: 30  Frame Len: 355
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 341 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x2ed4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60341836
+		ACK Number: 1013145081
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16411
+		Checksum: (null) (0xe098)
+
+Packet number: 31  Frame Len: 568
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 554 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xbcf0)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 24057
+		Checksum: (null) (0x9803)
+
+Packet number: 32  Frame Len: 139
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 125 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x05d5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60342137
+		ACK Number: 1013145587
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x9103)
+
+Packet number: 33  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x09ed)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 24563
+		Checksum: (null) (0x9803)
+
+Packet number: 34  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x1938)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013147039
+		ACK Number: 60342222
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0xecc7)
+
+Packet number: 35  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x498a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 49102
+		Checksum: (null) (0x633c)
+
+Packet number: 36  Frame Len: 284
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 270 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xde3c)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013148491
+		ACK Number: 60342222
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0x179e)
+
+Packet number: 37  Frame Len: 171
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 157 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xdb89)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 49102
+		Checksum: (null) (0x633c)
+
+Packet number: 38  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xc33d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013148721
+		ACK Number: 60342331
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0xa02c)
+
+Packet number: 39  Frame Len: 907
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 893 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfa86)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 49211
+		Checksum: (null) (0x633c)
+
+Packet number: 40  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xc23d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013148721
+		ACK Number: 60343176
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x5422)
+
+Packet number: 41  Frame Len: 184
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 170 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x36f2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 27697
+		Checksum: (null) (0x9803)
+
+Packet number: 42  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x1438)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013148843
+		ACK Number: 60343176
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x60d7)
+
+Packet number: 43  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x468a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50056
+		Checksum: (null) (0x633c)
+
+Packet number: 44  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x1338)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013150295
+		ACK Number: 60343176
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x1797)
+
+Packet number: 45  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x01ed)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30723
+		Checksum: (null) (0x9803)
+
+Packet number: 46  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x55d5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343176
+		ACK Number: 1013153199
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x14f1)
+
+Packet number: 47  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x00ed)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 32175
+		Checksum: (null) (0x9803)
+
+Packet number: 48  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x1038)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013154651
+		ACK Number: 60343176
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0xf987)
+
+Packet number: 49  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x448a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50056
+		Checksum: (null) (0x633c)
+
+Packet number: 50  Frame Len: 820
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 806 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xbd3a)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013156103
+		ACK Number: 60343176
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x6818)
+
+Packet number: 51  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x438a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50056
+		Checksum: (null) (0x633c)
+
+Packet number: 52  Frame Len: 840
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 826 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa83a)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013156869
+		ACK Number: 60343176
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x6883)
+
+Packet number: 53  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x428a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50056
+		Checksum: (null) (0x633c)
+
+Packet number: 54  Frame Len: 139
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 125 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfcd4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343176
+		ACK Number: 1013157655
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 15872
+		Checksum: (null) (0xb338)
+
+Packet number: 55  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa8f2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 36631
+		Checksum: (null) (0x9803)
+
+Packet number: 56  Frame Len: 139
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 125 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfbd4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343261
+		ACK Number: 1013157655
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 15872
+		Checksum: (null) (0x1b74)
+
+Packet number: 57  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa7f2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 36631
+		Checksum: (null) (0x9803)
+
+Packet number: 58  Frame Len: 139
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 125 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfad4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343346
+		ACK Number: 1013157655
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 15872
+		Checksum: (null) (0x9e0f)
+
+Packet number: 59  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa6f2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 36631
+		Checksum: (null) (0x9803)
+
+Packet number: 60  Frame Len: 293
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 279 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x5fd4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343431
+		ACK Number: 1013157655
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 15872
+		Checksum: (null) (0x64f2)
+
+Packet number: 61  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa5f2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 36631
+		Checksum: (null) (0x9803)
+
+Packet number: 62  Frame Len: 176
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 162 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x3b3d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013157655
+		ACK Number: 60343670
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x9c20)
+
+Packet number: 63  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x3d8a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50550
+		Checksum: (null) (0x633c)
+
+Packet number: 64  Frame Len: 600
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 586 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x923b)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013157777
+		ACK Number: 60343670
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0xc6b4)
+
+Packet number: 65  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x3c8a)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50550
+		Checksum: (null) (0x633c)
+
+Packet number: 66  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x4bd5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343670
+		ACK Number: 1013158323
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x22db)
+
+Packet number: 67  Frame Len: 147
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 133 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xe589)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50550
+		Checksum: (null) (0x633c)
+
+Packet number: 68  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb33d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013158323
+		ACK Number: 60343755
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x8efa)
+
+Packet number: 69  Frame Len: 147
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 133 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xe489)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50635
+		Checksum: (null) (0x633c)
+
+Packet number: 70  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb23d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013158323
+		ACK Number: 60343840
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x39fa)
+
+Packet number: 71  Frame Len: 840
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 826 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x96ef)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 37299
+		Checksum: (null) (0x9803)
+
+Packet number: 72  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x48d5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343840
+		ACK Number: 1013159101
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16646
+		Checksum: (null) (0x78da)
+
+Packet number: 73  Frame Len: 139
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 125 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xea89)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50720
+		Checksum: (null) (0x633c)
+
+Packet number: 74  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb03d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013159101
+		ACK Number: 60343917
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0xe2f6)
+
+Packet number: 75  Frame Len: 87
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 73 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0x8507)
+		Sender IP: 192.168.1.102
+		Dest IP: 206.13.29.12
+
+	UDP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+
+Packet number: 76  Frame Len: 175
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 247
+		IP PDU Len: 161 (bytes)
+		Protocol: UDP
+		Checksum: NULL (0xe0a2)
+		Sender IP: 206.13.29.12
+		Dest IP: 192.168.1.102
+
+	UDP Header
+		Source Port: : 53
+		Dest Port: : 1300
+
+Packet number: 77  Frame Len: 70
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 56 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x86c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109117520
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 32696
+		Checksum: (null) (0x0000)
+
+Packet number: 78  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x879c)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1665
+		Sequence Number: 3864167428
+		ACK Number: 61702073
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 5840
+		Checksum: (null) (0x77c4)
+
+Packet number: 79  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8cc1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109117520
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 32697
+		Checksum: (null) (0x52e6)
+
+Packet number: 80  Frame Len: 382
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 368 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x540b)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702073
+		ACK Number: 3864167429
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x38a0)
+
+Packet number: 81  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb01b)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 33797
+		Checksum: (null) (0xad03)
+
+Packet number: 82  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x1361)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1665
+		Sequence Number: 3864167429
+		ACK Number: 61702401
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 6432
+		Checksum: (null) (0x2817)
+
+Packet number: 83  Frame Len: 862
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 848 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8e18)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 35249
+		Checksum: (null) (0xad03)
+
+Packet number: 84  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x9a0c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702401
+		ACK Number: 3864169681
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0xdfb9)
+
+Packet number: 85  Frame Len: 591
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 577 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x77bf)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109117520
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 33025
+		Checksum: (null) (0x52e6)
+
+Packet number: 86  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8f0c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1666
+		Dest Port: : 80
+		Sequence Number: 61870744
+		ACK Number: <not valid>
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16384
+		Checksum: (null) (0xc472)
+
+Packet number: 87  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x0116)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 36049
+		Checksum: (null) (0xad03)
+
+Packet number: 88  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x1061)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1665
+		Sequence Number: 3864171133
+		ACK Number: 61702930
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0xba11)
+
+Packet number: 89  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x84c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109117520
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 33554
+		Checksum: (null) (0x52e6)
+
+Packet number: 90  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x0f61)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1665
+		Sequence Number: 3864172585
+		ACK Number: 61702930
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0x2fe6)
+
+Packet number: 91  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x83c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109117520
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 33554
+		Checksum: (null) (0x52e6)
+
+Packet number: 92  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x879c)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1666
+		Sequence Number: 3557869253
+		ACK Number: 61870745
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 5840
+		Checksum: (null) (0x1501)
+
+Packet number: 93  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x82c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109183056
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 4761
+		Checksum: (null) (0x10d4)
+
+Packet number: 94  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x920c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702930
+		ACK Number: 3557869254
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x37d4)
+
+Packet number: 95  Frame Len: 592
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 578 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x6ebf)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109183056
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 4761
+		Checksum: (null) (0x10d4)
+
+Packet number: 96  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x870c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1667
+		Dest Port: : 80
+		Sequence Number: 61961010
+		ACK Number: <not valid>
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16384
+		Checksum: (null) (0x2812)
+
+Packet number: 97  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfe15)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 40405
+		Checksum: (null) (0xad03)
+
+Packet number: 98  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8d4c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702930
+		ACK Number: 61702930
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x4fe8)
+
+Packet number: 99  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfd15)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 41857
+		Checksum: (null) (0xad03)
+
+Packet number: 100  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8c4c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702930
+		ACK Number: 61702930
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x4fe8)
+
+Packet number: 101  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfc15)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 43309
+		Checksum: (null) (0xad03)
+
+Packet number: 102  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8b4c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702930
+		ACK Number: 61702930
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x4fe8)
+
+Packet number: 103  Frame Len: 334
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 320 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x961a)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 46213
+		Checksum: (null) (0xad03)
+
+Packet number: 104  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8a4c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702930
+		ACK Number: 61702930
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x4fe8)
+
+Packet number: 105  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfb15)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244545
+		ACK Flag: Yes
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 44761
+		Checksum: (null) (0xad03)
+
+Packet number: 106  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x894c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1665
+		Dest Port: : 80
+		Sequence Number: 61702930
+		ACK Number: 61702930
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x4fe8)
+
+Packet number: 107  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x5af9)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244546
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 50886
+		Checksum: (null) (0xb003)
+
+Packet number: 108  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xbe3e)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1666
+		Sequence Number: 3557869254
+		ACK Number: 61871275
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 6432
+		Checksum: (null) (0xd5d6)
+
+Packet number: 109  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xacf3)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244546
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 52338
+		Checksum: (null) (0xb003)
+
+Packet number: 110  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x880c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1666
+		Dest Port: : 80
+		Sequence Number: 61871275
+		ACK Number: 3557872158
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x26f3)
+
+Packet number: 111  Frame Len: 70
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 56 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x7751)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244547
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 28589
+		Checksum: (null) (0xb103)
+
+Packet number: 112  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x870c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1667
+		Dest Port: : 80
+		Sequence Number: 61961011
+		ACK Number: 3570495406
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x4bf6)
+
+Packet number: 113  Frame Len: 587
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 573 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x68bf)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109248592
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 29491
+		Checksum: (null) (0xd1d4)
+
+Packet number: 114  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xbc3e)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1666
+		Sequence Number: 3557872158
+		ACK Number: 61871275
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 6432
+		Checksum: (null) (0xd06e)
+
+Packet number: 115  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x73c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109183056
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 5291
+		Checksum: (null) (0x10d4)
+
+Packet number: 116  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x830c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1666
+		Dest Port: : 80
+		Sequence Number: 61871275
+		ACK Number: 3557873610
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x9731)
+
+Packet number: 117  Frame Len: 1051
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1037 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x79f5)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244546
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 55242
+		Checksum: (null) (0xb003)
+
+Packet number: 118  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x824c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1666
+		Dest Port: : 80
+		Sequence Number: 61871275
+		ACK Number: 61871275
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x17c5)
+
+Packet number: 119  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x2960)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244547
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 28590
+		Checksum: (null) (0xb103)
+
+Packet number: 120  Frame Len: 239
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 225 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x7faa)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1667
+		Sequence Number: 3570495406
+		ACK Number: 61961536
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 6432
+		Checksum: (null) (0x7e6a)
+
+Packet number: 121  Frame Len: 70
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 56 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x68c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109314128
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 12460
+		Checksum: (null) (0x0000)
+
+Packet number: 122  Frame Len: 580
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 566 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x710a)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1667
+		Dest Port: : 80
+		Sequence Number: 61961536
+		ACK Number: 3570495591
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17239
+		Checksum: (null) (0xa371)
+
+Packet number: 123  Frame Len: 70
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 56 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x7751)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244548
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 38716
+		Checksum: (null) (0xb403)
+
+Packet number: 124  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x7d0c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1668
+		Dest Port: : 80
+		Sequence Number: 62140589
+		ACK Number: 3708262205
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x0909)
+
+Packet number: 125  Frame Len: 588
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 574 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x5dbf)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109314128
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 12461
+		Checksum: (null) (0x07dd)
+
+Packet number: 126  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x8ba5)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1667
+		Sequence Number: 3570495591
+		ACK Number: 61962062
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0xd197)
+
+Packet number: 127  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x7a5a)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244547
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30227
+		Checksum: (null) (0xb103)
+
+Packet number: 128  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x7a0c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1667
+		Dest Port: : 80
+		Sequence Number: 61962062
+		ACK Number: 3570498495
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x1fe6)
+
+Packet number: 129  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x4c7f)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244548
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: Yes
+		FIN Flag: Yes
+		Window Size: 38717
+		Checksum: (null) (0xb403)
+
+Packet number: 130  Frame Len: 268
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 254 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x84c9)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1668
+		Sequence Number: 3708263657
+		ACK Number: 62141115
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 6432
+		Checksum: (null) (0x348c)
+
+Packet number: 131  Frame Len: 74
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 60 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x5cc1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109314128
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 12987
+		Checksum: (null) (0x07dd)
+
+Packet number: 132  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xafc4)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1668
+		Sequence Number: 3708262205
+		ACK Number: 62141115
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 6432
+		Checksum: (null) (0x08f0)
+
+Packet number: 133  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x67c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109314128
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 12987
+		Checksum: (null) (0x07dd)
+
+Packet number: 134  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x770c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1668
+		Dest Port: : 80
+		Sequence Number: 62141115
+		ACK Number: 3708263871
+		ACK Flag: No
+		SYN Flag: No
+		RST Flag: Yes
+		FIN Flag: No
+		Window Size: 0
+		Checksum: (null) (0x9544)
+
+Packet number: 135  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x795a)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 5244547
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 31679
+		Checksum: (null) (0xb103)
+
+Packet number: 136  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x760c)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 1667
+		Dest Port: : 80
+		Sequence Number: 61962062
+		ACK Number: 3570499947
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x73e0)
+
+Packet number: 137  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x64c1)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109248592
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30542
+		Checksum: (null) (0xd1d4)
+
+Packet number: 138  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x88a5)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1667
+		Sequence Number: 3570499947
+		ACK Number: 61962062
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0x3820)
+
+Packet number: 139  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x6401)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109248592
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30542
+		Checksum: (null) (0xb103)
+
+Packet number: 140  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x87a5)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1667
+		Sequence Number: 3570501399
+		ACK Number: 61962062
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0x5eff)
+
+Packet number: 141  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x6301)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109248592
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30542
+		Checksum: (null) (0xb103)
+
+Packet number: 142  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x86a5)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1667
+		Sequence Number: 3570502851
+		ACK Number: 61962062
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0x609b)
+
+Packet number: 143  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x6201)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109248592
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30542
+		Checksum: (null) (0xb103)
+
+Packet number: 144  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 43
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x85a5)
+		Sender IP: 195.10.46.40
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 80
+		Dest Port: : 1667
+		Sequence Number: 3570504303
+		ACK Number: 61962062
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 7504
+		Checksum: (null) (0x97d3)
+
+Packet number: 145  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x6101)
+		Sender IP: 192.168.1.102
+		Dest IP: 195.10.46.40
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 109248592
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 30542
+		Checksum: (null) (0xb103)
+
+Packet number: 146  Frame Len: 131
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 117 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xc9d4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343917
+		ACK Number: 1013159101
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16646
+		Checksum: (null) (0xe728)
+
+Packet number: 147  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x9ef2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 38077
+		Checksum: (null) (0x9803)
+
+Packet number: 148  Frame Len: 147
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 133 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb8d4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60343994
+		ACK Number: 1013159101
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16646
+		Checksum: (null) (0x8bca)
+
+Packet number: 149  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x9df2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 38077
+		Checksum: (null) (0x9803)
+
+Packet number: 150  Frame Len: 1506
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1492 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x0138)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013159101
+		ACK Number: 60344087
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 9295
+		Checksum: (null) (0x0746)
+
+Packet number: 151  Frame Len: 1514
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1500 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xefec)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 39529
+		Checksum: (null) (0x9803)
+
+Packet number: 152  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x14d5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60344087
+		ACK Number: 1013162005
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0x1fcb)
+
+Packet number: 153  Frame Len: 696
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 682 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x20f0)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 40981
+		Checksum: (null) (0x9803)
+
+Packet number: 154  Frame Len: 54
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x13d5)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60344087
+		ACK Number: 1013162639
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16790
+		Checksum: (null) (0x1fcb)
+
+Packet number: 155  Frame Len: 304
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 290 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa7f1)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 41615
+		Checksum: (null) (0x9803)
+
+Packet number: 156  Frame Len: 131
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 117 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xc5d4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60344087
+		ACK Number: 1013162881
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16548
+		Checksum: (null) (0x0893)
+
+Packet number: 157  Frame Len: 68
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x98f2)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 41857
+		Checksum: (null) (0x9803)
+
+Packet number: 158  Frame Len: 208
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 194 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x77d4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60344164
+		ACK Number: 1013162881
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 16548
+		Checksum: (null) (0x7464)
+
+Packet number: 159  Frame Len: 272
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 258 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xc5f1)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 140707455
+		ACK Flag: No
+		SYN Flag: Yes
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 41857
+		Checksum: (null) (0x9803)
+
+Packet number: 160  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa73d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013163091
+		ACK Number: 60344318
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 10985
+		Checksum: (null) (0x21df)
+
+Packet number: 161  Frame Len: 248
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 234 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x4689)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 51198
+		Checksum: (null) (0x633c)
+
+Packet number: 162  Frame Len: 1200
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 1186 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0x2c39)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013163091
+		ACK Number: 60344504
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 12675
+		Checksum: (null) (0x3845)
+
+Packet number: 163  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xff89)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 51384
+		Checksum: (null) (0x633c)
+
+Packet number: 164  Frame Len: 147
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 133 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb1d4)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 1663
+		Dest Port: : 2147
+		Sequence Number: 60344504
+		ACK Number: 1013164237
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 17424
+		Checksum: (null) (0xa8c7)
+
+Packet number: 165  Frame Len: 131
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 117 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xb889)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 51477
+		Checksum: (null) (0x633c)
+
+Packet number: 166  Frame Len: 60
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source MAC: 0:6:25:78:c4:7d
+		Type: IP
+
+	IP Header
+		Header Len: 20 (bytes)
+		TOS: 0x0
+		TTL: 44
+		IP PDU Len: 40 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xa53d)
+		Sender IP: 66.212.229.183
+		Dest IP: 192.168.1.102
+
+	TCP Header
+		Source Port: : 2147
+		Dest Port: : 1663
+		Sequence Number: 1013164237
+		ACK Number: 60344667
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: Yes
+		Window Size: 12675
+		Checksum: (null) (0xafd2)
+
+Packet number: 167  Frame Len: 62
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source MAC: 0:2:2d:90:75:89
+		Type: IP
+
+	IP Header
+		Header Len: 28 (bytes)
+		TOS: 0x0
+		TTL: 128
+		IP PDU Len: 48 (bytes)
+		Protocol: TCP
+		Checksum: NULL (0xfc89)
+		Sender IP: 192.168.1.102
+		Dest IP: 66.212.229.183
+
+	TCP Header
+		Source Port: : 17416
+		Dest Port: : 1280
+		Sequence Number: 0
+		ACK Number: 108988515
+		ACK Flag: Yes
+		SYN Flag: No
+		RST Flag: No
+		FIN Flag: No
+		Window Size: 51547
+		Checksum: (null) (0x633c)

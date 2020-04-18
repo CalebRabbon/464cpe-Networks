@@ -1,0 +1,173 @@
+argc = 2
+argv[0] = ./trace
+argv[1] = ./itests/UDPfile.pcap
+Packet number: 1  Frame Len: 78: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 2  Frame Len: 491: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 3  Frame Len: 85: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 4  Frame Len: 196: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 5  Frame Len: 73: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 6  Frame Len: 542: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 7  Frame Len: 74: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 8  Frame Len: 233: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 9  Frame Len: 72: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 10  Frame Len: 478: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 11  Frame Len: 81: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 12  Frame Len: 209: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 13  Frame Len: 73: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 14  Frame Len: 442: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 15  Frame Len: 79: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 16  Frame Len: 255: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 17  Frame Len: 84: 
+
+	Ethernet Header
+		Dest MAC: 0:6:25:78:c4:7d
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 18  Frame Len: 431: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:6:25:78:c4:7d
+		Type: IP
+
+Packet number: 19  Frame Len: 92: 
+
+	Ethernet Header
+		Dest MAC: ff:ff:ff:ff:ff:ff
+		Source Mac: 0:2:2d:90:75:89
+		Type: IP
+
+Packet number: 20  Frame Len: 104: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:20:18:dc:ae:ab
+		Type: IP
+
+Packet number: 21  Frame Len: 104: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:20:18:dc:ae:ab
+		Type: IP
+
+End of packets 
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:20:18:dc:ae:ab
+		Type: IP
+
+pcap_next_ret      -2
+pkt_header->caplen 104
+pkt_header->len    104
+Packet number: 9  Frame Len: 104: 
+
+	Ethernet Header
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:20:18:dc:ae:ab
+		Type: IP
+
+		Dest MAC: 0:2:2d:90:75:89
+		Source Mac: 0:20:18:dc:ae:ab
+		Type: IP
+
+pcap_next_ret      -2
+pkt_header->caplen 104
+pkt_header->len    104
+Success

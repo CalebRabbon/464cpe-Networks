@@ -1,0 +1,210 @@
+/* Caleb Rabbon, crabbon@calpoly.edu */
+
+#include "trace.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <pcap/pcap.h>
+
+#define ARP 0x0806
+#define IP  0x0800
+
+void printPacketNumLen(int number, int frame){
+   printf("\nPacket number: %i  Frame Len: %i\n\n", number, frame);
+   printf("\tEthernet Header\n");
+}
+
+/* Fills in the passed in struct ethHeader with data from the void* pkt_data */
+void createEthHeader(struct ethHeader* eHeader, void* pkt_data){
+   int i = 0;
+
+   for(i = 0; i < ETHER_ADDR_SIZE; i ++){
+      eHeader->dst.ether_addr_octet[i] = ((uint8_t*)(pkt_data))[i];
+      eHeader->src.ether_addr_octet[i] =
+         ((uint8_t*)(pkt_data))[i+ETHER_ADDR_SIZE];
+   }
+
+   pkt_data += sizeof(uint8_t) * 2 * ETHER_ADDR_SIZE;
+   eHeader->type = ntohs(*((uint16_t*)pkt_data));
+}
+
+/* uint16_t -> char*
+ * Takes in a uint16_t and returns a string representing the ethernet type
+ */
+char* findEthType(uint16_t i){
+   if(i == 0x0800){
+      return "IP";
+   }
+   if(i == 0x0806){
+      return "ARP";
+   }
+   return "Unknown";
+}
+
+
+/* struct ethHeader* -> void
+ * Prints out the ethHeader destination address in IPv4 numbers and colon
+ * notation
+ */
+void printEthHeader(struct ethHeader* eHeader){
+   char* s;
+   s = ether_ntoa(&(eHeader->dst));
+   printf("\t\tDest MAC: %s\n", s);
+   s = ether_ntoa(&(eHeader->src));
+   printf("\t\tSource MAC: %s\n", s);
+   printf("\t\tType: %s\n\n", findEthType(eHeader->type));
+
+}
+
+/* Returns an int representing if the next packet was successful */
+int findNextHeader(pcap_t* pcap_file, struct pcap_pkthdr** pkt_header, const 
+      u_char** pkt_data){
+
+   int pcap_next_ret = 1;
+
+   pcap_next_ret = pcap_next_ex(pcap_file, pkt_header, pkt_data);
+   /* From the man pages about pcap_next_ex return value
+    *  1 = packet was read without problems
+    *  0 = packets are being read from a live capture and the timeout expired
+    * -1 = Error occured
+    * -2 = Packets being read from a ``savefile'' and no more packets to read
+    */
+   return pcap_next_ret;
+}
+
+/* Finds, creates, and outputs the ethernet header */
+/* Takes in a struct ethHeader* , struct pcacp_pkthdr* , void* and outputs and
+ * int representing the next type of packet following the Ethernet header */
+int outputEthHeader(struct pcap_pkthdr* pkt_header, void* pkt_data, int i){
+   struct ethHeader eHeader;
+
+   createEthHeader(&eHeader, pkt_data);
+   printPacketNumLen(i, (pkt_header)->len);
+   printEthHeader(&eHeader);
+
+   if(eHeader.type == ARP)
+      return ARP;
+   else if(eHeader.type == IP)
+      return IP;
+   else
+      return 0;
+}
+
+/* Fills in the passed in struct arpHeader pointer with data from the 
+ * void* pkt_data and returns void */
+void createArpHeader(struct arpHeader* aHeader, void* pkt_data){
+   /* Moving the pkt_data pointer to the Opcode */
+   pkt_data += sizeof(uint8_t) * OPCODE_OFFSET;
+
+}
+
+/* Outputs the ARP Header given a void* to the pkt_data */
+void outputArpHeader(void* pkt_data){
+   struct arpHeader aHeader;
+
+   createArpHeader(&aHeader, pkt_data);
+   /*
+   printArpHeader(&aHeader);
+   */
+
+}
+
+/* Prints the data stored in the header and all designated fields */
+/* struct pcap_pkthdr* pkt_header, u_char* pkt_data, int i -> void */
+void printHeader(const u_char* pkt_data, struct pcap_pkthdr* pkt_header, int i){
+   uint16_t type;
+
+   type = outputEthHeader(pkt_header, (void*)pkt_data, i);
+
+   if(type == ARP){
+      outputArpHeader((void*)pkt_data);
+   }
+   else if(type == IP){
+      outputIpHeader((void*)pkt_data);
+   }
+}
+
+/* Find all the Ethernet Headers */
+/*
+void printAllHeaders(pcap_t* pcap_file, struct pcap_pkthdr** pkt_header, 
+      const u_char** pkt_data, struct ethHeader* eHeader){
+*/
+void printAllHeaders(pcap_t* pcap_file){
+   struct pcap_pkthdr* pkt_header;
+   const u_char* pkt_data;
+   //struct ethHeader eHeader;
+   int pcap_next_ret = 1;
+   int i = 1;
+
+   while(pcap_next_ret == 1){
+      pcap_next_ret = findNextHeader(pcap_file, &pkt_header, &pkt_data);
+
+      if(pcap_next_ret == -2){
+         return;
+      }
+
+      printHeader(pkt_data, pkt_header, i);
+      i++;
+   }
+}
+
+int main(int argc, char * argv[])
+{
+   char errbuf[PCAP_ERRBUF_SIZE];
+   const char* fname;
+   pcap_t* pcap_file;
+   /*
+   struct pcap_pkthdr* pkt_header;
+   const u_char* pkt_data;
+   struct ethHeader eHeader;
+   */
+
+   /* Error checking if no input file */
+   if(argc < 2){
+      fprintf(stderr, "No input file\n");
+      exit(EXIT_FAILURE);
+   }
+
+   /* Saving input file */
+   fname = argv[1];
+
+   /* Error checking for pcap */
+   if((pcap_file = pcap_open_offline(fname, errbuf)) == NULL){
+      /* Error occured while opening the file */
+      fprintf(stderr, "Error while opening the pcap file: %s\n", errbuf);
+      exit(EXIT_FAILURE);
+   }
+
+   printAllHeaders(pcap_file);
+   /*
+   printAllHeaders(pcap_file, &pkt_header, &pkt_data, &eHeader);
+   */
+
+   /*
+   pcap_next_ret = pcap_next_ex(pcap_file, &pkt_header, &pkt_data);
+   */
+   /* From the man pages about pcap_next_ex return value
+    *  1 = packet was read without problems
+    *  0 = packets are being read from a live capture and the timeout expired
+    * -1 = Error occured
+    * -2 = Packets being read from a ``savefile'' and no more packets to read
+   createEthHeader(&eHeader, (void*)pkt_data);
+   printEthHeader(&eHeader);
+    */
+
+   /*
+   pcap_next_ret = findNextHeader(pcap_file, &pkt_header, &pkt_data, &eHeader,9);
+   createEthHeader(&eHeader, (void*)pkt_data);
+   printEthHeader(&eHeader);
+   */
+
+   /*
+   printf("pcap_next_ret      %i\n", pcap_next_ret);
+   printf("pkt_header->caplen %i\n", pkt_header->caplen);
+   printf("pkt_header->len    %i\n", pkt_header->len);
+   */
+   /*
+   createEthHeader(&eHeader, (void*)pkt_data);
+   printEthHeader(&eHeader);
+   */
+   return 0;
+}
