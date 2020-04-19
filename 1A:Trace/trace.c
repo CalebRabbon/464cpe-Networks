@@ -1,4 +1,6 @@
 /* Caleb Rabbon, crabbon@calpoly.edu */
+//#define DEBUG
+//#define IPDEBUG
 
 #include "trace.h"
 #include <stdio.h>
@@ -28,11 +30,11 @@
 #define ICMP 1
 #define UDP 17
 
-#define ICMP_OFFSET 34   /* ICMP offset */
+/* CHECKSUM_VALEU is found by manually adding each word in IP Header */
+#define CHECKSUM_VALUE 0xFFFF
+
 #define PING_REQUEST 8
 #define PING_REPLY 0
-
-#define UDP_OFFSET 34    /* UDP offset */
 
 /* Flags for TCP Header */
 #define ACK_FLG 0x0010
@@ -183,14 +185,82 @@ void outputArpHeader(void* pkt_data){
    printArpHeader(&aHeader);
 }
 
+/* Calculates the checksum of an ipHeader* and fills in the ipHeader* */
+void findIP_CS(struct ipHeader* iHeader, void* pkt_data){
+   uint16_t calc_cs = 0; /* The calculated checksum */
+   uint16_t prev_calc_cs = 0; 
+   uint16_t val = 0; 
+   int i = 0;
+   uint16_t ipWords = 0; 
+   uint16_t odd_flg = 0; 
+
+   /* Round IP Words up */
+   ipWords = iHeader->headerLen;
+   if(iHeader->headerLen % 2 == 1){
+      ipWords ++;
+      odd_flg = 1;
+   }
+
+   /* Must divide by 2 to get words since it is set to tcpLength which is in
+    * bytes */
+   ipWords = ipWords/2;
+
+
+   /* Moving the pkt_data pointer to the IP's header length */
+   pkt_data += sizeof(uint8_t) * IP_HEADERLEN_OFFSET;
+
+   /* Summing together all words of the IP Header */
+   for(i = 0; i < ipWords; i ++){
+      prev_calc_cs = calc_cs;
+
+      /* Update check_sum */
+      val = ntohs(*((uint16_t*)pkt_data));
+      calc_cs += val;
+
+      /* If the odd flag is set then the last word sets the last byte to zero */
+      if((i == ipWords - 1) && odd_flg)
+         val = val & 0xFF00;
+
+#ifdef IPDEBUG
+      printf("i = %i", i);
+      printf("     Current Value = %x", val);
+      printf("     Running Sum = %x\n", calc_cs);
+#endif
+
+      /* If you overflow add one to the checksum */
+      if(calc_cs < prev_calc_cs)
+         calc_cs += 1;
+
+      pkt_data += sizeof(uint16_t);
+   }
+#ifdef IPDEBUG
+   printf("CS = %i\n", calc_cs);
+   printf("CHECKSUMVALUE = %i\n", CHECKSUM_VALUE);
+#endif
+   if(calc_cs == CHECKSUM_VALUE)
+      iHeader->checksum_flg = "Correct";
+   else
+      iHeader->checksum_flg = "Incorrect";
+}
+
+/* Converts an ipHeader lenth from a byte to the "Actual Length"
+ * "Actual Length" = lower 4 bits * 4 Bytes (Size of word) 
+ */
+uint8_t convertLen(uint8_t rawLength){
+   uint8_t actLength;
+   actLength = (rawLength & 0xF) * 4;
+   return actLength;
+}
+
 /* Fills in the passed in struct ipHeader pointer with data from the 
  * void* pkt_data and returns void */
 void createIpHeader(struct ipHeader* iHeader, void* pkt_data){
    int i = 0;
+   void* saved_pkt_data = pkt_data;
 
    /* Moving the pkt_data pointer to the IP's header length */
    pkt_data += sizeof(uint8_t) * IP_HEADERLEN_OFFSET;
-   iHeader->headerLen = *((uint8_t*)pkt_data);
+   iHeader->headerLen = convertLen(*((uint8_t*)pkt_data));
 
    /* Moving the pkt_data pointer one byte forward */
    pkt_data += sizeof(uint8_t);
@@ -210,23 +280,22 @@ void createIpHeader(struct ipHeader* iHeader, void* pkt_data){
 
    /* Moving the pkt_data pointer one byte forward */
    pkt_data += sizeof(uint8_t);
-   /* Since the bytes need to go from network to computer order I swapped the
-    * checksum values. Thus the first value goes to checksum[1] and NOT
-    * checksum[0] */
-   iHeader->checksum[1] = *((uint8_t*)pkt_data);
-   /* Moving the pkt_data pointer one byte forward */
-   pkt_data += sizeof(uint8_t);
-   iHeader->checksum[0] = *((uint8_t*)pkt_data);
 
-   /* Moving the pkt_data pointer one byte forward */
+   /* Filling out the checksum */
+   iHeader->checksum[0] = *((uint8_t*)pkt_data);
    pkt_data += sizeof(uint8_t);
+   iHeader->checksum[1] = *((uint8_t*)pkt_data);
+   pkt_data += sizeof(uint8_t);
+
    for(i = 0; i < IP_ADDR_SIZE; i ++){
       iHeader->senderIP[i] = ((uint8_t*)(pkt_data))[i];
       iHeader->destIP[i] = ((uint8_t*)(pkt_data))[i+IP_ADDR_SIZE];
    }
+
+   findIP_CS(iHeader, saved_pkt_data);
 }
 
-/* Returns the associated protocol name given a struct ipheader* */
+/* Returns the associated protocol name given a struct ipHeader* */
 /* TCP = 6, ICMP = 1, UDP = 17 */
 char* toWord(struct ipHeader* iHeader){
    if(iHeader->protocol == TCP)
@@ -235,34 +304,25 @@ char* toWord(struct ipHeader* iHeader){
       return "ICMP";
    else if(iHeader->protocol == UDP)
       return "UDP";
-   return NULL;
-}
-
-/* Calculates the checksum of an ipheader* and returns a string representing if
- * it is "Correct" or "Incorrect" */
-char* findCS(struct ipHeader* iHeader){
-   return "NULL";
-}
-
-/* Converts an ipHeader lenth from a byte to the "Actual Length"
- * "Actual Length" = lower 4 bits * 4 Bytes (Size of word) 
- */
-uint8_t convertLen(uint8_t rawLength){
-   uint8_t actLength;
-   actLength = (rawLength & 0xF) * 4;
-   return actLength;
+   return "Unknown";
 }
 
 /* Prints out the IP Header */
 void printIpHeader(struct ipHeader* iHeader){
    printf("\tIP Header\n");
-   printf("\t\tHeader Len: %u (bytes)\n", convertLen(iHeader->headerLen));
+   printf("\t\tHeader Len: %u (bytes)\n", iHeader->headerLen);
    printf("\t\tTOS: 0x%x\n", iHeader->tos);
    printf("\t\tTTL: %i\n", iHeader->ttl);
    printf("\t\tIP PDU Len: %i (bytes)\n", iHeader->pduLen);
    printf("\t\tProtocol: %s\n", toWord(iHeader));
-   printf("\t\tChecksum: %s (0x%02x%02x)\n", findCS(iHeader), 
-      iHeader->checksum[0], iHeader->checksum[1]);
+   if(iHeader->checksum[1] == 0){
+   printf("\t\tChecksum: %s (0x%x)\n", iHeader->checksum_flg, 
+      iHeader->checksum[0]);
+   }
+   else{
+      printf("\t\tChecksum: %s (0x%x%02x)\n", iHeader->checksum_flg, 
+         iHeader->checksum[1], iHeader->checksum[0]);
+   }
    printf("\t\tSender IP: %i.", iHeader->senderIP[0]);
    printf("%i.",  iHeader->senderIP[1]);
    printf("%i.",  iHeader->senderIP[2]);
@@ -270,7 +330,7 @@ void printIpHeader(struct ipHeader* iHeader){
    printf("\t\tDest IP: %i.", iHeader->destIP[0]);
    printf("%i.",  iHeader->destIP[1]);
    printf("%i.",  iHeader->destIP[2]);
-   printf("%i\n\n", iHeader->destIP[3]);
+   printf("%i\n", iHeader->destIP[3]);
 }
 
 /* Converts the ping number (reply or request) to a string */
@@ -283,34 +343,42 @@ char* getPingType(uint8_t type){
 }
 
 /* Prints the ping packet (ICMP) header */
-void printICMPHeader(void* pkt_data){
+void printICMPHeader(struct ipHeader* iHeader, void* pkt_data){
    uint8_t type;
+   uint16_t icmp_offset;
 
-   pkt_data += sizeof(uint8_t) * ICMP_OFFSET;
+   icmp_offset = IP_HEADERLEN_OFFSET + iHeader->headerLen;
+
+   pkt_data += sizeof(uint8_t) * icmp_offset;
    type = *((uint8_t*)pkt_data);
-   printf("\tICMP Header\n");
+   printf("\n\tICMP Header\n");
    printf("\t\tType: %s\n", getPingType(type));
 }
 
 /* Prints the UDP Header */
-void printUDPHeader(void *pkt_data){
+void printUDPHeader(struct ipHeader* iHeader, void *pkt_data){
    uint16_t src;
    uint16_t dst;
+   uint16_t udp_offset;
 
-   pkt_data += sizeof(uint8_t) * UDP_OFFSET;
+   udp_offset = IP_HEADERLEN_OFFSET + iHeader->headerLen;
+
+   pkt_data += sizeof(uint8_t) * udp_offset;
    src = ntohs(*((uint16_t*)pkt_data));
 
    pkt_data += sizeof(uint16_t);
    dst = ntohs(*((uint16_t*)pkt_data));
 
-   printf("\tUDP Header\n");
+   printf("\n\tUDP Header\n");
    printf("\t\tSource Port: : %u\n", src);
    printf("\t\tDest Port: : %u\n", dst);
 }
 
 /* Print TCP Ack Number */
-void printACKNum(uint32_t ackNum){
+void printACKNum(uint32_t ackNum, uint16_t flgs){
    if(ackNum == 0)
+      printf("\t\tACK Number: <not valid>\n");
+   else if(ackNum != 0 && ((flgs & ACK_FLG) == 0))
       printf("\t\tACK Number: <not valid>\n");
    else
       printf("\t\tACK Number: %lu\n", (unsigned long)ackNum);
@@ -339,13 +407,144 @@ void printFlags(uint16_t flgs){
       printf("\t\tFIN Flag: No\n");
 }
 
-/* Finds the TCP checksum */
-char* findTCP_CS(uint32_t checksum){
-   return NULL;
+/* Adds the value to the checksum and adjusts for overflow */
+void addVal(uint16_t val, uint16_t* calc_cs){
+   /* If you overflow add one to the checksum */
+   uint16_t prev_calc_cs = *calc_cs;
+
+   *calc_cs += val;
+   if(*calc_cs < prev_calc_cs)
+      *calc_cs += 1;
+}
+
+/* Determins if the TCP checksum is correct */
+char* findTCP_CS(void* pkt_data, struct ipHeader* iHeader){
+   uint16_t calc_cs = 0; /* The calculated checksum */
+   uint16_t prev_calc_cs = 0;
+   uint16_t val = 0;
+   uint16_t IpWord = 0;
+   int i = 0;
+   int odd_flg = 0;
+   uint16_t tcpLength = 0;
+   uint16_t tcpWords = 0;
+   uint16_t tcp_offset;
+
+
+   /* Moving the pkt_data pointer to the beginning of the TCP's header length */
+   tcp_offset = IP_HEADERLEN_OFFSET + iHeader->headerLen;
+   pkt_data += sizeof(uint8_t) * tcp_offset;
+
+   /* tcpLength in bytes
+    * This is found by taking the total IP Length - IP Header length */
+   tcpLength = iHeader->pduLen - iHeader->headerLen;
+
+#ifdef DEBUG
+   printf("tcpLength %i\n", tcpLength);
+#endif
+
+
+   /* Round TCP Words up */
+   tcpWords = tcpLength;
+   if(tcpLength % 2 == 1){
+      tcpWords ++;
+      odd_flg = 1;
+   }
+
+   /* Must divide by 2 to get words since it is set to tcpLength which is in
+    * bytes */
+   tcpWords = tcpWords/2;
+
+#ifdef DEBUG
+   printf("tcpWords %i\n", tcpWords);
+#endif
+
+   /* Summing together all words of the IP source, IP Destination, TCP Header */
+   for(i = 0; i < tcpWords; i ++){
+      prev_calc_cs = calc_cs;
+
+      /* Grab the next value */
+      val = ntohs(*((uint16_t*)pkt_data));
+
+      /* If the odd flag is set then the last word sets the last byte to zero */
+      if((i == tcpWords - 1) && odd_flg)
+         val = val & 0xFF00;
+
+      /* Update check_sum */
+      calc_cs += val;
+
+#ifdef DEBUG
+      printf("current value = %x\n", val);
+      printf("calc_cs = %x\n", calc_cs);
+#endif
+
+      /* If you overflow add one to the checksum */
+      if(calc_cs < prev_calc_cs)
+         calc_cs += 1;
+
+      pkt_data += sizeof(uint16_t);
+   }
+
+   /* Adding the TCP Pseudo Header */
+   addVal(TCP, &calc_cs);
+#ifdef DEBUG
+   printf("TCP = 0x%x\n", TCP);
+   printf("calc_cs = 0x%x\n", calc_cs);
+#endif
+
+   addVal(tcpLength, &calc_cs);
+#ifdef DEBUG
+   printf("tcpLength = 0x%x\n", tcpLength);
+   printf("calc_cs = 0x%x\n", calc_cs);
+#endif
+
+   /* Multiply by 256 to shift over the first char by one byte */
+   IpWord = iHeader->senderIP[0] * 256 + iHeader->senderIP[1];
+   addVal(IpWord, &calc_cs);
+#ifdef DEBUG
+   printf("senderIP 1 = 0x%x\n", IpWord);
+#endif
+
+   IpWord = iHeader->senderIP[2] * 256 + iHeader->senderIP[3];
+   addVal(IpWord, &calc_cs);
+#ifdef DEBUG
+   printf("senderIP 2 = 0x%x\n", IpWord);
+#endif
+
+   IpWord = iHeader->destIP[0] * 256 + iHeader->destIP[1];
+   addVal(IpWord, &calc_cs);
+#ifdef DEBUG
+   printf("destIP 1 = 0x%x\n", IpWord);
+#endif
+
+   IpWord = iHeader->destIP[2] * 256 + iHeader->destIP[3];
+   addVal(IpWord, &calc_cs);
+#ifdef DEBUG
+   printf("destIP 2 = 0x%x\n", IpWord);
+#endif
+
+
+#ifdef DEBUG
+   printf("calc_cs Integer = %i\n", calc_cs);
+   printf("CHECKSUMVALUE = %i\n", CHECKSUM_VALUE);
+#endif
+
+   if(calc_cs == CHECKSUM_VALUE){
+      /*
+      printf("CHECKSUM is correct = %i\n", calc_cs);
+      */
+      return "Correct";
+   }
+   else{
+      /*
+      printf("CHECKSUM is incorrect = %i\n", calc_cs);
+      */
+      return "Incorrect";
+   }
+   return "Incorrect";
 }
 
 /* Prints the TCP Header */
-void printTCPHeader(void *pkt_data){
+void printTCPHeader(struct ipHeader* iHeader, void *pkt_data){
    uint16_t src;
    uint16_t dst;
    uint32_t sqNum;
@@ -353,8 +552,12 @@ void printTCPHeader(void *pkt_data){
    uint16_t flgs;
    uint16_t winSize;
    uint8_t  checksum[2]; /* 2 Bytes representing the checksum */
+   void* saved_pkt_data = pkt_data;
+   uint16_t tcp_offset;
 
-   pkt_data += sizeof(uint8_t) * UDP_OFFSET;
+   tcp_offset = IP_HEADERLEN_OFFSET + iHeader->headerLen;
+
+   pkt_data += sizeof(uint8_t) * tcp_offset;
 
    src = ntohs(*((uint16_t*)pkt_data));
    pkt_data += sizeof(uint16_t);
@@ -374,23 +577,35 @@ void printTCPHeader(void *pkt_data){
    winSize = ntohs(*((uint16_t*)pkt_data));
    pkt_data += sizeof(uint16_t);
 
-   /* Since the bytes need to go from network to computer order I swapped the
-    * checksum values. Thus the first value goes to checksum[1] and NOT
-    * checksum[0] */
+   /* Filling out the checksum */
+   checksum[0] = *((uint8_t*)pkt_data);
+   pkt_data += sizeof(uint8_t);
    checksum[1] = *((uint8_t*)pkt_data);
    pkt_data += sizeof(uint8_t);
 
-   checksum[0] = *((uint8_t*)pkt_data);
 
-   printf("\tTCP Header\n");
-   printf("\t\tSource Port: : %u\n", src);
-   printf("\t\tDest Port: : %u\n", dst);
+   printf("\n\tTCP Header\n");
+
+   if(src == 80)
+      printf("\t\tSource Port:  HTTP\n");
+   else
+      printf("\t\tSource Port: : %u\n", src);
+   if(dst == 80)
+      printf("\t\tDest Port:  HTTP\n");
+   else
+      printf("\t\tDest Port: : %u\n", dst);
    printf("\t\tSequence Number: %lu\n", (unsigned long)sqNum);
-   printACKNum(ackNum);
+   printACKNum(ackNum, flgs);
    printFlags(flgs);
    printf("\t\tWindow Size: %u\n", winSize);
-   printf("\t\tChecksum: %s (0x%02x%02x)\n", findTCP_CS(1), checksum[0], 
-      checksum[1]);
+   if(checksum[0] == 0){
+      printf("\t\tChecksum: %s (0x%02x)\n", findTCP_CS(saved_pkt_data, iHeader),
+         checksum[1]);
+   }
+   else{
+      printf("\t\tChecksum: %s (0x%x%02x)\n", findTCP_CS(saved_pkt_data, iHeader),
+         checksum[0], checksum[1]);
+   }
 }
 
 
@@ -402,13 +617,13 @@ void outputIpHeader(void* pkt_data){
    printIpHeader(&iHeader);
 
    if(iHeader.protocol == TCP){
-      printTCPHeader(pkt_data);
+      printTCPHeader(&iHeader, pkt_data);
    }
    else if (iHeader.protocol == ICMP){
-      printICMPHeader(pkt_data);
+      printICMPHeader(&iHeader, pkt_data);
    }
    else if (iHeader.protocol == UDP){
-      printUDPHeader(pkt_data);
+      printUDPHeader(&iHeader, pkt_data);
    }
 }
 

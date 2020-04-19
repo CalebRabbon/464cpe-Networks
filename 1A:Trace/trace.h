@@ -34,6 +34,7 @@ struct ipHeader
    uint16_t pduLen;      /* IP Protocol Data Unit length in bytes */
    uint8_t  protocol;    /* IP protocol: TCP = 6, ICMP = 1, UDP = 17 */
    uint8_t  checksum[2]; /* 2 Bytes representing the checksum */
+   char* checksum_flg; /* String representing if the checksum is correct */
    unsigned char senderIP[IP_ADDR_SIZE]; /* Sender IP broken into 4 bytes */
    unsigned char destIP[IP_ADDR_SIZE];   /* Target IP broken into 4 bytes */
 }__attribute__((packed));

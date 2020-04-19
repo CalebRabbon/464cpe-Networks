@@ -12,7 +12,7 @@ Packet number: 1  Frame Len: 73
 		TTL: 128
 		IP PDU Len: 59 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x6552)
+		Checksum: Correct (0x6552)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -33,7 +33,7 @@ Packet number: 2  Frame Len: 180
 		TTL: 253
 		IP PDU Len: 166 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x07f8)
+		Checksum: Correct (0x7f8)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -54,13 +54,13 @@ Packet number: 3  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xba3a)
+		Checksum: Correct (0xba3a)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.245.61
 
 	TCP Header
 		Source Port: : 1652
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13128897
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -68,7 +68,7 @@ Packet number: 3  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0x5760)
+		Checksum: Correct (0x6057)
 
 Packet number: 4  Frame Len: 62
 
@@ -83,12 +83,12 @@ Packet number: 4  Frame Len: 62
 		TTL: 238
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x583f)
+		Checksum: Correct (0x583f)
 		Sender IP: 207.46.245.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1652
 		Sequence Number: 4082595367
 		ACK Number: 13128898
@@ -97,7 +97,7 @@ Packet number: 4  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 4356
-		Checksum: (null) (0xcb25)
+		Checksum: Correct (0x25cb)
 
 Packet number: 5  Frame Len: 54
 
@@ -112,13 +112,13 @@ Packet number: 5  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc13a)
+		Checksum: Correct (0xc13a)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.245.61
 
 	TCP Header
 		Source Port: : 1652
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13128898
 		ACK Number: 4082595368
 		ACK Flag: Yes
@@ -126,7 +126,7 @@ Packet number: 5  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x7b1f)
+		Checksum: Correct (0x1f7b)
 
 Packet number: 6  Frame Len: 741
 
@@ -141,13 +141,13 @@ Packet number: 6  Frame Len: 741
 		TTL: 128
 		IP PDU Len: 727 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x1138)
+		Checksum: Correct (0x1138)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.245.61
 
 	TCP Header
 		Source Port: : 1652
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13128898
 		ACK Number: 4082595368
 		ACK Flag: Yes
@@ -155,7 +155,7 @@ Packet number: 6  Frame Len: 741
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x9abd)
+		Checksum: Correct (0xbd9a)
 
 Packet number: 7  Frame Len: 334
 
@@ -170,12 +170,12 @@ Packet number: 7  Frame Len: 334
 		TTL: 238
 		IP PDU Len: 320 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7938)
+		Checksum: Correct (0x7938)
 		Sender IP: 207.46.245.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1652
 		Sequence Number: 4082595368
 		ACK Number: 13129585
@@ -184,7 +184,7 @@ Packet number: 7  Frame Len: 334
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5043
-		Checksum: (null) (0x1032)
+		Checksum: Correct (0x3210)
 
 Packet number: 8  Frame Len: 54
 
@@ -199,13 +199,13 @@ Packet number: 8  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xbd3a)
+		Checksum: Correct (0xbd3a)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.245.61
 
 	TCP Header
 		Source Port: : 1652
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13129585
 		ACK Number: 4082595648
 		ACK Flag: Yes
@@ -213,7 +213,7 @@ Packet number: 8  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17144
-		Checksum: (null) (0xcc1c)
+		Checksum: Correct (0x1ccc)
 
 Packet number: 9  Frame Len: 77
 
@@ -228,7 +228,7 @@ Packet number: 9  Frame Len: 77
 		TTL: 128
 		IP PDU Len: 63 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x5352)
+		Checksum: Correct (0x5352)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -249,7 +249,7 @@ Packet number: 10  Frame Len: 187
 		TTL: 253
 		IP PDU Len: 173 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0xfff7)
+		Checksum: Correct (0xfff7)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -270,13 +270,13 @@ Packet number: 11  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb499)
+		Checksum: Correct (0xb499)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13631671
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -284,7 +284,7 @@ Packet number: 11  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0x6313)
+		Checksum: Correct (0x1363)
 
 Packet number: 12  Frame Len: 62
 
@@ -299,12 +299,12 @@ Packet number: 12  Frame Len: 62
 		TTL: 239
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x1699)
+		Checksum: Correct (0x1699)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840825356
 		ACK Number: 13631672
@@ -313,7 +313,7 @@ Packet number: 12  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 4356
-		Checksum: (null) (0x5b05)
+		Checksum: Correct (0x55b)
 
 Packet number: 13  Frame Len: 54
 
@@ -328,13 +328,13 @@ Packet number: 13  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xbb99)
+		Checksum: Correct (0xbb99)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13631672
 		ACK Number: 3840825357
 		ACK Flag: Yes
@@ -342,7 +342,7 @@ Packet number: 13  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x0aff)
+		Checksum: Correct (0xff0a)
 
 Packet number: 14  Frame Len: 1213
 
@@ -357,13 +357,13 @@ Packet number: 14  Frame Len: 1213
 		TTL: 128
 		IP PDU Len: 1199 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x3395)
+		Checksum: Correct (0x3395)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13631672
 		ACK Number: 3840825357
 		ACK Flag: Yes
@@ -371,7 +371,7 @@ Packet number: 14  Frame Len: 1213
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x4189)
+		Checksum: Correct (0x8941)
 
 Packet number: 15  Frame Len: 1453
 
@@ -386,12 +386,12 @@ Packet number: 15  Frame Len: 1453
 		TTL: 239
 		IP PDU Len: 1439 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x758c)
+		Checksum: Correct (0x758c)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840825357
 		ACK Number: 13632831
@@ -400,7 +400,7 @@ Packet number: 15  Frame Len: 1453
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0xbedd)
+		Checksum: Correct (0xddbe)
 
 Packet number: 16  Frame Len: 1506
 
@@ -415,12 +415,12 @@ Packet number: 16  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x3c8c)
+		Checksum: Correct (0x3c8c)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840826756
 		ACK Number: 13632831
@@ -429,7 +429,7 @@ Packet number: 16  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x1abb)
+		Checksum: Correct (0xbb1a)
 
 Packet number: 17  Frame Len: 54
 
@@ -444,13 +444,13 @@ Packet number: 17  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb999)
+		Checksum: Correct (0xb999)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840828208
 		ACK Flag: Yes
@@ -458,7 +458,7 @@ Packet number: 17  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x60ef)
+		Checksum: Correct (0xef60)
 
 Packet number: 18  Frame Len: 1506
 
@@ -473,12 +473,12 @@ Packet number: 18  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x398c)
+		Checksum: Correct (0x398c)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840828208
 		ACK Number: 13632831
@@ -487,7 +487,7 @@ Packet number: 18  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x74db)
+		Checksum: Correct (0xdb74)
 
 Packet number: 19  Frame Len: 1506
 
@@ -502,12 +502,12 @@ Packet number: 19  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x338c)
+		Checksum: Correct (0x338c)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840829660
 		ACK Number: 13632831
@@ -516,7 +516,7 @@ Packet number: 19  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x3aa6)
+		Checksum: Correct (0xa63a)
 
 Packet number: 20  Frame Len: 54
 
@@ -531,13 +531,13 @@ Packet number: 20  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb899)
+		Checksum: Correct (0xb899)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840831112
 		ACK Flag: Yes
@@ -545,7 +545,7 @@ Packet number: 20  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x08e4)
+		Checksum: Correct (0xe408)
 
 Packet number: 21  Frame Len: 1506
 
@@ -560,12 +560,12 @@ Packet number: 21  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf787)
+		Checksum: Correct (0xf787)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840831112
 		ACK Number: 13632831
@@ -574,7 +574,7 @@ Packet number: 21  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x7c72)
+		Checksum: Correct (0x727c)
 
 Packet number: 22  Frame Len: 1506
 
@@ -589,12 +589,12 @@ Packet number: 22  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf687)
+		Checksum: Correct (0xf687)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840832564
 		ACK Number: 13632831
@@ -603,7 +603,7 @@ Packet number: 22  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0xabeb)
+		Checksum: Correct (0xebab)
 
 Packet number: 23  Frame Len: 54
 
@@ -618,13 +618,13 @@ Packet number: 23  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb799)
+		Checksum: Correct (0xb799)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840834016
 		ACK Flag: Yes
@@ -632,7 +632,7 @@ Packet number: 23  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xb0d8)
+		Checksum: Correct (0xd8b0)
 
 Packet number: 24  Frame Len: 1506
 
@@ -647,12 +647,12 @@ Packet number: 24  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x1087)
+		Checksum: Correct (0x1087)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840834016
 		ACK Number: 13632831
@@ -661,7 +661,7 @@ Packet number: 24  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x5d21)
+		Checksum: Correct (0x215d)
 
 Packet number: 25  Frame Len: 54
 
@@ -676,13 +676,13 @@ Packet number: 25  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb699)
+		Checksum: Correct (0xb699)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840835468
 		ACK Flag: Yes
@@ -690,7 +690,7 @@ Packet number: 25  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x04d3)
+		Checksum: Correct (0xd304)
 
 Packet number: 26  Frame Len: 1506
 
@@ -705,12 +705,12 @@ Packet number: 26  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0f87)
+		Checksum: Correct (0xf87)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840835468
 		ACK Number: 13632831
@@ -719,7 +719,7 @@ Packet number: 26  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0xc920)
+		Checksum: Correct (0x20c9)
 
 Packet number: 27  Frame Len: 1506
 
@@ -734,12 +734,12 @@ Packet number: 27  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc283)
+		Checksum: Correct (0xc283)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840836920
 		ACK Number: 13632831
@@ -748,7 +748,7 @@ Packet number: 27  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0xfd8d)
+		Checksum: Correct (0x8dfd)
 
 Packet number: 28  Frame Len: 54
 
@@ -763,13 +763,13 @@ Packet number: 28  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb599)
+		Checksum: Correct (0xb599)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840838372
 		ACK Flag: Yes
@@ -777,7 +777,7 @@ Packet number: 28  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xacc7)
+		Checksum: Correct (0xc7ac)
 
 Packet number: 29  Frame Len: 1506
 
@@ -792,12 +792,12 @@ Packet number: 29  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc183)
+		Checksum: Correct (0xc183)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840838372
 		ACK Number: 13632831
@@ -806,7 +806,7 @@ Packet number: 29  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x8c91)
+		Checksum: Correct (0x918c)
 
 Packet number: 30  Frame Len: 54
 
@@ -821,13 +821,13 @@ Packet number: 30  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb499)
+		Checksum: Correct (0xb499)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840839824
 		ACK Flag: Yes
@@ -835,7 +835,7 @@ Packet number: 30  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x00c2)
+		Checksum: Correct (0xc200)
 
 Packet number: 31  Frame Len: 1506
 
@@ -850,12 +850,12 @@ Packet number: 31  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x3883)
+		Checksum: Correct (0x3883)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840839824
 		ACK Number: 13632831
@@ -864,7 +864,7 @@ Packet number: 31  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x2843)
+		Checksum: Correct (0x4328)
 
 Packet number: 32  Frame Len: 54
 
@@ -879,13 +879,13 @@ Packet number: 32  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb399)
+		Checksum: Correct (0xb399)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840841276
 		ACK Flag: Yes
@@ -893,7 +893,7 @@ Packet number: 32  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x54bc)
+		Checksum: Correct (0xbc54)
 
 Packet number: 33  Frame Len: 946
 
@@ -908,12 +908,12 @@ Packet number: 33  Frame Len: 946
 		TTL: 239
 		IP PDU Len: 932 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xab7b)
+		Checksum: Correct (0xab7b)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840841276
 		ACK Number: 13632831
@@ -922,7 +922,7 @@ Packet number: 33  Frame Len: 946
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5515
-		Checksum: (null) (0x7f58)
+		Checksum: Correct (0x587f)
 
 Packet number: 34  Frame Len: 54
 
@@ -937,13 +937,13 @@ Packet number: 34  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb099)
+		Checksum: Correct (0xb099)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840842168
 		ACK Flag: Yes
@@ -951,7 +951,7 @@ Packet number: 34  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16532
-		Checksum: (null) (0x54bc)
+		Checksum: Correct (0xbc54)
 
 Packet number: 35  Frame Len: 1250
 
@@ -966,13 +966,13 @@ Packet number: 35  Frame Len: 1250
 		TTL: 128
 		IP PDU Len: 1236 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0195)
+		Checksum: Correct (0x195)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13632831
 		ACK Number: 3840842168
 		ACK Flag: Yes
@@ -980,7 +980,7 @@ Packet number: 35  Frame Len: 1250
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16532
-		Checksum: (null) (0x105d)
+		Checksum: Correct (0x5d10)
 
 Packet number: 36  Frame Len: 1506
 
@@ -995,12 +995,12 @@ Packet number: 36  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf066)
+		Checksum: Correct (0xf066)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840842168
 		ACK Number: 13634027
@@ -1009,7 +1009,7 @@ Packet number: 36  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0x752e)
+		Checksum: Correct (0x2e75)
 
 Packet number: 37  Frame Len: 75
 
@@ -1024,12 +1024,12 @@ Packet number: 37  Frame Len: 75
 		TTL: 239
 		IP PDU Len: 61 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x866c)
+		Checksum: Correct (0x866c)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840843620
 		ACK Number: 13634027
@@ -1038,7 +1038,7 @@ Packet number: 37  Frame Len: 75
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0xc9a7)
+		Checksum: Correct (0xa7c9)
 
 Packet number: 38  Frame Len: 54
 
@@ -1053,13 +1053,13 @@ Packet number: 38  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xac99)
+		Checksum: Correct (0xac99)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13634027
 		ACK Number: 3840843641
 		ACK Flag: Yes
@@ -1067,7 +1067,7 @@ Packet number: 38  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x6bae)
+		Checksum: Correct (0xae6b)
 
 Packet number: 39  Frame Len: 1506
 
@@ -1082,12 +1082,12 @@ Packet number: 39  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xee66)
+		Checksum: Correct (0xee66)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840843641
 		ACK Number: 13634027
@@ -1096,7 +1096,7 @@ Packet number: 39  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0x62eb)
+		Checksum: Correct (0xeb62)
 
 Packet number: 40  Frame Len: 1506
 
@@ -1111,12 +1111,12 @@ Packet number: 40  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xec66)
+		Checksum: Correct (0xec66)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840845093
 		ACK Number: 13634027
@@ -1125,7 +1125,7 @@ Packet number: 40  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0xde37)
+		Checksum: Correct (0x37de)
 
 Packet number: 41  Frame Len: 54
 
@@ -1140,13 +1140,13 @@ Packet number: 41  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xab99)
+		Checksum: Correct (0xab99)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13634027
 		ACK Number: 3840846545
 		ACK Flag: Yes
@@ -1154,7 +1154,7 @@ Packet number: 41  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x13a3)
+		Checksum: Correct (0xa313)
 
 Packet number: 42  Frame Len: 1506
 
@@ -1169,12 +1169,12 @@ Packet number: 42  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xea66)
+		Checksum: Correct (0xea66)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840846545
 		ACK Number: 13634027
@@ -1183,7 +1183,7 @@ Packet number: 42  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0x9b9a)
+		Checksum: Correct (0x9a9b)
 
 Packet number: 43  Frame Len: 54
 
@@ -1198,13 +1198,13 @@ Packet number: 43  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xaa99)
+		Checksum: Correct (0xaa99)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13634027
 		ACK Number: 3840847997
 		ACK Flag: Yes
@@ -1212,7 +1212,7 @@ Packet number: 43  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x679d)
+		Checksum: Correct (0x9d67)
 
 Packet number: 44  Frame Len: 1506
 
@@ -1227,12 +1227,12 @@ Packet number: 44  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7762)
+		Checksum: Correct (0x7762)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840847997
 		ACK Number: 13634027
@@ -1241,7 +1241,7 @@ Packet number: 44  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0x9295)
+		Checksum: Correct (0x9592)
 
 Packet number: 45  Frame Len: 218
 
@@ -1256,12 +1256,12 @@ Packet number: 45  Frame Len: 218
 		TTL: 239
 		IP PDU Len: 204 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x6961)
+		Checksum: Correct (0x6961)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840849449
 		ACK Number: 13634027
@@ -1270,7 +1270,7 @@ Packet number: 45  Frame Len: 218
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0xb9ae)
+		Checksum: Correct (0xaeb9)
 
 Packet number: 46  Frame Len: 54
 
@@ -1285,13 +1285,13 @@ Packet number: 46  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa999)
+		Checksum: Correct (0xa999)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13634027
 		ACK Number: 3840849613
 		ACK Flag: Yes
@@ -1299,7 +1299,7 @@ Packet number: 46  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x1797)
+		Checksum: Correct (0x9717)
 
 Packet number: 47  Frame Len: 60
 
@@ -1314,12 +1314,12 @@ Packet number: 47  Frame Len: 60
 		TTL: 239
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0659)
+		Checksum: Correct (0x659)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840849613
 		ACK Number: 13634027
@@ -1328,7 +1328,7 @@ Packet number: 47  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0xf0c0)
+		Checksum: Correct (0xc0f0)
 
 Packet number: 48  Frame Len: 69
 
@@ -1343,7 +1343,7 @@ Packet number: 48  Frame Len: 69
 		TTL: 128
 		IP PDU Len: 55 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x3a52)
+		Checksum: Correct (0x3a52)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -1364,7 +1364,7 @@ Packet number: 49  Frame Len: 279
 		TTL: 253
 		IP PDU Len: 265 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0xa2f7)
+		Checksum: Correct (0xa2f7)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -1385,13 +1385,13 @@ Packet number: 50  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8b57)
+		Checksum: Correct (0x8b57)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.216.61
 
 	TCP Header
 		Source Port: : 1654
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14018784
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -1399,7 +1399,7 @@ Packet number: 50  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0x28e9)
+		Checksum: Correct (0xe928)
 
 Packet number: 51  Frame Len: 62
 
@@ -1414,12 +1414,12 @@ Packet number: 51  Frame Len: 62
 		TTL: 111
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x721d)
+		Checksum: Correct (0x721d)
 		Sender IP: 207.46.216.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1654
 		Sequence Number: 4249595547
 		ACK Number: 14018785
@@ -1428,7 +1428,7 @@ Packet number: 51  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0x383d)
+		Checksum: Correct (0x3d38)
 
 Packet number: 52  Frame Len: 54
 
@@ -1443,13 +1443,13 @@ Packet number: 52  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9257)
+		Checksum: Correct (0x9257)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.216.61
 
 	TCP Header
 		Source Port: : 1654
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14018785
 		ACK Number: 4249595548
 		ACK Flag: Yes
@@ -1457,7 +1457,7 @@ Packet number: 52  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xe465)
+		Checksum: Correct (0x65e4)
 
 Packet number: 53  Frame Len: 834
 
@@ -1472,13 +1472,13 @@ Packet number: 53  Frame Len: 834
 		TTL: 128
 		IP PDU Len: 820 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8554)
+		Checksum: Correct (0x8554)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.216.61
 
 	TCP Header
 		Source Port: : 1654
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14018785
 		ACK Number: 4249595548
 		ACK Flag: Yes
@@ -1486,7 +1486,7 @@ Packet number: 53  Frame Len: 834
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xa9b5)
+		Checksum: Correct (0xb5a9)
 
 Packet number: 54  Frame Len: 79
 
@@ -1501,7 +1501,7 @@ Packet number: 54  Frame Len: 79
 		TTL: 128
 		IP PDU Len: 65 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x2452)
+		Checksum: Correct (0x2452)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -1522,7 +1522,7 @@ Packet number: 55  Frame Len: 191
 		TTL: 253
 		IP PDU Len: 177 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0xf9f7)
+		Checksum: Correct (0xf9f7)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -1543,12 +1543,12 @@ Packet number: 56  Frame Len: 438
 		TTL: 111
 		IP PDU Len: 424 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x3edb)
+		Checksum: Correct (0x3edb)
 		Sender IP: 207.46.216.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1654
 		Sequence Number: 4249595548
 		ACK Number: 14019565
@@ -1557,7 +1557,7 @@ Packet number: 56  Frame Len: 438
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 64755
-		Checksum: (null) (0xeb8a)
+		Checksum: Correct (0x8aeb)
 
 Packet number: 57  Frame Len: 54
 
@@ -1572,13 +1572,13 @@ Packet number: 57  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8757)
+		Checksum: Correct (0x8757)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.216.61
 
 	TCP Header
 		Source Port: : 1654
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14019565
 		ACK Number: 4249595933
 		ACK Flag: Yes
@@ -1586,7 +1586,7 @@ Packet number: 57  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17040
-		Checksum: (null) (0xd762)
+		Checksum: Correct (0x62d7)
 
 Packet number: 58  Frame Len: 62
 
@@ -1601,13 +1601,13 @@ Packet number: 58  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe923)
+		Checksum: Correct (0xe923)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14094267
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -1615,7 +1615,7 @@ Packet number: 58  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0xb68e)
+		Checksum: Correct (0x8eb6)
 
 Packet number: 59  Frame Len: 54
 
@@ -1630,13 +1630,13 @@ Packet number: 59  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8357)
+		Checksum: Correct (0x8357)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.216.61
 
 	TCP Header
 		Source Port: : 1654
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14019565
 		ACK Number: 4249595933
 		ACK Flag: Yes
@@ -1644,7 +1644,7 @@ Packet number: 59  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 17040
-		Checksum: (null) (0xd662)
+		Checksum: Correct (0x62d6)
 
 Packet number: 60  Frame Len: 62
 
@@ -1659,12 +1659,12 @@ Packet number: 60  Frame Len: 62
 		TTL: 50
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb8ab)
+		Checksum: Correct (0xb8ab)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103113244
 		ACK Number: 14094268
@@ -1673,7 +1673,7 @@ Packet number: 60  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5840
-		Checksum: (null) (0x7839)
+		Checksum: Correct (0x3978)
 
 Packet number: 61  Frame Len: 54
 
@@ -1688,13 +1688,13 @@ Packet number: 61  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xed23)
+		Checksum: Correct (0xed23)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14094268
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -1702,7 +1702,7 @@ Packet number: 61  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x0c3c)
+		Checksum: Correct (0x3c0c)
 
 Packet number: 62  Frame Len: 1434
 
@@ -1717,13 +1717,13 @@ Packet number: 62  Frame Len: 1434
 		TTL: 128
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x881e)
+		Checksum: Correct (0x881e)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14094268
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -1731,7 +1731,7 @@ Packet number: 62  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x532a)
+		Checksum: Correct (0x2a53)
 
 Packet number: 63  Frame Len: 1434
 
@@ -1746,13 +1746,13 @@ Packet number: 63  Frame Len: 1434
 		TTL: 128
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x871e)
+		Checksum: Correct (0x871e)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14095648
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -1760,7 +1760,7 @@ Packet number: 63  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x35e7)
+		Checksum: Correct (0xe735)
 
 Packet number: 64  Frame Len: 60
 
@@ -1775,12 +1775,12 @@ Packet number: 64  Frame Len: 60
 		TTL: 111
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2bdc)
+		Checksum: Correct (0x2bdc)
 		Sender IP: 207.46.216.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1654
 		Sequence Number: 4249595933
 		ACK Number: 14019566
@@ -1789,7 +1789,7 @@ Packet number: 64  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 64755
-		Checksum: (null) (0x72a8)
+		Checksum: Correct (0xa872)
 
 Packet number: 65  Frame Len: 60
 
@@ -1804,12 +1804,12 @@ Packet number: 65  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x319b)
+		Checksum: Correct (0x319b)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103113245
 		ACK Number: 14095648
@@ -1818,7 +1818,7 @@ Packet number: 65  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8280
-		Checksum: (null) (0x0057)
+		Checksum: Correct (0x5700)
 
 Packet number: 66  Frame Len: 1434
 
@@ -1833,13 +1833,13 @@ Packet number: 66  Frame Len: 1434
 		TTL: 128
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x861e)
+		Checksum: Correct (0x861e)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14097028
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -1847,7 +1847,7 @@ Packet number: 66  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x9307)
+		Checksum: Correct (0x793)
 
 Packet number: 67  Frame Len: 914
 
@@ -1862,13 +1862,13 @@ Packet number: 67  Frame Len: 914
 		TTL: 128
 		IP PDU Len: 900 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8d20)
+		Checksum: Correct (0x8d20)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14098408
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -1876,7 +1876,7 @@ Packet number: 67  Frame Len: 914
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x19d9)
+		Checksum: Correct (0xd919)
 
 Packet number: 68  Frame Len: 60
 
@@ -1891,12 +1891,12 @@ Packet number: 68  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x309b)
+		Checksum: Correct (0x309b)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103113245
 		ACK Number: 14097028
@@ -1905,7 +1905,7 @@ Packet number: 68  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 11040
-		Checksum: (null) (0xd446)
+		Checksum: Correct (0x46d4)
 
 Packet number: 69  Frame Len: 78
 
@@ -1920,7 +1920,7 @@ Packet number: 69  Frame Len: 78
 		TTL: 128
 		IP PDU Len: 64 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x1252)
+		Checksum: Correct (0x1252)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -1941,12 +1941,12 @@ Packet number: 70  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2f9b)
+		Checksum: Correct (0x2f9b)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103113245
 		ACK Number: 14098408
@@ -1955,7 +1955,7 @@ Packet number: 70  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 13800
-		Checksum: (null) (0xa836)
+		Checksum: Correct (0x36a8)
 
 Packet number: 71  Frame Len: 501
 
@@ -1970,7 +1970,7 @@ Packet number: 71  Frame Len: 501
 		TTL: 253
 		IP PDU Len: 487 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0xc2f6)
+		Checksum: Correct (0xc2f6)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -1991,13 +1991,13 @@ Packet number: 72  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb05c)
+		Checksum: Correct (0xb05c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14208636
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -2005,7 +2005,7 @@ Packet number: 72  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0xcc08)
+		Checksum: Correct (0x8cc)
 
 Packet number: 73  Frame Len: 60
 
@@ -2020,12 +2020,12 @@ Packet number: 73  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2e9b)
+		Checksum: Correct (0x2e9b)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103113245
 		ACK Number: 14099268
@@ -2034,7 +2034,7 @@ Packet number: 73  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x8428)
+		Checksum: Correct (0x2884)
 
 Packet number: 74  Frame Len: 60
 
@@ -2049,12 +2049,12 @@ Packet number: 74  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2b9b)
+		Checksum: Correct (0x2b9b)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103114879
 		ACK Number: 14099268
@@ -2063,7 +2063,7 @@ Packet number: 74  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 16560
-		Checksum: (null) (0x2122)
+		Checksum: Correct (0x2221)
 
 Packet number: 75  Frame Len: 66
 
@@ -2078,13 +2078,13 @@ Packet number: 75  Frame Len: 66
 		TTL: 128
 		IP PDU Len: 52 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd223)
+		Checksum: Correct (0xd223)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14099268
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -2092,7 +2092,7 @@ Packet number: 75  Frame Len: 66
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x4ae8)
+		Checksum: Correct (0xe84a)
 
 Packet number: 76  Frame Len: 308
 
@@ -2107,12 +2107,12 @@ Packet number: 76  Frame Len: 308
 		TTL: 50
 		IP PDU Len: 294 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2e9a)
+		Checksum: Correct (0x2e9a)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103114625
 		ACK Number: 14099268
@@ -2121,7 +2121,7 @@ Packet number: 76  Frame Len: 308
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x6ffc)
+		Checksum: Correct (0xfc6f)
 
 Packet number: 77  Frame Len: 66
 
@@ -2136,13 +2136,13 @@ Packet number: 77  Frame Len: 66
 		TTL: 128
 		IP PDU Len: 52 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd123)
+		Checksum: Correct (0xd123)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14099268
 		ACK Number: 4103113245
 		ACK Flag: Yes
@@ -2150,7 +2150,7 @@ Packet number: 77  Frame Len: 66
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x48e9)
+		Checksum: Correct (0xe948)
 
 Packet number: 78  Frame Len: 1434
 
@@ -2165,12 +2165,12 @@ Packet number: 78  Frame Len: 1434
 		TTL: 50
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc995)
+		Checksum: Correct (0xc995)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103113245
 		ACK Number: 14099268
@@ -2179,7 +2179,7 @@ Packet number: 78  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x631f)
+		Checksum: Correct (0x1f63)
 
 Packet number: 79  Frame Len: 66
 
@@ -2194,13 +2194,13 @@ Packet number: 79  Frame Len: 66
 		TTL: 128
 		IP PDU Len: 52 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd023)
+		Checksum: Correct (0xd023)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14099268
 		ACK Number: 4103114880
 		ACK Flag: Yes
@@ -2208,7 +2208,7 @@ Packet number: 79  Frame Len: 66
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0xe5e2)
+		Checksum: Correct (0xe2e5)
 
 Packet number: 80  Frame Len: 54
 
@@ -2223,13 +2223,13 @@ Packet number: 80  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd923)
+		Checksum: Correct (0xd923)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1655
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14099268
 		ACK Number: 4103114880
 		ACK Flag: Yes
@@ -2237,7 +2237,7 @@ Packet number: 80  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 16560
-		Checksum: (null) (0x2022)
+		Checksum: Correct (0x2220)
 
 Packet number: 81  Frame Len: 62
 
@@ -2252,12 +2252,12 @@ Packet number: 81  Frame Len: 62
 		TTL: 56
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x91de)
+		Checksum: Correct (0x91de)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476960529
 		ACK Number: 14208637
@@ -2266,7 +2266,7 @@ Packet number: 81  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5840
-		Checksum: (null) (0xa32d)
+		Checksum: Correct (0x2da3)
 
 Packet number: 82  Frame Len: 54
 
@@ -2281,13 +2281,13 @@ Packet number: 82  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb15c)
+		Checksum: Correct (0xb15c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14208637
 		ACK Number: 3476960530
 		ACK Flag: Yes
@@ -2295,7 +2295,7 @@ Packet number: 82  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x1f2d)
+		Checksum: Correct (0x2d1f)
 
 Packet number: 83  Frame Len: 852
 
@@ -2310,13 +2310,13 @@ Packet number: 83  Frame Len: 852
 		TTL: 128
 		IP PDU Len: 838 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9259)
+		Checksum: Correct (0x9259)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14208637
 		ACK Number: 3476960530
 		ACK Flag: Yes
@@ -2324,7 +2324,7 @@ Packet number: 83  Frame Len: 852
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x6a88)
+		Checksum: Correct (0x886a)
 
 Packet number: 84  Frame Len: 62
 
@@ -2339,13 +2339,13 @@ Packet number: 84  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9f5c)
+		Checksum: Correct (0x9f5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14273130
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -2353,7 +2353,7 @@ Packet number: 84  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0xdc0c)
+		Checksum: Correct (0xcdc)
 
 Packet number: 85  Frame Len: 60
 
@@ -2368,12 +2368,12 @@ Packet number: 85  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2a9b)
+		Checksum: Correct (0x2a9b)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1655
 		Sequence Number: 4103114880
 		ACK Number: 14099269
@@ -2382,7 +2382,7 @@ Packet number: 85  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x2022)
+		Checksum: Correct (0x2220)
 
 Packet number: 86  Frame Len: 60
 
@@ -2397,12 +2397,12 @@ Packet number: 86  Frame Len: 60
 		TTL: 56
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xbeb9)
+		Checksum: Correct (0xbeb9)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476960530
 		ACK Number: 14209435
@@ -2411,7 +2411,7 @@ Packet number: 86  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7182
-		Checksum: (null) (0x0352)
+		Checksum: Correct (0x5203)
 
 Packet number: 87  Frame Len: 283
 
@@ -2426,12 +2426,12 @@ Packet number: 87  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd8b8)
+		Checksum: Correct (0xd8b8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476960530
 		ACK Number: 14209435
@@ -2440,7 +2440,7 @@ Packet number: 87  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7182
-		Checksum: (null) (0xa947)
+		Checksum: Correct (0x47a9)
 
 Packet number: 88  Frame Len: 765
 
@@ -2455,13 +2455,13 @@ Packet number: 88  Frame Len: 765
 		TTL: 128
 		IP PDU Len: 751 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd959)
+		Checksum: Correct (0xd959)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14209435
 		ACK Number: 3476960759
 		ACK Flag: Yes
@@ -2469,7 +2469,7 @@ Packet number: 88  Frame Len: 765
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17195
-		Checksum: (null) (0x401c)
+		Checksum: Correct (0x1c40)
 
 Packet number: 89  Frame Len: 62
 
@@ -2484,12 +2484,12 @@ Packet number: 89  Frame Len: 62
 		TTL: 56
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x91de)
+		Checksum: Correct (0x91de)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479656479
 		ACK Number: 14273131
@@ -2498,7 +2498,7 @@ Packet number: 89  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5840
-		Checksum: (null) (0x7c0e)
+		Checksum: Correct (0xe7c)
 
 Packet number: 90  Frame Len: 54
 
@@ -2513,13 +2513,13 @@ Packet number: 90  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9f5c)
+		Checksum: Correct (0x9f5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14273131
 		ACK Number: 3479656480
 		ACK Flag: Yes
@@ -2527,7 +2527,7 @@ Packet number: 90  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xf80d)
+		Checksum: Correct (0xdf8)
 
 Packet number: 91  Frame Len: 854
 
@@ -2542,13 +2542,13 @@ Packet number: 91  Frame Len: 854
 		TTL: 128
 		IP PDU Len: 840 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7a59)
+		Checksum: Correct (0x7a59)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14273131
 		ACK Number: 3479656480
 		ACK Flag: Yes
@@ -2556,7 +2556,7 @@ Packet number: 91  Frame Len: 854
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xf233)
+		Checksum: Correct (0x33f2)
 
 Packet number: 92  Frame Len: 62
 
@@ -2571,13 +2571,13 @@ Packet number: 92  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb223)
+		Checksum: Correct (0xb223)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14355467
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -2585,7 +2585,7 @@ Packet number: 92  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0x5f92)
+		Checksum: Correct (0x925f)
 
 Packet number: 93  Frame Len: 1506
 
@@ -2600,12 +2600,12 @@ Packet number: 93  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x10b4)
+		Checksum: Correct (0x10b4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476960759
 		ACK Number: 14210146
@@ -2614,7 +2614,7 @@ Packet number: 93  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xdd3a)
+		Checksum: Correct (0x3add)
 
 Packet number: 94  Frame Len: 1506
 
@@ -2629,12 +2629,12 @@ Packet number: 94  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0fb4)
+		Checksum: Correct (0xfb4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476962211
 		ACK Number: 14210146
@@ -2643,7 +2643,7 @@ Packet number: 94  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xfa4f)
+		Checksum: Correct (0x4ffa)
 
 Packet number: 95  Frame Len: 54
 
@@ -2658,13 +2658,13 @@ Packet number: 95  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x925c)
+		Checksum: Correct (0x925c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476963663
 		ACK Flag: Yes
@@ -2672,7 +2672,7 @@ Packet number: 95  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xfd1a)
+		Checksum: Correct (0x1afd)
 
 Packet number: 96  Frame Len: 1506
 
@@ -2687,12 +2687,12 @@ Packet number: 96  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0eb4)
+		Checksum: Correct (0xeb4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476963663
 		ACK Number: 14210146
@@ -2701,7 +2701,7 @@ Packet number: 96  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xfcb2)
+		Checksum: Correct (0xb2fc)
 
 Packet number: 97  Frame Len: 54
 
@@ -2716,13 +2716,13 @@ Packet number: 97  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x915c)
+		Checksum: Correct (0x915c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476965115
 		ACK Flag: Yes
@@ -2730,7 +2730,7 @@ Packet number: 97  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x5115)
+		Checksum: Correct (0x1551)
 
 Packet number: 98  Frame Len: 1506
 
@@ -2745,12 +2745,12 @@ Packet number: 98  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0db4)
+		Checksum: Correct (0xdb4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476965115
 		ACK Number: 14210146
@@ -2759,7 +2759,7 @@ Packet number: 98  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x85d8)
+		Checksum: Correct (0xd885)
 
 Packet number: 99  Frame Len: 60
 
@@ -2774,12 +2774,12 @@ Packet number: 99  Frame Len: 60
 		TTL: 56
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5d94)
+		Checksum: Correct (0x5d94)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479656480
 		ACK Number: 14273931
@@ -2788,7 +2788,7 @@ Packet number: 99  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7200
-		Checksum: (null) (0xc832)
+		Checksum: Correct (0x32c8)
 
 Packet number: 100  Frame Len: 284
 
@@ -2803,12 +2803,12 @@ Packet number: 100  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7693)
+		Checksum: Correct (0x7693)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479656480
 		ACK Number: 14273931
@@ -2817,7 +2817,7 @@ Packet number: 100  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7200
-		Checksum: (null) (0x07e4)
+		Checksum: Correct (0xe407)
 
 Packet number: 101  Frame Len: 62
 
@@ -2832,12 +2832,12 @@ Packet number: 101  Frame Len: 62
 		TTL: 50
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb8ab)
+		Checksum: Correct (0xb8ab)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848140
 		ACK Number: 14355468
@@ -2846,7 +2846,7 @@ Packet number: 101  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5840
-		Checksum: (null) (0x1700)
+		Checksum: Correct (0x17)
 
 Packet number: 102  Frame Len: 54
 
@@ -2861,13 +2861,13 @@ Packet number: 102  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb723)
+		Checksum: Correct (0xb723)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14355468
 		ACK Number: 3219848141
 		ACK Flag: Yes
@@ -2875,7 +2875,7 @@ Packet number: 102  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0xab02)
+		Checksum: Correct (0x2ab)
 
 Packet number: 103  Frame Len: 1434
 
@@ -2890,13 +2890,13 @@ Packet number: 103  Frame Len: 1434
 		TTL: 128
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x501e)
+		Checksum: Correct (0x501e)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14355468
 		ACK Number: 3219848141
 		ACK Flag: Yes
@@ -2904,7 +2904,7 @@ Packet number: 103  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x36dd)
+		Checksum: Correct (0xdd36)
 
 Packet number: 104  Frame Len: 1434
 
@@ -2919,13 +2919,13 @@ Packet number: 104  Frame Len: 1434
 		TTL: 128
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x4f1e)
+		Checksum: Correct (0x4f1e)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14356848
 		ACK Number: 3219848141
 		ACK Flag: Yes
@@ -2933,7 +2933,7 @@ Packet number: 104  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0xed65)
+		Checksum: Correct (0x65ed)
 
 Packet number: 105  Frame Len: 842
 
@@ -2948,13 +2948,13 @@ Packet number: 105  Frame Len: 842
 		TTL: 128
 		IP PDU Len: 828 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7759)
+		Checksum: Correct (0x7759)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14273931
 		ACK Number: 3479656710
 		ACK Flag: Yes
@@ -2962,7 +2962,7 @@ Packet number: 105  Frame Len: 842
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17194
-		Checksum: (null) (0xbf55)
+		Checksum: Correct (0x55bf)
 
 Packet number: 106  Frame Len: 1506
 
@@ -2977,12 +2977,12 @@ Packet number: 106  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0cb4)
+		Checksum: Correct (0xcb4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476966567
 		ACK Number: 14210146
@@ -2991,7 +2991,7 @@ Packet number: 106  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x9205)
+		Checksum: Correct (0x592)
 
 Packet number: 107  Frame Len: 54
 
@@ -3006,13 +3006,13 @@ Packet number: 107  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8a5c)
+		Checksum: Correct (0x8a5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476968019
 		ACK Flag: Yes
@@ -3020,7 +3020,7 @@ Packet number: 107  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xf909)
+		Checksum: Correct (0x9f9)
 
 Packet number: 108  Frame Len: 1506
 
@@ -3035,12 +3035,12 @@ Packet number: 108  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0bb4)
+		Checksum: Correct (0xbb4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476968019
 		ACK Number: 14210146
@@ -3049,7 +3049,7 @@ Packet number: 108  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xa8df)
+		Checksum: Correct (0xdfa8)
 
 Packet number: 109  Frame Len: 54
 
@@ -3064,13 +3064,13 @@ Packet number: 109  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x895c)
+		Checksum: Correct (0x895c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476969471
 		ACK Flag: Yes
@@ -3078,7 +3078,7 @@ Packet number: 109  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x4d04)
+		Checksum: Correct (0x44d)
 
 Packet number: 110  Frame Len: 1506
 
@@ -3093,12 +3093,12 @@ Packet number: 110  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0ab4)
+		Checksum: Correct (0xab4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476969471
 		ACK Number: 14210146
@@ -3107,7 +3107,7 @@ Packet number: 110  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xe948)
+		Checksum: Correct (0x48e9)
 
 Packet number: 111  Frame Len: 1506
 
@@ -3122,12 +3122,12 @@ Packet number: 111  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x09b4)
+		Checksum: Correct (0x9b4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476970923
 		ACK Number: 14210146
@@ -3136,7 +3136,7 @@ Packet number: 111  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x1925)
+		Checksum: Correct (0x2519)
 
 Packet number: 112  Frame Len: 54
 
@@ -3151,13 +3151,13 @@ Packet number: 112  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x885c)
+		Checksum: Correct (0x885c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476972375
 		ACK Flag: Yes
@@ -3165,7 +3165,7 @@ Packet number: 112  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xf4f8)
+		Checksum: Correct (0xf8f4)
 
 Packet number: 113  Frame Len: 1506
 
@@ -3180,12 +3180,12 @@ Packet number: 113  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x08b4)
+		Checksum: Correct (0x8b4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476972375
 		ACK Number: 14210146
@@ -3194,7 +3194,7 @@ Packet number: 113  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xb9c7)
+		Checksum: Correct (0xc7b9)
 
 Packet number: 114  Frame Len: 60
 
@@ -3209,12 +3209,12 @@ Packet number: 114  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa1f1)
+		Checksum: Correct (0xa1f1)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848141
 		ACK Number: 14356848
@@ -3223,7 +3223,7 @@ Packet number: 114  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8280
-		Checksum: (null) (0x9f1d)
+		Checksum: Correct (0x1d9f)
 
 Packet number: 115  Frame Len: 1434
 
@@ -3238,13 +3238,13 @@ Packet number: 115  Frame Len: 1434
 		TTL: 128
 		IP PDU Len: 1420 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x4a1e)
+		Checksum: Correct (0x4a1e)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14358228
 		ACK Number: 3219848141
 		ACK Flag: Yes
@@ -3252,7 +3252,7 @@ Packet number: 115  Frame Len: 1434
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x2933)
+		Checksum: Correct (0x3329)
 
 Packet number: 116  Frame Len: 1005
 
@@ -3267,13 +3267,13 @@ Packet number: 116  Frame Len: 1005
 		TTL: 128
 		IP PDU Len: 991 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf61f)
+		Checksum: Correct (0xf61f)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14359608
 		ACK Number: 3219848141
 		ACK Flag: Yes
@@ -3281,7 +3281,7 @@ Packet number: 116  Frame Len: 1005
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0xff3a)
+		Checksum: Correct (0x3aff)
 
 Packet number: 117  Frame Len: 60
 
@@ -3296,12 +3296,12 @@ Packet number: 117  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa0f1)
+		Checksum: Correct (0xa0f1)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848141
 		ACK Number: 14358228
@@ -3310,7 +3310,7 @@ Packet number: 117  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 11040
-		Checksum: (null) (0x730d)
+		Checksum: Correct (0xd73)
 
 Packet number: 118  Frame Len: 1506
 
@@ -3325,12 +3325,12 @@ Packet number: 118  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x07b4)
+		Checksum: Correct (0x7b4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476973827
 		ACK Number: 14210146
@@ -3339,7 +3339,7 @@ Packet number: 118  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x0b7f)
+		Checksum: Correct (0x7f0b)
 
 Packet number: 119  Frame Len: 54
 
@@ -3354,13 +3354,13 @@ Packet number: 119  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x855c)
+		Checksum: Correct (0x855c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476975279
 		ACK Flag: Yes
@@ -3368,7 +3368,7 @@ Packet number: 119  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x9ced)
+		Checksum: Correct (0xed9c)
 
 Packet number: 120  Frame Len: 1506
 
@@ -3383,12 +3383,12 @@ Packet number: 120  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x06b4)
+		Checksum: Correct (0x6b4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476975279
 		ACK Number: 14210146
@@ -3397,7 +3397,7 @@ Packet number: 120  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xbe0c)
+		Checksum: Correct (0xcbe)
 
 Packet number: 121  Frame Len: 284
 
@@ -3412,12 +3412,12 @@ Packet number: 121  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7593)
+		Checksum: Correct (0x7593)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479656710
 		ACK Number: 14274719
@@ -3426,7 +3426,7 @@ Packet number: 121  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8800
-		Checksum: (null) (0x77bd)
+		Checksum: Correct (0xbd77)
 
 Packet number: 122  Frame Len: 625
 
@@ -3441,12 +3441,12 @@ Packet number: 122  Frame Len: 625
 		TTL: 56
 		IP PDU Len: 611 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x73b7)
+		Checksum: Correct (0x73b7)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476981087
 		ACK Number: 14210146
@@ -3455,7 +3455,7 @@ Packet number: 122  Frame Len: 625
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x799c)
+		Checksum: Correct (0x9c79)
 
 Packet number: 123  Frame Len: 66
 
@@ -3470,13 +3470,13 @@ Packet number: 123  Frame Len: 66
 		TTL: 128
 		IP PDU Len: 52 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x765c)
+		Checksum: Correct (0x765c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476976731
 		ACK Flag: Yes
@@ -3484,7 +3484,7 @@ Packet number: 123  Frame Len: 66
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x6206)
+		Checksum: Correct (0x662)
 
 Packet number: 124  Frame Len: 60
 
@@ -3499,12 +3499,12 @@ Packet number: 124  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9ff1)
+		Checksum: Correct (0x9ff1)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848141
 		ACK Number: 14359608
@@ -3513,7 +3513,7 @@ Packet number: 124  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 13800
-		Checksum: (null) (0x46fd)
+		Checksum: Correct (0xfd46)
 
 Packet number: 125  Frame Len: 1506
 
@@ -3528,12 +3528,12 @@ Packet number: 125  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x01b4)
+		Checksum: Correct (0x1b4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476976731
 		ACK Number: 14210146
@@ -3542,7 +3542,7 @@ Packet number: 125  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x89d9)
+		Checksum: Correct (0xd989)
 
 Packet number: 126  Frame Len: 60
 
@@ -3557,12 +3557,12 @@ Packet number: 126  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9ef1)
+		Checksum: Correct (0x9ef1)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848141
 		ACK Number: 14360559
@@ -3571,7 +3571,7 @@ Packet number: 126  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0xc7ee)
+		Checksum: Correct (0xeec7)
 
 Packet number: 127  Frame Len: 742
 
@@ -3586,12 +3586,12 @@ Packet number: 127  Frame Len: 742
 		TTL: 50
 		IP PDU Len: 728 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xedee)
+		Checksum: Correct (0xedee)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848141
 		ACK Number: 14360559
@@ -3600,7 +3600,7 @@ Packet number: 127  Frame Len: 742
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x9d1b)
+		Checksum: Correct (0x1b9d)
 
 Packet number: 128  Frame Len: 60
 
@@ -3615,12 +3615,12 @@ Packet number: 128  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9cf1)
+		Checksum: Correct (0x9cf1)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848829
 		ACK Number: 14360559
@@ -3629,7 +3629,7 @@ Packet number: 128  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 16560
-		Checksum: (null) (0x16ec)
+		Checksum: Correct (0xec16)
 
 Packet number: 129  Frame Len: 54
 
@@ -3644,13 +3644,13 @@ Packet number: 129  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa823)
+		Checksum: Correct (0xa823)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14360559
 		ACK Number: 3219848830
 		ACK Flag: Yes
@@ -3658,7 +3658,7 @@ Packet number: 129  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 15872
-		Checksum: (null) (0xc6ee)
+		Checksum: Correct (0xeec6)
 
 Packet number: 130  Frame Len: 54
 
@@ -3673,13 +3673,13 @@ Packet number: 130  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa523)
+		Checksum: Correct (0xa523)
 		Sender IP: 192.168.1.102
 		Dest IP: 66.151.152.106
 
 	TCP Header
 		Source Port: : 1658
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14360559
 		ACK Number: 3219848830
 		ACK Flag: Yes
@@ -3687,7 +3687,7 @@ Packet number: 130  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 15872
-		Checksum: (null) (0xc5ee)
+		Checksum: Correct (0xeec5)
 
 Packet number: 131  Frame Len: 60
 
@@ -3702,12 +3702,12 @@ Packet number: 131  Frame Len: 60
 		TTL: 50
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9bf1)
+		Checksum: Correct (0x9bf1)
 		Sender IP: 66.151.152.106
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1658
 		Sequence Number: 3219848830
 		ACK Number: 14360560
@@ -3716,7 +3716,7 @@ Packet number: 131  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16560
-		Checksum: (null) (0x15ec)
+		Checksum: Correct (0xec15)
 
 Packet number: 132  Frame Len: 66
 
@@ -3731,13 +3731,13 @@ Packet number: 132  Frame Len: 66
 		TTL: 128
 		IP PDU Len: 52 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x715c)
+		Checksum: Correct (0x715c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476978183
 		ACK Flag: Yes
@@ -3745,7 +3745,7 @@ Packet number: 132  Frame Len: 66
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xb600)
+		Checksum: Correct (0xb6)
 
 Packet number: 133  Frame Len: 54
 
@@ -3760,13 +3760,13 @@ Packet number: 133  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7c5c)
+		Checksum: Correct (0x7c5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14274719
 		ACK Number: 3479656940
 		ACK Flag: Yes
@@ -3774,7 +3774,7 @@ Packet number: 133  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16964
-		Checksum: (null) (0xc407)
+		Checksum: Correct (0x7c4)
 
 Packet number: 134  Frame Len: 1506
 
@@ -3789,12 +3789,12 @@ Packet number: 134  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x00b4)
+		Checksum: Correct (0xb4)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476978183
 		ACK Number: 14210146
@@ -3803,7 +3803,7 @@ Packet number: 134  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0x0ceb)
+		Checksum: Correct (0xeb0c)
 
 Packet number: 135  Frame Len: 66
 
@@ -3818,13 +3818,13 @@ Packet number: 135  Frame Len: 66
 		TTL: 128
 		IP PDU Len: 52 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x6f5c)
+		Checksum: Correct (0x6f5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476979635
 		ACK Flag: Yes
@@ -3832,7 +3832,7 @@ Packet number: 135  Frame Len: 66
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x09fb)
+		Checksum: Correct (0xfb09)
 
 Packet number: 136  Frame Len: 1506
 
@@ -3847,12 +3847,12 @@ Packet number: 136  Frame Len: 1506
 		TTL: 56
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xffb3)
+		Checksum: Correct (0xffb3)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476979635
 		ACK Number: 14210146
@@ -3861,7 +3861,7 @@ Packet number: 136  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8778
-		Checksum: (null) (0xec25)
+		Checksum: Correct (0x25ec)
 
 Packet number: 137  Frame Len: 54
 
@@ -3876,13 +3876,13 @@ Packet number: 137  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7a5c)
+		Checksum: Correct (0x7a5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476981658
 		ACK Flag: Yes
@@ -3890,7 +3890,7 @@ Packet number: 137  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xb1d4)
+		Checksum: Correct (0xd4b1)
 
 Packet number: 138  Frame Len: 976
 
@@ -3905,13 +3905,13 @@ Packet number: 138  Frame Len: 976
 		TTL: 128
 		IP PDU Len: 962 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xdb58)
+		Checksum: Correct (0xdb58)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14274719
 		ACK Number: 3479656940
 		ACK Flag: Yes
@@ -3919,7 +3919,7 @@ Packet number: 138  Frame Len: 976
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16964
-		Checksum: (null) (0xa7fd)
+		Checksum: Correct (0xfda7)
 
 Packet number: 139  Frame Len: 847
 
@@ -3934,13 +3934,13 @@ Packet number: 139  Frame Len: 847
 		TTL: 128
 		IP PDU Len: 833 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5959)
+		Checksum: Correct (0x5959)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210146
 		ACK Number: 3476981658
 		ACK Flag: Yes
@@ -3948,7 +3948,7 @@ Packet number: 139  Frame Len: 847
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x8506)
+		Checksum: Correct (0x685)
 
 Packet number: 140  Frame Len: 73
 
@@ -3963,7 +3963,7 @@ Packet number: 140  Frame Len: 73
 		TTL: 128
 		IP PDU Len: 59 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0xc551)
+		Checksum: Correct (0xc551)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -3984,12 +3984,12 @@ Packet number: 141  Frame Len: 302
 		TTL: 56
 		IP PDU Len: 288 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x6293)
+		Checksum: Correct (0x6293)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479656940
 		ACK Number: 14275641
@@ -3998,7 +3998,7 @@ Packet number: 141  Frame Len: 302
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 10142
-		Checksum: (null) (0xbbf6)
+		Checksum: Correct (0xf6bb)
 
 Packet number: 142  Frame Len: 876
 
@@ -4013,13 +4013,13 @@ Packet number: 142  Frame Len: 876
 		TTL: 128
 		IP PDU Len: 862 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x3059)
+		Checksum: Correct (0x3059)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14275641
 		ACK Number: 3479657188
 		ACK Flag: Yes
@@ -4027,7 +4027,7 @@ Packet number: 142  Frame Len: 876
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16716
-		Checksum: (null) (0x4d16)
+		Checksum: Correct (0x164d)
 
 Packet number: 143  Frame Len: 169
 
@@ -4042,7 +4042,7 @@ Packet number: 143  Frame Len: 169
 		TTL: 253
 		IP PDU Len: 155 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x0df8)
+		Checksum: Correct (0xdf8)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -4063,12 +4063,12 @@ Packet number: 144  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc4b8)
+		Checksum: Correct (0xc4b8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476981658
 		ACK Number: 14210939
@@ -4077,7 +4077,7 @@ Packet number: 144  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 10374
-		Checksum: (null) (0xd156)
+		Checksum: Correct (0x56d1)
 
 Packet number: 145  Frame Len: 62
 
@@ -4092,13 +4092,13 @@ Packet number: 145  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2199)
+		Checksum: Correct (0x2199)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14774617
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -4106,7 +4106,7 @@ Packet number: 145  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0xa9a2)
+		Checksum: Correct (0xa2a9)
 
 Packet number: 146  Frame Len: 283
 
@@ -4121,12 +4121,12 @@ Packet number: 146  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7493)
+		Checksum: Correct (0x7493)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479657188
 		ACK Number: 14276463
@@ -4135,7 +4135,7 @@ Packet number: 146  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 11986
-		Checksum: (null) (0xe3f4)
+		Checksum: Correct (0xf4e3)
 
 Packet number: 147  Frame Len: 62
 
@@ -4150,12 +4150,12 @@ Packet number: 147  Frame Len: 62
 		TTL: 239
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xaaec)
+		Checksum: Correct (0xaaec)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518734129
 		ACK Number: 14774618
@@ -4164,7 +4164,7 @@ Packet number: 147  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 4356
-		Checksum: (null) (0xe56b)
+		Checksum: Correct (0x6be5)
 
 Packet number: 148  Frame Len: 54
 
@@ -4179,13 +4179,13 @@ Packet number: 148  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2499)
+		Checksum: Correct (0x2499)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14774618
 		ACK Number: 1518734130
 		ACK Flag: Yes
@@ -4193,7 +4193,7 @@ Packet number: 148  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x9565)
+		Checksum: Correct (0x6595)
 
 Packet number: 149  Frame Len: 1136
 
@@ -4208,13 +4208,13 @@ Packet number: 149  Frame Len: 1136
 		TTL: 128
 		IP PDU Len: 1122 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe994)
+		Checksum: Correct (0xe994)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14774618
 		ACK Number: 1518734130
 		ACK Flag: Yes
@@ -4222,7 +4222,7 @@ Packet number: 149  Frame Len: 1136
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xf50d)
+		Checksum: Correct (0xdf5)
 
 Packet number: 150  Frame Len: 1506
 
@@ -4237,12 +4237,12 @@ Packet number: 150  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xdee0)
+		Checksum: Correct (0xdee0)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518734130
 		ACK Number: 14775700
@@ -4251,7 +4251,7 @@ Packet number: 150  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5438
-		Checksum: (null) (0x1bb5)
+		Checksum: Correct (0xb51b)
 
 Packet number: 151  Frame Len: 54
 
@@ -4266,13 +4266,13 @@ Packet number: 151  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5c5c)
+		Checksum: Correct (0x5c5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14276463
 		ACK Number: 3479657417
 		ACK Flag: Yes
@@ -4280,7 +4280,7 @@ Packet number: 151  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16487
-		Checksum: (null) (0xf400)
+		Checksum: Correct (0xf4)
 
 Packet number: 152  Frame Len: 54
 
@@ -4295,13 +4295,13 @@ Packet number: 152  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5b5c)
+		Checksum: Correct (0x5b5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210939
 		ACK Number: 3476981888
 		ACK Flag: Yes
@@ -4309,7 +4309,7 @@ Packet number: 152  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17194
-		Checksum: (null) (0x98d1)
+		Checksum: Correct (0xd198)
 
 Packet number: 153  Frame Len: 75
 
@@ -4324,12 +4324,12 @@ Packet number: 153  Frame Len: 75
 		TTL: 239
 		IP PDU Len: 61 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x74e6)
+		Checksum: Correct (0x74e6)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518735582
 		ACK Number: 14775700
@@ -4338,7 +4338,7 @@ Packet number: 153  Frame Len: 75
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5438
-		Checksum: (null) (0x6b48)
+		Checksum: Correct (0x486b)
 
 Packet number: 154  Frame Len: 54
 
@@ -4353,13 +4353,13 @@ Packet number: 154  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2099)
+		Checksum: Correct (0x2099)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14775700
 		ACK Number: 1518735603
 		ACK Flag: Yes
@@ -4367,7 +4367,7 @@ Packet number: 154  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x9a5b)
+		Checksum: Correct (0x5b9a)
 
 Packet number: 155  Frame Len: 686
 
@@ -4382,12 +4382,12 @@ Packet number: 155  Frame Len: 686
 		TTL: 239
 		IP PDU Len: 672 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2de0)
+		Checksum: Correct (0x2de0)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518735603
 		ACK Number: 14775700
@@ -4396,7 +4396,7 @@ Packet number: 155  Frame Len: 686
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5438
-		Checksum: (null) (0xe6fb)
+		Checksum: Correct (0xfbe6)
 
 Packet number: 156  Frame Len: 54
 
@@ -4411,13 +4411,13 @@ Packet number: 156  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x1d99)
+		Checksum: Correct (0x1d99)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14775700
 		ACK Number: 1518736235
 		ACK Flag: Yes
@@ -4425,7 +4425,7 @@ Packet number: 156  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16792
-		Checksum: (null) (0x9a5b)
+		Checksum: Correct (0x5b9a)
 
 Packet number: 157  Frame Len: 881
 
@@ -4440,13 +4440,13 @@ Packet number: 157  Frame Len: 881
 		TTL: 128
 		IP PDU Len: 867 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x1959)
+		Checksum: Correct (0x1959)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14210939
 		ACK Number: 3476981888
 		ACK Flag: Yes
@@ -4454,7 +4454,7 @@ Packet number: 157  Frame Len: 881
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17194
-		Checksum: (null) (0x9ea1)
+		Checksum: Correct (0xa19e)
 
 Packet number: 158  Frame Len: 884
 
@@ -4469,13 +4469,13 @@ Packet number: 158  Frame Len: 884
 		TTL: 128
 		IP PDU Len: 870 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x1359)
+		Checksum: Correct (0x1359)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14276463
 		ACK Number: 3479657417
 		ACK Flag: Yes
@@ -4483,7 +4483,7 @@ Packet number: 158  Frame Len: 884
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16487
-		Checksum: (null) (0xbaa5)
+		Checksum: Correct (0xa5ba)
 
 Packet number: 159  Frame Len: 283
 
@@ -4498,12 +4498,12 @@ Packet number: 159  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc4b8)
+		Checksum: Correct (0xc4b8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476981888
 		ACK Number: 14211766
@@ -4512,7 +4512,7 @@ Packet number: 159  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 11578
-		Checksum: (null) (0xdbae)
+		Checksum: Correct (0xaedb)
 
 Packet number: 160  Frame Len: 284
 
@@ -4527,12 +4527,12 @@ Packet number: 160  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7293)
+		Checksum: Correct (0x7293)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479657417
 		ACK Number: 14277293
@@ -4541,7 +4541,7 @@ Packet number: 160  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 13830
-		Checksum: (null) (0x5b87)
+		Checksum: Correct (0x875b)
 
 Packet number: 161  Frame Len: 54
 
@@ -4556,13 +4556,13 @@ Packet number: 161  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x4c5c)
+		Checksum: Correct (0x4c5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14211766
 		ACK Number: 3476982117
 		ACK Flag: Yes
@@ -4570,7 +4570,7 @@ Packet number: 161  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16965
-		Checksum: (null) (0x5dce)
+		Checksum: Correct (0xce5d)
 
 Packet number: 162  Frame Len: 54
 
@@ -4585,13 +4585,13 @@ Packet number: 162  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x4b5c)
+		Checksum: Correct (0x4b5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14277293
 		ACK Number: 3479657647
 		ACK Flag: Yes
@@ -4599,7 +4599,7 @@ Packet number: 162  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16257
-		Checksum: (null) (0xb5fd)
+		Checksum: Correct (0xfdb5)
 
 Packet number: 163  Frame Len: 71
 
@@ -4614,7 +4614,7 @@ Packet number: 163  Frame Len: 71
 		TTL: 128
 		IP PDU Len: 57 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0xa251)
+		Checksum: Correct (0xa251)
 		Sender IP: 192.168.1.102
 		Dest IP: 64.166.172.8
 
@@ -4635,7 +4635,7 @@ Packet number: 164  Frame Len: 297
 		TTL: 253
 		IP PDU Len: 283 (bytes)
 		Protocol: UDP
-		Checksum: NULL (0x8cf7)
+		Checksum: Correct (0x8cf7)
 		Sender IP: 64.166.172.8
 		Dest IP: 192.168.1.102
 
@@ -4656,13 +4656,13 @@ Packet number: 165  Frame Len: 62
 		TTL: 128
 		IP PDU Len: 48 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0c7d)
+		Checksum: Correct (0xc7d)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.68.178.16
 
 	TCP Header
 		Source Port: : 1660
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 15085002
 		ACK Number: <not valid>
 		ACK Flag: No
@@ -4670,7 +4670,7 @@ Packet number: 165  Frame Len: 62
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16384
-		Checksum: (null) (0x3fca)
+		Checksum: Correct (0xca3f)
 
 Packet number: 166  Frame Len: 60
 
@@ -4685,12 +4685,12 @@ Packet number: 166  Frame Len: 60
 		TTL: 238
 		IP PDU Len: 44 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe322)
+		Checksum: Correct (0xe322)
 		Sender IP: 207.68.178.16
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1660
 		Sequence Number: 2869684100
 		ACK Number: 15085003
@@ -4699,7 +4699,7 @@ Packet number: 166  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 8190
-		Checksum: (null) (0xaf6c)
+		Checksum: Correct (0x6caf)
 
 Packet number: 167  Frame Len: 54
 
@@ -4714,13 +4714,13 @@ Packet number: 167  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x137d)
+		Checksum: Correct (0x137d)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.68.178.16
 
 	TCP Header
 		Source Port: : 1660
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 15085003
 		ACK Number: 2869684101
 		ACK Flag: Yes
@@ -4728,7 +4728,7 @@ Packet number: 167  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x5260)
+		Checksum: Correct (0x6052)
 
 Packet number: 168  Frame Len: 823
 
@@ -4743,13 +4743,13 @@ Packet number: 168  Frame Len: 823
 		TTL: 128
 		IP PDU Len: 809 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x117a)
+		Checksum: Correct (0x117a)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.68.178.16
 
 	TCP Header
 		Source Port: : 1660
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 15085003
 		ACK Number: 2869684101
 		ACK Flag: Yes
@@ -4757,7 +4757,7 @@ Packet number: 168  Frame Len: 823
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x98fe)
+		Checksum: Correct (0xfe98)
 
 Packet number: 169  Frame Len: 471
 
@@ -4772,12 +4772,12 @@ Packet number: 169  Frame Len: 471
 		TTL: 111
 		IP PDU Len: 457 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x4203)
+		Checksum: Correct (0x4203)
 		Sender IP: 207.68.178.16
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1660
 		Sequence Number: 2869684101
 		ACK Number: 15085772
@@ -4786,7 +4786,7 @@ Packet number: 169  Frame Len: 471
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16628
-		Checksum: (null) (0x5079)
+		Checksum: Correct (0x7950)
 
 Packet number: 170  Frame Len: 54
 
@@ -4801,13 +4801,13 @@ Packet number: 170  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0f7d)
+		Checksum: Correct (0xf7d)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.68.178.16
 
 	TCP Header
 		Source Port: : 1660
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 15085772
 		ACK Number: 2869684518
 		ACK Flag: Yes
@@ -4815,7 +4815,7 @@ Packet number: 170  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17007
-		Checksum: (null) (0x515d)
+		Checksum: Correct (0x5d51)
 
 Packet number: 171  Frame Len: 841
 
@@ -4830,13 +4830,13 @@ Packet number: 171  Frame Len: 841
 		TTL: 128
 		IP PDU Len: 827 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2659)
+		Checksum: Correct (0x2659)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14211766
 		ACK Number: 3476982117
 		ACK Flag: Yes
@@ -4844,7 +4844,7 @@ Packet number: 171  Frame Len: 841
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16965
-		Checksum: (null) (0x39df)
+		Checksum: Correct (0xdf39)
 
 Packet number: 172  Frame Len: 898
 
@@ -4859,13 +4859,13 @@ Packet number: 172  Frame Len: 898
 		TTL: 128
 		IP PDU Len: 884 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe858)
+		Checksum: Correct (0xe858)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14277293
 		ACK Number: 3479657647
 		ACK Flag: Yes
@@ -4873,7 +4873,7 @@ Packet number: 172  Frame Len: 898
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16257
-		Checksum: (null) (0x0c5b)
+		Checksum: Correct (0x5b0c)
 
 Packet number: 173  Frame Len: 1136
 
@@ -4888,13 +4888,13 @@ Packet number: 173  Frame Len: 1136
 		TTL: 128
 		IP PDU Len: 1122 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xbf94)
+		Checksum: Correct (0xbf94)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14775700
 		ACK Number: 1518736235
 		ACK Flag: Yes
@@ -4902,7 +4902,7 @@ Packet number: 173  Frame Len: 1136
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16792
-		Checksum: (null) (0x0206)
+		Checksum: Correct (0x602)
 
 Packet number: 174  Frame Len: 283
 
@@ -4917,12 +4917,12 @@ Packet number: 174  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc3b8)
+		Checksum: Correct (0xc3b8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476982117
 		ACK Number: 14212553
@@ -4931,7 +4931,7 @@ Packet number: 174  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 13232
-		Checksum: (null) (0x1d0e)
+		Checksum: Correct (0xe1d)
 
 Packet number: 175  Frame Len: 243
 
@@ -4946,12 +4946,12 @@ Packet number: 175  Frame Len: 243
 		TTL: 56
 		IP PDU Len: 229 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9a93)
+		Checksum: Correct (0x9a93)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479657647
 		ACK Number: 14278137
@@ -4960,7 +4960,7 @@ Packet number: 175  Frame Len: 243
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 15674
-		Checksum: (null) (0x98dd)
+		Checksum: Correct (0xdd98)
 
 Packet number: 176  Frame Len: 54
 
@@ -4975,13 +4975,13 @@ Packet number: 176  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2e5c)
+		Checksum: Correct (0x2e5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14212553
 		ACK Number: 3476982346
 		ACK Flag: Yes
@@ -4989,7 +4989,7 @@ Packet number: 176  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16736
-		Checksum: (null) (0x4acb)
+		Checksum: Correct (0xcb4a)
 
 Packet number: 177  Frame Len: 1357
 
@@ -5004,12 +5004,12 @@ Packet number: 177  Frame Len: 1357
 		TTL: 239
 		IP PDU Len: 1343 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xec8b)
+		Checksum: Correct (0xec8b)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518736235
 		ACK Number: 14776782
@@ -5018,7 +5018,7 @@ Packet number: 177  Frame Len: 1357
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6520
-		Checksum: (null) (0xd0e4)
+		Checksum: Correct (0xe4d0)
 
 Packet number: 178  Frame Len: 1506
 
@@ -5033,12 +5033,12 @@ Packet number: 178  Frame Len: 1506
 		TTL: 239
 		IP PDU Len: 1492 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x518b)
+		Checksum: Correct (0x518b)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518737538
 		ACK Number: 14776782
@@ -5047,7 +5047,7 @@ Packet number: 178  Frame Len: 1506
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6520
-		Checksum: (null) (0x52aa)
+		Checksum: Correct (0xaa52)
 
 Packet number: 179  Frame Len: 54
 
@@ -5062,13 +5062,13 @@ Packet number: 179  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf398)
+		Checksum: Correct (0xf398)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14776782
 		ACK Number: 1518738990
 		ACK Flag: Yes
@@ -5076,7 +5076,7 @@ Packet number: 179  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x254a)
+		Checksum: Correct (0x4a25)
 
 Packet number: 180  Frame Len: 54
 
@@ -5091,13 +5091,13 @@ Packet number: 180  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x2c5c)
+		Checksum: Correct (0x2c5c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14278137
 		ACK Number: 3479657836
 		ACK Flag: Yes
@@ -5105,7 +5105,7 @@ Packet number: 180  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16068
-		Checksum: (null) (0x69fa)
+		Checksum: Correct (0xfa69)
 
 Packet number: 181  Frame Len: 849
 
@@ -5120,13 +5120,13 @@ Packet number: 181  Frame Len: 849
 		TTL: 128
 		IP PDU Len: 835 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x0e59)
+		Checksum: Correct (0xe59)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14212553
 		ACK Number: 3476982346
 		ACK Flag: Yes
@@ -5134,7 +5134,7 @@ Packet number: 181  Frame Len: 849
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16736
-		Checksum: (null) (0x92ad)
+		Checksum: Correct (0xad92)
 
 Packet number: 182  Frame Len: 1042
 
@@ -5149,12 +5149,12 @@ Packet number: 182  Frame Len: 1042
 		TTL: 239
 		IP PDU Len: 1028 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5189)
+		Checksum: Correct (0x5189)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518738990
 		ACK Number: 14776782
@@ -5163,7 +5163,7 @@ Packet number: 182  Frame Len: 1042
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6520
-		Checksum: (null) (0x3870)
+		Checksum: Correct (0x7038)
 
 Packet number: 183  Frame Len: 1063
 
@@ -5178,12 +5178,12 @@ Packet number: 183  Frame Len: 1063
 		TTL: 56
 		IP PDU Len: 1049 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb6b5)
+		Checksum: Correct (0xb6b5)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476982346
 		ACK Number: 14213348
@@ -5192,7 +5192,7 @@ Packet number: 183  Frame Len: 1063
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 14886
-		Checksum: (null) (0xc9c5)
+		Checksum: Correct (0xc5c9)
 
 Packet number: 184  Frame Len: 54
 
@@ -5207,13 +5207,13 @@ Packet number: 184  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x245c)
+		Checksum: Correct (0x245c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14213348
 		ACK Number: 3476983355
 		ACK Flag: Yes
@@ -5221,7 +5221,7 @@ Packet number: 184  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x8ec1)
+		Checksum: Correct (0xc18e)
 
 Packet number: 185  Frame Len: 54
 
@@ -5236,13 +5236,13 @@ Packet number: 185  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe998)
+		Checksum: Correct (0xe998)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14776782
 		ACK Number: 1518739978
 		ACK Flag: Yes
@@ -5250,7 +5250,7 @@ Packet number: 185  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16436
-		Checksum: (null) (0x254a)
+		Checksum: Correct (0x4a25)
 
 Packet number: 186  Frame Len: 1178
 
@@ -5265,13 +5265,13 @@ Packet number: 186  Frame Len: 1178
 		TTL: 128
 		IP PDU Len: 1164 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x8094)
+		Checksum: Correct (0x8094)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14776782
 		ACK Number: 1518739978
 		ACK Flag: Yes
@@ -5279,7 +5279,7 @@ Packet number: 186  Frame Len: 1178
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16436
-		Checksum: (null) (0xbec0)
+		Checksum: Correct (0xc0be)
 
 Packet number: 187  Frame Len: 1043
 
@@ -5294,12 +5294,12 @@ Packet number: 187  Frame Len: 1043
 		TTL: 239
 		IP PDU Len: 1029 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7555)
+		Checksum: Correct (0x7555)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518739978
 		ACK Number: 14777906
@@ -5308,7 +5308,7 @@ Packet number: 187  Frame Len: 1043
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7644
-		Checksum: (null) (0x6a77)
+		Checksum: Correct (0x776a)
 
 Packet number: 188  Frame Len: 54
 
@@ -5323,13 +5323,13 @@ Packet number: 188  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe398)
+		Checksum: Correct (0xe398)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14777906
 		ACK Number: 1518740967
 		ACK Flag: Yes
@@ -5337,7 +5337,7 @@ Packet number: 188  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x083e)
+		Checksum: Correct (0x3e08)
 
 Packet number: 189  Frame Len: 573
 
@@ -5352,12 +5352,12 @@ Packet number: 189  Frame Len: 573
 		TTL: 239
 		IP PDU Len: 559 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb24e)
+		Checksum: Correct (0xb24e)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518740967
 		ACK Number: 14777906
@@ -5366,7 +5366,7 @@ Packet number: 189  Frame Len: 573
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7644
-		Checksum: (null) (0x5327)
+		Checksum: Correct (0x2753)
 
 Packet number: 190  Frame Len: 883
 
@@ -5381,13 +5381,13 @@ Packet number: 190  Frame Len: 883
 		TTL: 128
 		IP PDU Len: 869 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xdb58)
+		Checksum: Correct (0xdb58)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14278137
 		ACK Number: 3479657836
 		ACK Flag: Yes
@@ -5395,7 +5395,7 @@ Packet number: 190  Frame Len: 883
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16068
-		Checksum: (null) (0x0fef)
+		Checksum: Correct (0xef0f)
 
 Packet number: 191  Frame Len: 54
 
@@ -5410,13 +5410,13 @@ Packet number: 191  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xdd98)
+		Checksum: Correct (0xdd98)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14777906
 		ACK Number: 1518741486
 		ACK Flag: Yes
@@ -5424,7 +5424,7 @@ Packet number: 191  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16905
-		Checksum: (null) (0x083e)
+		Checksum: Correct (0x3e08)
 
 Packet number: 192  Frame Len: 283
 
@@ -5439,12 +5439,12 @@ Packet number: 192  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7193)
+		Checksum: Correct (0x7193)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479657836
 		ACK Number: 14278966
@@ -5453,7 +5453,7 @@ Packet number: 192  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17518
-		Checksum: (null) (0x072b)
+		Checksum: Correct (0x2b07)
 
 Packet number: 193  Frame Len: 54
 
@@ -5468,13 +5468,13 @@ Packet number: 193  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x145c)
+		Checksum: Correct (0x145c)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14278966
 		ACK Number: 3479658065
 		ACK Flag: Yes
@@ -5482,7 +5482,7 @@ Packet number: 193  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0xfbf0)
+		Checksum: Correct (0xf0fb)
 
 Packet number: 194  Frame Len: 846
 
@@ -5497,13 +5497,13 @@ Packet number: 194  Frame Len: 846
 		TTL: 128
 		IP PDU Len: 832 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf958)
+		Checksum: Correct (0xf958)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14213348
 		ACK Number: 3476983355
 		ACK Flag: Yes
@@ -5511,7 +5511,7 @@ Packet number: 194  Frame Len: 846
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x324d)
+		Checksum: Correct (0x4d32)
 
 Packet number: 195  Frame Len: 852
 
@@ -5526,13 +5526,13 @@ Packet number: 195  Frame Len: 852
 		TTL: 128
 		IP PDU Len: 838 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf058)
+		Checksum: Correct (0xf058)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14278966
 		ACK Number: 3479658065
 		ACK Flag: Yes
@@ -5540,7 +5540,7 @@ Packet number: 195  Frame Len: 852
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x7c27)
+		Checksum: Correct (0x277c)
 
 Packet number: 196  Frame Len: 283
 
@@ -5555,12 +5555,12 @@ Packet number: 196  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xc1b8)
+		Checksum: Correct (0xc1b8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476983355
 		ACK Number: 14214140
@@ -5569,7 +5569,7 @@ Packet number: 196  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16540
-		Checksum: (null) (0xb1d7)
+		Checksum: Correct (0xd7b1)
 
 Packet number: 197  Frame Len: 866
 
@@ -5584,13 +5584,13 @@ Packet number: 197  Frame Len: 866
 		TTL: 128
 		IP PDU Len: 852 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xd958)
+		Checksum: Correct (0xd958)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14214140
 		ACK Number: 3476983584
 		ACK Flag: Yes
@@ -5598,7 +5598,7 @@ Packet number: 197  Frame Len: 866
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17195
-		Checksum: (null) (0x855f)
+		Checksum: Correct (0x5f85)
 
 Packet number: 198  Frame Len: 284
 
@@ -5613,12 +5613,12 @@ Packet number: 198  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x6f93)
+		Checksum: Correct (0x6f93)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479658065
 		ACK Number: 14279764
@@ -5627,7 +5627,7 @@ Packet number: 198  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 19362
-		Checksum: (null) (0x2d85)
+		Checksum: Correct (0x852d)
 
 Packet number: 199  Frame Len: 876
 
@@ -5642,13 +5642,13 @@ Packet number: 199  Frame Len: 876
 		TTL: 128
 		IP PDU Len: 862 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xcc58)
+		Checksum: Correct (0xcc58)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14279764
 		ACK Number: 3479658295
 		ACK Flag: Yes
@@ -5656,7 +5656,7 @@ Packet number: 199  Frame Len: 876
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17194
-		Checksum: (null) (0x9798)
+		Checksum: Correct (0x9897)
 
 Packet number: 200  Frame Len: 284
 
@@ -5671,12 +5671,12 @@ Packet number: 200  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xbfb8)
+		Checksum: Correct (0xbfb8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476983584
 		ACK Number: 14214952
@@ -5685,7 +5685,7 @@ Packet number: 200  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 18194
-		Checksum: (null) (0x8c50)
+		Checksum: Correct (0x508c)
 
 Packet number: 201  Frame Len: 829
 
@@ -5700,13 +5700,13 @@ Packet number: 201  Frame Len: 829
 		TTL: 128
 		IP PDU Len: 815 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf858)
+		Checksum: Correct (0xf858)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14214952
 		ACK Number: 3476983814
 		ACK Flag: Yes
@@ -5714,7 +5714,7 @@ Packet number: 201  Frame Len: 829
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16965
-		Checksum: (null) (0xd2f0)
+		Checksum: Correct (0xf0d2)
 
 Packet number: 202  Frame Len: 283
 
@@ -5729,12 +5729,12 @@ Packet number: 202  Frame Len: 283
 		TTL: 56
 		IP PDU Len: 269 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x6f93)
+		Checksum: Correct (0x6f93)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479658295
 		ACK Number: 14280586
@@ -5743,7 +5743,7 @@ Packet number: 202  Frame Len: 283
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 21206
-		Checksum: (null) (0x329d)
+		Checksum: Correct (0x9d32)
 
 Packet number: 203  Frame Len: 297
 
@@ -5758,12 +5758,12 @@ Packet number: 203  Frame Len: 297
 		TTL: 56
 		IP PDU Len: 283 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb1b8)
+		Checksum: Correct (0xb1b8)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476983814
 		ACK Number: 14215727
@@ -5772,7 +5772,7 @@ Packet number: 203  Frame Len: 297
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 19848
-		Checksum: (null) (0xe725)
+		Checksum: Correct (0x25e7)
 
 Packet number: 204  Frame Len: 54
 
@@ -5787,13 +5787,13 @@ Packet number: 204  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xfa5b)
+		Checksum: Correct (0xfa5b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14215727
 		ACK Number: 3476984057
 		ACK Flag: Yes
@@ -5801,7 +5801,7 @@ Packet number: 204  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16722
-		Checksum: (null) (0x43b8)
+		Checksum: Correct (0xb843)
 
 Packet number: 205  Frame Len: 54
 
@@ -5816,13 +5816,13 @@ Packet number: 205  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf95b)
+		Checksum: Correct (0xf95b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14280586
 		ACK Number: 3479658524
 		ACK Flag: Yes
@@ -5830,7 +5830,7 @@ Packet number: 205  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16965
-		Checksum: (null) (0xa7ea)
+		Checksum: Correct (0xeaa7)
 
 Packet number: 206  Frame Len: 908
 
@@ -5845,13 +5845,13 @@ Packet number: 206  Frame Len: 908
 		TTL: 128
 		IP PDU Len: 894 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa058)
+		Checksum: Correct (0xa058)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14280586
 		ACK Number: 3479658524
 		ACK Flag: Yes
@@ -5859,7 +5859,7 @@ Packet number: 206  Frame Len: 908
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16965
-		Checksum: (null) (0x4439)
+		Checksum: Correct (0x3944)
 
 Packet number: 207  Frame Len: 284
 
@@ -5874,12 +5874,12 @@ Packet number: 207  Frame Len: 284
 		TTL: 56
 		IP PDU Len: 270 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x6d93)
+		Checksum: Correct (0x6d93)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479658524
 		ACK Number: 14281440
@@ -5888,7 +5888,7 @@ Packet number: 207  Frame Len: 284
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 23050
-		Checksum: (null) (0xc53f)
+		Checksum: Correct (0x3fc5)
 
 Packet number: 208  Frame Len: 54
 
@@ -5903,13 +5903,13 @@ Packet number: 208  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xf35b)
+		Checksum: Correct (0xf35b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14281440
 		ACK Number: 3479658754
 		ACK Flag: Yes
@@ -5917,7 +5917,7 @@ Packet number: 208  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16735
-		Checksum: (null) (0x51e7)
+		Checksum: Correct (0xe751)
 
 Packet number: 209  Frame Len: 54
 
@@ -5932,13 +5932,13 @@ Packet number: 209  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xec5b)
+		Checksum: Correct (0xec5b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14281440
 		ACK Number: 3479658754
 		ACK Flag: Yes
@@ -5946,7 +5946,7 @@ Packet number: 209  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 16735
-		Checksum: (null) (0x50e7)
+		Checksum: Correct (0xe750)
 
 Packet number: 210  Frame Len: 54
 
@@ -5961,13 +5961,13 @@ Packet number: 210  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xeb5b)
+		Checksum: Correct (0xeb5b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14215727
 		ACK Number: 3476984057
 		ACK Flag: Yes
@@ -5975,7 +5975,7 @@ Packet number: 210  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 16722
-		Checksum: (null) (0x42b8)
+		Checksum: Correct (0xb842)
 
 Packet number: 211  Frame Len: 54
 
@@ -5990,13 +5990,13 @@ Packet number: 211  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb098)
+		Checksum: Correct (0xb098)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14777906
 		ACK Number: 1518741486
 		ACK Flag: Yes
@@ -6004,7 +6004,7 @@ Packet number: 211  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 16905
-		Checksum: (null) (0x073e)
+		Checksum: Correct (0x3e07)
 
 Packet number: 212  Frame Len: 54
 
@@ -6019,13 +6019,13 @@ Packet number: 212  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xbc7c)
+		Checksum: Correct (0xbc7c)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.68.178.16
 
 	TCP Header
 		Source Port: : 1660
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 15085772
 		ACK Number: 2869684518
 		ACK Flag: Yes
@@ -6033,7 +6033,7 @@ Packet number: 212  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 17007
-		Checksum: (null) (0x505d)
+		Checksum: Correct (0x5d50)
 
 Packet number: 213  Frame Len: 54
 
@@ -6048,13 +6048,13 @@ Packet number: 213  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xae98)
+		Checksum: Correct (0xae98)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13634027
 		ACK Number: 3840849613
 		ACK Flag: Yes
@@ -6062,7 +6062,7 @@ Packet number: 213  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 17424
-		Checksum: (null) (0x1697)
+		Checksum: Correct (0x9716)
 
 Packet number: 214  Frame Len: 54
 
@@ -6077,13 +6077,13 @@ Packet number: 214  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa339)
+		Checksum: Correct (0xa339)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.245.61
 
 	TCP Header
 		Source Port: : 1652
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13129585
 		ACK Number: 4082595648
 		ACK Flag: Yes
@@ -6091,7 +6091,7 @@ Packet number: 214  Frame Len: 54
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 17144
-		Checksum: (null) (0xcb1c)
+		Checksum: Correct (0x1ccb)
 
 Packet number: 215  Frame Len: 60
 
@@ -6106,12 +6106,12 @@ Packet number: 215  Frame Len: 60
 		TTL: 56
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5294)
+		Checksum: Correct (0x5294)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1657
 		Sequence Number: 3479658754
 		ACK Number: 14281441
@@ -6120,7 +6120,7 @@ Packet number: 215  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 23050
-		Checksum: (null) (0xa4ce)
+		Checksum: Correct (0xcea4)
 
 Packet number: 216  Frame Len: 54
 
@@ -6135,13 +6135,13 @@ Packet number: 216  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe45b)
+		Checksum: Correct (0xe45b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1657
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14281441
 		ACK Number: 3479658755
 		ACK Flag: Yes
@@ -6149,7 +6149,7 @@ Packet number: 216  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16735
-		Checksum: (null) (0x4fe7)
+		Checksum: Correct (0xe74f)
 
 Packet number: 217  Frame Len: 60
 
@@ -6164,12 +6164,12 @@ Packet number: 217  Frame Len: 60
 		TTL: 56
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa3b9)
+		Checksum: Correct (0xa3b9)
 		Sender IP: 69.226.92.70
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1656
 		Sequence Number: 3476984057
 		ACK Number: 14215728
@@ -6178,7 +6178,7 @@ Packet number: 217  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 19848
-		Checksum: (null) (0x0bac)
+		Checksum: Correct (0xac0b)
 
 Packet number: 218  Frame Len: 54
 
@@ -6193,13 +6193,13 @@ Packet number: 218  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xe35b)
+		Checksum: Correct (0xe35b)
 		Sender IP: 192.168.1.102
 		Dest IP: 69.226.92.70
 
 	TCP Header
 		Source Port: : 1656
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14215728
 		ACK Number: 3476984058
 		ACK Flag: Yes
@@ -6207,7 +6207,7 @@ Packet number: 218  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16722
-		Checksum: (null) (0x41b8)
+		Checksum: Correct (0xb841)
 
 Packet number: 219  Frame Len: 60
 
@@ -6222,12 +6222,12 @@ Packet number: 219  Frame Len: 60
 		TTL: 238
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x5e12)
+		Checksum: Correct (0x5e12)
 		Sender IP: 207.68.178.16
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1660
 		Sequence Number: 2869684518
 		ACK Number: 15085773
@@ -6236,7 +6236,7 @@ Packet number: 219  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 8190
-		Checksum: (null) (0xc07f)
+		Checksum: Correct (0x7fc0)
 
 Packet number: 220  Frame Len: 54
 
@@ -6251,13 +6251,13 @@ Packet number: 220  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xb57c)
+		Checksum: Correct (0xb57c)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.68.178.16
 
 	TCP Header
 		Source Port: : 1660
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 15085773
 		ACK Number: 2869684519
 		ACK Flag: Yes
@@ -6265,7 +6265,7 @@ Packet number: 220  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17007
-		Checksum: (null) (0x4f5d)
+		Checksum: Correct (0x5d4f)
 
 Packet number: 221  Frame Len: 60
 
@@ -6280,12 +6280,12 @@ Packet number: 221  Frame Len: 60
 		TTL: 239
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x91f6)
+		Checksum: Correct (0x91f6)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518741486
 		ACK Number: 14777907
@@ -6294,7 +6294,7 @@ Packet number: 221  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 7644
-		Checksum: (null) (0x3462)
+		Checksum: Correct (0x6234)
 
 Packet number: 222  Frame Len: 60
 
@@ -6309,12 +6309,12 @@ Packet number: 222  Frame Len: 60
 		TTL: 239
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x90f6)
+		Checksum: Correct (0x90f6)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1659
 		Sequence Number: 1518741486
 		ACK Number: 14777907
@@ -6323,7 +6323,7 @@ Packet number: 222  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 7644
-		Checksum: (null) (0x3362)
+		Checksum: Correct (0x6233)
 
 Packet number: 223  Frame Len: 54
 
@@ -6338,13 +6338,13 @@ Packet number: 223  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa798)
+		Checksum: Correct (0xa798)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1659
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 14777907
 		ACK Number: 1518741487
 		ACK Flag: Yes
@@ -6352,7 +6352,7 @@ Packet number: 223  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 16905
-		Checksum: (null) (0x063e)
+		Checksum: Correct (0x3e06)
 
 Packet number: 224  Frame Len: 60
 
@@ -6367,12 +6367,12 @@ Packet number: 224  Frame Len: 60
 		TTL: 239
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x56f6)
+		Checksum: Correct (0x56f6)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840849613
 		ACK Number: 13634028
@@ -6381,7 +6381,7 @@ Packet number: 224  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 6711
-		Checksum: (null) (0xefc0)
+		Checksum: Correct (0xc0ef)
 
 Packet number: 225  Frame Len: 60
 
@@ -6396,12 +6396,12 @@ Packet number: 225  Frame Len: 60
 		TTL: 239
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x55f6)
+		Checksum: Correct (0x55f6)
 		Sender IP: 207.46.150.51
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1653
 		Sequence Number: 3840849613
 		ACK Number: 13634028
@@ -6410,7 +6410,7 @@ Packet number: 225  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 6711
-		Checksum: (null) (0xeec0)
+		Checksum: Correct (0xc0ee)
 
 Packet number: 226  Frame Len: 54
 
@@ -6425,13 +6425,13 @@ Packet number: 226  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0xa698)
+		Checksum: Correct (0xa698)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.150.51
 
 	TCP Header
 		Source Port: : 1653
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13634028
 		ACK Number: 3840849614
 		ACK Flag: Yes
@@ -6439,7 +6439,7 @@ Packet number: 226  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17424
-		Checksum: (null) (0x1597)
+		Checksum: Correct (0x9715)
 
 Packet number: 227  Frame Len: 60
 
@@ -6454,12 +6454,12 @@ Packet number: 227  Frame Len: 60
 		TTL: 238
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7903)
+		Checksum: Correct (0x7903)
 		Sender IP: 207.46.245.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1652
 		Sequence Number: 4082595648
 		ACK Number: 13129586
@@ -6468,7 +6468,7 @@ Packet number: 227  Frame Len: 60
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 5043
-		Checksum: (null) (0x104c)
+		Checksum: Correct (0x4c10)
 
 Packet number: 228  Frame Len: 60
 
@@ -6483,12 +6483,12 @@ Packet number: 228  Frame Len: 60
 		TTL: 238
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x7803)
+		Checksum: Correct (0x7803)
 		Sender IP: 207.46.245.61
 		Dest IP: 192.168.1.102
 
 	TCP Header
-		Source Port: : 80
+		Source Port:  HTTP
 		Dest Port: : 1652
 		Sequence Number: 4082595648
 		ACK Number: 13129586
@@ -6497,7 +6497,7 @@ Packet number: 228  Frame Len: 60
 		RST Flag: No
 		FIN Flag: Yes
 		Window Size: 5043
-		Checksum: (null) (0x0f4c)
+		Checksum: Correct (0x4c0f)
 
 Packet number: 229  Frame Len: 54
 
@@ -6512,13 +6512,13 @@ Packet number: 229  Frame Len: 54
 		TTL: 128
 		IP PDU Len: 40 (bytes)
 		Protocol: TCP
-		Checksum: NULL (0x9b39)
+		Checksum: Correct (0x9b39)
 		Sender IP: 192.168.1.102
 		Dest IP: 207.46.245.61
 
 	TCP Header
 		Source Port: : 1652
-		Dest Port: : 80
+		Dest Port:  HTTP
 		Sequence Number: 13129586
 		ACK Number: 4082595649
 		ACK Flag: Yes
@@ -6526,4 +6526,4 @@ Packet number: 229  Frame Len: 54
 		RST Flag: No
 		FIN Flag: No
 		Window Size: 17144
-		Checksum: (null) (0xca1c)
+		Checksum: Correct (0x1cca)
