@@ -17,7 +17,7 @@ Packet number: 1  Frame Len: 74
 		Dest IP: 66.94.230.35
 
 	ICMP Header
-		Type: (null)
+		Type: 109
 
 Packet number: 2  Frame Len: 74
 

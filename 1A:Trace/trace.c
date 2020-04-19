@@ -1,6 +1,11 @@
-/* Caleb Rabbon, crabbon@calpoly.edu */
-//#define DEBUG
-//#define IPDEBUG
+/* Caleb Rabbon, crabbon@calpoly.edu
+ * Created 4/19/2020 */
+
+/* Uncomment the below lines to turn on print statments for debugging */
+/*
+#define DEBUG
+#define IPDEBUG
+*/
 
 #include "trace.h"
 #include <stdio.h>
@@ -203,41 +208,45 @@ void findIP_CS(struct ipHeader* iHeader, void* pkt_data){
 
    /* Must divide by 2 to get words since it is set to tcpLength which is in
     * bytes */
+   /*
    ipWords = ipWords/2;
+   */
 
 
    /* Moving the pkt_data pointer to the IP's header length */
    pkt_data += sizeof(uint8_t) * IP_HEADERLEN_OFFSET;
 
-   /* Summing together all words of the IP Header */
-   for(i = 0; i < ipWords; i ++){
-      prev_calc_cs = calc_cs;
+   calc_cs = in_cksum((unsigned short*) pkt_data, ipWords);
 
-      /* Update check_sum */
-      val = ntohs(*((uint16_t*)pkt_data));
-      calc_cs += val;
-
-      /* If the odd flag is set then the last word sets the last byte to zero */
-      if((i == ipWords - 1) && odd_flg)
-         val = val & 0xFF00;
-
-#ifdef IPDEBUG
-      printf("i = %i", i);
-      printf("     Current Value = %x", val);
-      printf("     Running Sum = %x\n", calc_cs);
-#endif
-
-      /* If you overflow add one to the checksum */
-      if(calc_cs < prev_calc_cs)
-         calc_cs += 1;
-
-      pkt_data += sizeof(uint16_t);
-   }
+//   /* Summing together all words of the IP Header */
+//   for(i = 0; i < ipWords; i ++){
+//      prev_calc_cs = calc_cs;
+//
+//      /* Update check_sum */
+//      val = ntohs(*((uint16_t*)pkt_data));
+//      calc_cs += val;
+//
+//      /* If the odd flag is set then the last word sets the last byte to zero */
+//      if((i == ipWords - 1) && odd_flg)
+//         val = val & 0xFF00;
+//
+//#ifdef IPDEBUG
+//      printf("i = %i", i);
+//      printf("     Current Value = %x", val);
+//      printf("     Running Sum = %x\n", calc_cs);
+//#endif
+//
+//      /* If you overflow add one to the checksum */
+//      if(calc_cs < prev_calc_cs)
+//         calc_cs += 1;
+//
+//      pkt_data += sizeof(uint16_t);
+//   }
 #ifdef IPDEBUG
    printf("CS = %i\n", calc_cs);
    printf("CHECKSUMVALUE = %i\n", CHECKSUM_VALUE);
 #endif
-   if(calc_cs == CHECKSUM_VALUE)
+   if(calc_cs == 0)
       iHeader->checksum_flg = "Correct";
    else
       iHeader->checksum_flg = "Incorrect";
@@ -339,7 +348,7 @@ char* getPingType(uint8_t type){
       return "Reply";
    else if(type == PING_REQUEST)
       return "Request";
-   return NULL;
+   return "109";
 }
 
 /* Prints the ping packet (ICMP) header */
@@ -423,12 +432,12 @@ char* findTCP_CS(void* pkt_data, struct ipHeader* iHeader){
    uint16_t prev_calc_cs = 0;
    uint16_t val = 0;
    uint16_t IpWord = 0;
+   uint16_t base_cs = 0;
    int i = 0;
    int odd_flg = 0;
    uint16_t tcpLength = 0;
    uint16_t tcpWords = 0;
    uint16_t tcp_offset;
-
 
    /* Moving the pkt_data pointer to the beginning of the TCP's header length */
    tcp_offset = IP_HEADERLEN_OFFSET + iHeader->headerLen;
@@ -442,7 +451,6 @@ char* findTCP_CS(void* pkt_data, struct ipHeader* iHeader){
    printf("tcpLength %i\n", tcpLength);
 #endif
 
-
    /* Round TCP Words up */
    tcpWords = tcpLength;
    if(tcpLength % 2 == 1){
@@ -454,35 +462,47 @@ char* findTCP_CS(void* pkt_data, struct ipHeader* iHeader){
     * bytes */
    tcpWords = tcpWords/2;
 
+   base_cs = in_cksum((unsigned short*) pkt_data, tcpLength);
+   base_cs = ~base_cs;
+   base_cs = ntohs(base_cs);
+
 #ifdef DEBUG
+   printf("base_cs 0x%x\n", base_cs);
    printf("tcpWords %i\n", tcpWords);
 #endif
 
-   /* Summing together all words of the IP source, IP Destination, TCP Header */
-   for(i = 0; i < tcpWords; i ++){
-      prev_calc_cs = calc_cs;
-
-      /* Grab the next value */
-      val = ntohs(*((uint16_t*)pkt_data));
-
-      /* If the odd flag is set then the last word sets the last byte to zero */
-      if((i == tcpWords - 1) && odd_flg)
-         val = val & 0xFF00;
-
-      /* Update check_sum */
-      calc_cs += val;
+//   /* Summing together all words of the IP source, IP Destination, TCP Header */
+//   for(i = 0; i < tcpWords; i ++){
+//      prev_calc_cs = calc_cs;
+//
+//      /* Grab the next value */
+//      val = ntohs(*((uint16_t*)pkt_data));
+//
+//      /* If the odd flag is set then the last word sets the last byte to zero */
+//      if((i == tcpWords - 1) && odd_flg)
+//         val = val & 0xFF00;
+//
+//      /* Update check_sum */
+//      calc_cs += val;
+//
+//#ifdef DEBUG
+//      printf("current value = %x\n", val);
+//      printf("calc_cs = %x\n", calc_cs);
+//#endif
+//
+//      /* If you overflow add one to the checksum */
+//      if(calc_cs < prev_calc_cs)
+//         calc_cs += 1;
+//
+//      pkt_data += sizeof(uint16_t);
+//   }
 
 #ifdef DEBUG
-      printf("current value = %x\n", val);
-      printf("calc_cs = %x\n", calc_cs);
+   printf("BASE base_cs 0x%06x\n", base_cs);
+   printf("myCS = 0x%06x\n", calc_cs);
 #endif
 
-      /* If you overflow add one to the checksum */
-      if(calc_cs < prev_calc_cs)
-         calc_cs += 1;
-
-      pkt_data += sizeof(uint16_t);
-   }
+   calc_cs = base_cs;
 
    /* Adding the TCP Pseudo Header */
    addVal(TCP, &calc_cs);
@@ -520,24 +540,14 @@ char* findTCP_CS(void* pkt_data, struct ipHeader* iHeader){
    addVal(IpWord, &calc_cs);
 #ifdef DEBUG
    printf("destIP 2 = 0x%x\n", IpWord);
-#endif
-
-
-#ifdef DEBUG
    printf("calc_cs Integer = %i\n", calc_cs);
    printf("CHECKSUMVALUE = %i\n", CHECKSUM_VALUE);
 #endif
 
    if(calc_cs == CHECKSUM_VALUE){
-      /*
-      printf("CHECKSUM is correct = %i\n", calc_cs);
-      */
       return "Correct";
    }
    else{
-      /*
-      printf("CHECKSUM is incorrect = %i\n", calc_cs);
-      */
       return "Incorrect";
    }
    return "Incorrect";
@@ -545,15 +555,10 @@ char* findTCP_CS(void* pkt_data, struct ipHeader* iHeader){
 
 /* Prints the TCP Header */
 void printTCPHeader(struct ipHeader* iHeader, void *pkt_data){
-   uint16_t src;
-   uint16_t dst;
-   uint32_t sqNum;
-   uint32_t ackNum;
-   uint16_t flgs;
-   uint16_t winSize;
+   uint16_t src, dst, flgs, winSize, tcp_offset;
+   uint32_t sqNum, ackNum;
    uint8_t  checksum[2]; /* 2 Bytes representing the checksum */
    void* saved_pkt_data = pkt_data;
-   uint16_t tcp_offset;
 
    tcp_offset = IP_HEADERLEN_OFFSET + iHeader->headerLen;
 
@@ -582,7 +587,6 @@ void printTCPHeader(struct ipHeader* iHeader, void *pkt_data){
    pkt_data += sizeof(uint8_t);
    checksum[1] = *((uint8_t*)pkt_data);
    pkt_data += sizeof(uint8_t);
-
 
    printf("\n\tTCP Header\n");
 
@@ -656,7 +660,6 @@ void printAllHeaders(pcap_t* pcap_file){
       if(pcap_next_ret == -2){
          return;
       }
-
       printHeader(pkt_data, pkt_header, i);
       i++;
    }
@@ -685,36 +688,6 @@ int main(int argc, char * argv[])
    }
 
    printAllHeaders(pcap_file);
-   /*
-   printAllHeaders(pcap_file, &pkt_header, &pkt_data, &eHeader);
-   */
 
-   /*
-   pcap_next_ret = pcap_next_ex(pcap_file, &pkt_header, &pkt_data);
-   */
-   /* From the man pages about pcap_next_ex return value
-    *  1 = packet was read without problems
-    *  0 = packets are being read from a live capture and the timeout expired
-    * -1 = Error occured
-    * -2 = Packets being read from a ``savefile'' and no more packets to read
-   createEthHeader(&eHeader, (void*)pkt_data);
-   printEthHeader(&eHeader);
-    */
-
-   /*
-   pcap_next_ret = findNextHeader(pcap_file, &pkt_header, &pkt_data, &eHeader,9);
-   createEthHeader(&eHeader, (void*)pkt_data);
-   printEthHeader(&eHeader);
-   */
-
-   /*
-   printf("pcap_next_ret      %i\n", pcap_next_ret);
-   printf("pkt_header->caplen %i\n", pkt_header->caplen);
-   printf("pkt_header->len    %i\n", pkt_header->len);
-   */
-   /*
-   createEthHeader(&eHeader, (void*)pkt_data);
-   printEthHeader(&eHeader);
-   */
    return 0;
 }

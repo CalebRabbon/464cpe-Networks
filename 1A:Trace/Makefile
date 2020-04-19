@@ -14,4 +14,4 @@ trace.o:trace.c trace.h
 	$(CC) $(CFLAGS) -g -c -o trace.o trace.c
 
 clean:
-	rm -f trace trace.o
+	rm -f trace trace.o checksum.o
