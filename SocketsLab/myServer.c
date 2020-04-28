@@ -68,9 +68,10 @@ char* recvFromClient(int clientSocket)
    memset(buf, 0, MAXBUF);
 
    // Use a time value of 1 second (so time is not null)
+   // Set time is null to have unlimited time
    while (selectCall(clientSocket, 1, 0, TIME_IS_NULL) == 0)
    {
-   printf("Select timed out waiting for client to send data\n");
+      printf("Select timed out waiting for client to send data\n");
    }
 
    //now get the data from the client_socket (message includes null)

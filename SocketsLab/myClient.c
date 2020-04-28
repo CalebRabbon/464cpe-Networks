@@ -27,16 +27,13 @@ void checkArgs(int argc, char * argv[]);
 int main(int argc, char * argv[])
 {
 	int socketNum = 0;         //socket descriptor
-   char* dataBuf = NULL;
 	
 	checkArgs(argc, argv);
 
 	/* set up the TCP Client socket  */
 	socketNum = tcpClientSetup(argv[1], argv[2], DEBUG_FLAG);
 	
-//while(strcmp(dataBuf, "exit") != 0){
-	dataBuf = sendToServer(socketNum);
-   printf("dataBut %s\n", dataBuf);
+	sendToServer(socketNum);
 	
 	close(socketNum);
 	
