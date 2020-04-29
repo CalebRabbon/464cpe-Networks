@@ -21,10 +21,13 @@
 #include "pollLib.h"
 
 #define DEBUG_FLAG 1
-#
+
 void sendToServer(int socketNum);
 int getFromStdin(char * sendBuf, char * prompt);
 void checkArgs(int argc, char * argv[]);
+/*
+void checkHandle(char* handle, int socketNum);
+*/
 
 int main(int argc, char * argv[])
 {
@@ -33,7 +36,11 @@ int main(int argc, char * argv[])
 	checkArgs(argc, argv);
 
 	/* set up the TCP Client socket  */
-	socketNum = tcpClientSetup(argv[1], argv[2], DEBUG_FLAG);
+	socketNum = tcpClientSetup(argv[2], argv[3], DEBUG_FLAG);
+
+   /*
+   checkHandle(argv[1], socketNum);
+   */
 	
 	sendToServer(socketNum);
 	
@@ -41,6 +48,13 @@ int main(int argc, char * argv[])
 	
 	return 0;
 }
+
+/*
+void checkHandle(char* handle, int socketNum)
+{
+*/
+
+
 
 void sendToServer(int socketNum)
 {
@@ -52,7 +66,7 @@ void sendToServer(int socketNum)
 	while (strcmp(sendBuf, "exit"))
 	{
 
-		sendLen = getFromStdin(sendBuf, "Enter data:");
+		sendLen = getFromStdin(sendBuf, "$: ");
 		
 		//printf("read: %s string len: %d (including null)\n", sendBuf, sendLen);
 			
@@ -95,9 +109,9 @@ int getFromStdin(char * sendBuf, char * prompt)
 void checkArgs(int argc, char * argv[])
 {
 	/* check command line arguments  */
-	if (argc != 3)
+	if (argc != 4)
 	{
-		printf("usage: %s host-name port-number \n", argv[0]);
+		printf("usage: %s handle host-name port-number \n", argv[0]);
 		exit(1);
 	}
 }
