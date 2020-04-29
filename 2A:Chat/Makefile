@@ -6,13 +6,13 @@ CFLAGS= -g -Wall
 LIBS = 
 
 
-all:   myClient myServer
+all:   cclient server
 
-myClient: myClient.c networks.o pollLib.o gethostbyname6.o *.h
-	$(CC) $(CFLAGS) -o myClient myClient.c networks.o pollLib.o gethostbyname6.o $(LIBS)
+cclient: myClient.c networks.o pollLib.o gethostbyname6.o *.h
+	$(CC) $(CFLAGS) -o cclient myClient.c networks.o pollLib.o gethostbyname6.o $(LIBS)
 
-myServer: myServer.c networks.o pollLib.o gethostbyname6.o *.h
-	$(CC) $(CFLAGS) -o myServer myServer.c networks.o pollLib.o gethostbyname6.o $(LIBS)
+server: myServer.c networks.o pollLib.o gethostbyname6.o *.h
+	$(CC) $(CFLAGS) -o server myServer.c networks.o pollLib.o gethostbyname6.o $(LIBS)
 
 .c.o:
 	gcc -c $(CFLAGS) $< -o $@ $(LIBS)
@@ -21,7 +21,7 @@ cleano:
 	rm -f *.o
 
 clean:
-	rm -f myServer myClient *.o
+	rm -f server cclient *.o
 
 
 
