@@ -18,13 +18,13 @@
 #include <netdb.h>
 
 #include "networks.h"
+#include "flags.h"
 #include "pollLib.h"
 
 #define DEBUG_FLAG 1
 #define HANDLE_BYTE 1
 #define CHAT_HEADER 3
 #define MAX_LOGIN_SIZE 104 //Max size of 100 Character handle + 4 Bytes Header
-#define FLAG_1 1
 
 void sendToServer(int socketNum);
 int getFromStdin(char * sendBuf, char * prompt);
