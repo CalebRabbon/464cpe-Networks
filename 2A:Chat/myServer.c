@@ -21,17 +21,14 @@
 #include "networks.h"
 #include "flags.h"
 #include "pollLib.h"
+#include "macros.h"
 
-#define HEADER_LEN 2
-#define DEBUG_FLAG 1
-#define MAX_HANDLE_SIZE 100
 
 void processSockets(int mainServerSocket);
 void recvFromClient(int clientSocket);
 void addNewClient(int mainServerSocket);
 void removeClient(int clientSocket);
 int checkArgs(int argc, char *argv[]);
-
 
 int main(int argc, char *argv[])
 {
@@ -112,9 +109,74 @@ void createStrHandle(char* handle, uint8_t handleLen, char* strHandle)
    printf("STRING: %s\n", strHandle);
 }
 
+// Returns a header with a PDU Length of 3 and the designated flag
+void createDefaultChatHeader(char* header, int flag){
+   (((uint16_t*)header)[0]) = htons(DEFAULT_PDULEN);
+   (((uint8_t*)header)[2]) = flag;
+}
+
+// Prints out a default chat header packet
+void printPacket(char* header){
+   printf("Chat PDULen:\t%i\n", ntohs(((uint16_t*)header)[0]));
+   printf("Flag:\t\t%u\n", ((uint8_t*)header)[2]);
+}
+
+// Sends the packet to the socket number with sendLen
+void sendPacket(int socketNum, char* packet, uint8_t sendLen){
+	int sent = 0;            //actual amount of data sent/* get the data and send it   */
+
+   printPacket(packet);
+
+	sent =  send(socketNum, packet, sendLen, 0);
+	if (sent < 0)
+	{
+		perror("send call");
+		exit(-1);
+	}
+
+	printf("Amount of data sent is: %d\n", sent);
+}
+
+// Sends a designated flag
+void sendFlag(int socketNum, uint8_t flag){
+   char header[CHAT_HEADER_LEN];
+   createDefaultChatHeader(header, flag);
+   sendPacket(socketNum, header, DEFAULT_PDULEN);
+}
+
+// Adds the handle to the list
+void addToList(char* strHandle){
+
+}
+
+// Sends an error flag of 3 saying the handle is taken
+void sendFlag3(){
+   return;
+}
+
+// Checks to see if the strHandle is taken
+int taken(char* strHandle){
+   return 0;
+}
+
+// Checks to see if the new handle is taken. If it is send flag 3, if not add
+// to list and send flag 2
+void addClient(int socketNum, char* strHandle){
+   if(taken(strHandle)){
+      sendFlag3();
+   }
+   else
+   {
+      addToList(strHandle);
+      sendFlag(socketNum, FLAG_2);
+   }
+}
+
+
+
 // Responds to an incoming packet received from the client
 // dataBuf is the buffer of data after the Chat PDU Length
-void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Len)
+void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Len, int socketNum)
 {
    char* handle = NULL;
    uint8_t handleLen = 0;
@@ -134,10 +196,10 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
          printf("Message Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
 
          createStrHandle(handle, handleLen, strHandle);
-
-         check(strHandle);
-
          printf("handle: %s, strHandle: %s\n", handle, strHandle);
+
+         addClient(socketNum, strHandle);
+
 
          break;
       case FLAG_4:
@@ -186,7 +248,7 @@ void recvFromClient(int clientSocket)
    }
    flag = dataBuf[0];
 
-   packetResponse(flag, dataBuf, messageLen, PDU_Len);
+   packetResponse(flag, dataBuf, messageLen, PDU_Len, clientSocket);
 //   return dataBuf;
 }
 

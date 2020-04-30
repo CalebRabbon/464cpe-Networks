@@ -20,11 +20,7 @@
 #include "networks.h"
 #include "flags.h"
 #include "pollLib.h"
-
-#define DEBUG_FLAG 1
-#define HANDLE_BYTE 1
-#define CHAT_HEADER 3
-#define MAX_LOGIN_SIZE 104 //Max size of 100 Character handle + 4 Bytes Header
+#include "macros.h"
 
 void sendToServer(int socketNum);
 int getFromStdin(char * sendBuf, char * prompt);
@@ -84,21 +80,93 @@ void fillBuff(uint8_t len, char* handle, char* buff, int offset)
    }
 }
 
+// Responds to an incoming packet received from the client
+// dataBuf is the buffer of data after the Chat PDU Length
+void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Len, int socketNum)
+{
+   /*
+   char* handle = NULL;
+   uint8_t handleLen = 0;
+   char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
+   */
+   switch(flag)
+   {
+      case FLAG_2:
+         printf("Flag: %i\n", flag);
+
+         printf("Message Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
+
+         break;
+      case FLAG_4:
+         break;
+      case FLAG_5:
+         break;
+      case FLAG_8:
+         break;
+      case FLAG_10:
+         break;
+   }
+}
+
+
+// Receives a message from the server
+void ackFromServer(int socketNum)
+{
+	char buf[MAXBUF];
+	int messageLen = 0;
+   
+   // Stuff Caleb Added
+   char* dataBuf = NULL;
+   uint16_t PDU_Len = 0;
+   uint8_t flag = 0;
+		
+	//now get the data from the socketNum (message includes null)
+   if ((messageLen = recv(socketNum, buf, HEADER_LEN, MSG_WAITALL)) < 0)
+	{
+		perror("recv call");
+		exit(-1);
+	}
+	
+	if (messageLen == 0)
+	{
+		// recv() 0 bytes so client is gone
+      fprintf(stderr, "Server Terminated\n");
+      exit(1);
+	}
+
+   PDU_Len = ntohs(((uint16_t*)buf)[0]);
+
+   dataBuf = buf + sizeof(char)*2;
+
+   //now get the data from the client_socket (message includes null)
+   if ((messageLen = recv(socketNum, dataBuf, PDU_Len - HEADER_LEN, MSG_WAITALL)) < 0)
+   {
+      perror("recv call");
+      exit(-1);
+   }
+   flag = dataBuf[0];
+
+   packetResponse(flag, dataBuf, messageLen, PDU_Len, socketNum);
+//   return dataBuf;
+}
+
 // Log the client into the server with the handle
 void login(char* handle, int socketNum, char* loginBuff)
 {
    uint8_t handleLen;
    uint16_t pduLen;
-   int offset = CHAT_HEADER + HANDLE_BYTE;
+   int offset = CHAT_HEADER_LEN + HANDLE_BYTE;
 
    handleLen = ((uint16_t)(strlen(handle)));
-   pduLen = handleLen + HANDLE_BYTE + CHAT_HEADER;
+   pduLen = handleLen + HANDLE_BYTE + CHAT_HEADER_LEN;
    ((uint16_t*)(loginBuff))[0] = htons(pduLen);
    loginBuff[2] = FLAG_1;
    loginBuff[3] = handleLen;
    fillBuff(handleLen, handle, loginBuff, offset);
 
    sendLogin(socketNum, loginBuff, pduLen);
+
+   ackFromServer(socketNum);
 }
 
 void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
