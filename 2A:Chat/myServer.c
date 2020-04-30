@@ -21,6 +21,7 @@
 #include "networks.h"
 #include "pollLib.h"
 
+#define HEADER_LEN 2
 #define DEBUG_FLAG 1
 
 void processSockets(int mainServerSocket);
@@ -83,9 +84,13 @@ void recvFromClient(int clientSocket)
 {
 	char buf[MAXBUF];
 	int messageLen = 0;
+   
+   // Stuff Caleb Added
+   char* dataBuf = NULL;
+   uint16_t PDU_Len = 0;
 		
 	//now get the data from the clientSocket (message includes null)
-	if ((messageLen = recv(clientSocket, buf, MAXBUF, 0)) < 0)
+   if ((messageLen = recv(clientSocket, buf, HEADER_LEN, MSG_WAITALL)) < 0)
 	{
 		perror("recv call");
 		exit(-1);
@@ -96,10 +101,27 @@ void recvFromClient(int clientSocket)
 		// recv() 0 bytes so client is gone
 		removeClient(clientSocket);
 	}
+   /*
 	else
 	{
 		printf("Message received socket: %d, length: %d Data: %s\n", clientSocket, messageLen, buf);
 	}
+      */
+
+   PDU_Len = ntohs(((uint16_t*)buf)[0]);
+
+   dataBuf = buf + sizeof(char)*2;
+
+   //now get the data from the client_socket (message includes null)
+   if ((messageLen = recv(clientSocket, dataBuf, PDU_Len - HEADER_LEN, MSG_WAITALL)) < 0)
+   {
+      perror("recv call");
+      exit(-1);
+   }
+
+   printf("Recv Len: %d, Header Len: %d, Data: %s\n", messageLen + HEADER_LEN, PDU_Len, dataBuf);
+
+//   return dataBuf;
 }
 
 void addNewClient(int mainServerSocket)

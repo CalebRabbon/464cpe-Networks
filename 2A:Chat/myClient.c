@@ -54,6 +54,11 @@ void checkHandle(char* handle, int socketNum)
 {
 */
 
+/* Appends a two byte header which represents the length of the packet to the data pointer
+ * returns the new pointer 
+void appendChatHeader(int length, void* data)
+{
+ */
 
 
 void sendToServer(int socketNum)
@@ -63,10 +68,12 @@ void sendToServer(int socketNum)
 	int sent = 0;            //actual amount of data sent/* get the data and send it   */
 			
 	memset(sendBuf, 0, MAXBUF);
+
 	while (strcmp(sendBuf, "exit"))
 	{
 
 		sendLen = getFromStdin(sendBuf, "$: ");
+
 		
 		//printf("read: %s string len: %d (including null)\n", sendBuf, sendLen);
 			
