@@ -79,6 +79,14 @@ void processSockets(int mainServerSocket)
 	}
 }
 
+void printText(char* buff, uint8_t len){
+   int i = 0;
+   printf("len: %hu\n", len);
+   printf("Data: ");
+   for (i = 0; i < len; i ++)
+      printf("%c", buff[i]);
+   printf("\n");
+}
 
 void recvFromClient(int clientSocket)
 {
@@ -87,6 +95,7 @@ void recvFromClient(int clientSocket)
    
    // Stuff Caleb Added
    char* dataBuf = NULL;
+   char* strData = NULL;
    uint16_t PDU_Len = 0;
 		
 	//now get the data from the clientSocket (message includes null)
@@ -118,8 +127,12 @@ void recvFromClient(int clientSocket)
       perror("recv call");
       exit(-1);
    }
+   printf("Flag: %i\n", dataBuf[0]);
+   printf("Handle Len: %i\n", dataBuf[1]);
+   strData = dataBuf + sizeof(char)*2;
 
-   printf("Recv Len: %d, Header Len: %d, Data: %s\n", messageLen + HEADER_LEN, PDU_Len, dataBuf);
+   printText(strData, dataBuf[1]);
+   printf("Recv Len: %d, Header Len: %d, Data: %s\n", messageLen + HEADER_LEN, PDU_Len, strData);
 
 //   return dataBuf;
 }

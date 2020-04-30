@@ -21,22 +21,47 @@
 #include "pollLib.h"
 
 #define DEBUG_FLAG 1
+#define HANDLE_BYTE 1
+#define CHAT_HEADER 3
+#define MAX_LOGIN_SIZE 104 //Max size of 100 Character handle + 4 Bytes Header
+#define FLAG_1 1
 
 void sendToServer(int socketNum);
 int getFromStdin(char * sendBuf, char * prompt);
 void checkArgs(int argc, char * argv[]);
+void login(char* handle, int socketNum, char* loginBuff);
+void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen);
 /*
 void checkHandle(char* handle, int socketNum);
 */
 
+void printLoginBuff(char* loginBuff)
+{
+   int i = 0;
+
+   printf("Chat PDULen:\t%i\n", ntohs(((uint16_t*)loginBuff)[0]));
+   printf("Flag:\t\t%u\n", ((uint8_t*)loginBuff)[2]);
+   printf("Handle Length:\t%u\n", ((uint8_t*)loginBuff)[3]);
+   printf("Handle:\t\t");
+   for (i = 0; i < loginBuff[3]; i ++){
+      printf("%c", loginBuff[i + 4]);
+   }
+   printf("\n");
+}
+
+
 int main(int argc, char * argv[])
 {
 	int socketNum = 0;         //socket descriptor
+   char loginBuff[MAX_LOGIN_SIZE];
 	
 	checkArgs(argc, argv);
 
 	/* set up the TCP Client socket  */
 	socketNum = tcpClientSetup(argv[2], argv[3], DEBUG_FLAG);
+
+   /* Login to the server with the handle */
+   login(argv[1], socketNum, loginBuff);
 
    /*
    checkHandle(argv[1], socketNum);
@@ -49,16 +74,46 @@ int main(int argc, char * argv[])
 	return 0;
 }
 
-/*
-void checkHandle(char* handle, int socketNum)
+// Copies the string from the handle into the buffer starting at the offset
+void fillBuff(uint8_t len, char* handle, char* buff, int offset)
 {
-*/
+   int i;
 
-/* Appends a two byte header which represents the length of the packet to the data pointer
- * returns the new pointer 
-void appendChatHeader(int length, void* data)
+   for (i = 0; i < len; i ++){
+      buff[i + offset] = handle[i];
+   }
+}
+
+// Log the client into the server with the handle
+void login(char* handle, int socketNum, char* loginBuff)
 {
- */
+   uint8_t handleLen;
+   uint16_t pduLen;
+   int offset = CHAT_HEADER + HANDLE_BYTE;
+
+   handleLen = ((uint16_t)(strlen(handle)));
+   pduLen = handleLen + HANDLE_BYTE + CHAT_HEADER;
+   ((uint16_t*)(loginBuff))[0] = htons(pduLen);
+   loginBuff[2] = FLAG_1;
+   loginBuff[3] = handleLen;
+   fillBuff(handleLen, handle, loginBuff, offset);
+
+   sendLogin(socketNum, loginBuff, pduLen);
+}
+
+void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
+{
+   int sent = 0;            //actual amount of data sent/* get the data and send it   */
+   sent =  send(socketNum, loginBuff, sendLen, 0);
+   if (sent < 0)
+   {
+      perror("send call");
+      exit(-1);
+   }
+
+   printf("Amount of data sent is: %d\n", sent);
+}
+
 
 
 void sendToServer(int socketNum)

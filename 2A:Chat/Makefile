@@ -21,7 +21,7 @@ cleano:
 	rm -f *.o
 
 clean:
-	rm -f server cclient *.o
+	rm -f myClient myServer server cclient *.o
 
 
 
