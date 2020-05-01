@@ -19,6 +19,7 @@
 #include <netdb.h>
 
 #include "networks.h"
+#include "linkedlist.h"
 #include "flags.h"
 #include "pollLib.h"
 #include "macros.h"
@@ -32,6 +33,17 @@ int checkArgs(int argc, char *argv[]);
 
 int main(int argc, char *argv[])
 {
+   Node* head = makeLinkedList();
+   Node* item = makeNode("Caleb", 4);
+   Node* item2 = makeNode("Caleb2", 2);
+   Node* itemCopy = makeNode("Caleb", 4);
+
+   addNode(head, item);
+   addNode(head, item2);
+   addNode(head, itemCopy);
+
+
+   /*
 	int mainServerSocket = 0;   //socket descriptor for the server socket
 	int portNumber = 0;
 	
@@ -46,6 +58,7 @@ int main(int argc, char *argv[])
 	
 	// close the socket - never gets here but nice thought
 	close(mainServerSocket);
+   */
 	
 	return 0;
 }

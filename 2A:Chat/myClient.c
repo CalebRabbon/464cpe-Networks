@@ -18,6 +18,7 @@
 #include <netdb.h>
 
 #include "networks.h"
+#include "linkedlist.h"
 #include "flags.h"
 #include "pollLib.h"
 #include "macros.h"
