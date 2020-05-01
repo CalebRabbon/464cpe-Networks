@@ -24,10 +24,10 @@ Node* makeNode(char* handle, int socketNum);
 int available(Node* head, Node* node);
 
 // Adds a node to the beginning of the list
-void addNode(Node* head, Node* node);
+Node* addNode(Node* head, Node* node);
 
 // Searches through the list and removes the node
-void removeNode(Node* head, Node* node);
+Node* removeNode(Node* head, Node* node);
 
 Node* makeLinkedList();
 

@@ -19,25 +19,25 @@ void printNode(Node* n){
       printf("Node == NULL\n");
       return;
    }
-   printf("Handle: %s/t SocketNum: %i/t",n->handle, n->socketNum);
+   printf("%s | SN: %i |",n->handle, n->socketNum);
    if(n->next != NULL){
-      printf("Next = %s\n", n->next->handle);
+      printf("-> %s\n", n->next->handle);
    }
    else if(n->next == NULL){
-      printf("Next = NULL\n");
+      printf("-> NULL\n");
    }
 }
 
 // Prints all the nodes in the linked list
 void printLinkedList(Node* head){
    Node* curVal = head;
-   printf("curVal %p\n", (void*)curVal);
-
+   printf("\n");
    while(curVal != NULL){
       printNode(curVal);
       // Move curVal along
       curVal = curVal->next;
    }
+   printf("\n");
 }
 
 
@@ -57,7 +57,7 @@ int available(Node* head, Node* node){
    while(curVal != NULL){
       if(strcmp(curVal->handle,node->handle) == 0){
          // Found the node
-         printf("Found duplicate handle %s in handle list\n", curVal->handle);
+         printf("Could not add Handle: '%s' becuase it already Exists\n", curVal->handle);
          return FALSE;
       }
       // Move curVal along
@@ -66,34 +66,58 @@ int available(Node* head, Node* node){
    return TRUE;
 }
 
-// Adds a node to the beginning of the list
-void addNode(Node* head, Node* node){
+// Adds a node to the beginning of the list and returns the new head of the list
+Node* addNode(Node* head, Node* node){
    if(available(head, node)){
+      /*
       printf("availabe\n");
       printNode(head);
+      printNode(node);
+      */
       Node* prevHead = head;
       head = node;
-      node->next = prevHead;
+      /*
+      printf("printing the new head\n");
+      printNode(head);
+      */
+      head->next = prevHead;
    }
+
+   return head;
 }
 
-// Searches through the list and removes the node
-void removeNode(Node* head, Node* node){
+// Searches through the list and removes the node and returns the new head of
+// the list
+Node* removeNode(Node* head, Node* node){
    Node* curVal = head;
    Node* temp = NULL;
 
+   if(strcmp(head->handle,node->handle) == 0){
+      // Removing the head of list
+      temp = curVal;
+      printf("Removing the head: '%s' from the handle list\n", temp->handle);
+      head->next = node->next;
+      free(temp);
+      return head;
+   }
+
    while(curVal != NULL){
+      // Removing inner node
       if(strcmp(curVal->handle,node->handle) == 0){
          // Found the node
          temp = curVal;
          printf("Removed %s from the handle list\n", temp->handle);
          curVal->next = node->next;
+         printNode(curVal);
+         printNode(node);
          free(temp);
+         return head;
       }
       // Move curVal along
       curVal = curVal->next;
    }
    printf("Handle could not be removed because it does not exist\n");
+   return head;
 }
 
 Node* makeLinkedList(){
