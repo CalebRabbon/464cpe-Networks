@@ -91,28 +91,36 @@ Node* addNode(Node* head, Node* node){
 Node* removeNode(Node* head, Node* node){
    Node* curVal = head;
    Node* temp = NULL;
+   Node* prev = NULL;
 
    if(strcmp(head->handle,node->handle) == 0){
       // Removing the head of list
       temp = curVal;
       printf("Removing the head: '%s' from the handle list\n", temp->handle);
-      head->next = node->next;
+      head = node->next;
       free(temp);
       return head;
    }
+
+   // Since it is not the head, moving the curVal forward
+   curVal = head->next;
+
+   // Setting the previous value
+   prev = head;
 
    while(curVal != NULL){
       // Removing inner node
       if(strcmp(curVal->handle,node->handle) == 0){
          // Found the node
-         temp = curVal;
          printf("Removed %s from the handle list\n", temp->handle);
-         curVal->next = node->next;
-         printNode(curVal);
+         prev->next = node->next;
          printNode(node);
-         free(temp);
+         free(curVal);
          return head;
       }
+      // Set prev to curVal
+      prev = curVal;
+
       // Move curVal along
       curVal = curVal->next;
    }

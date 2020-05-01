@@ -51,6 +51,8 @@ int main(int argc, char *argv[])
    head = addNode(head, C3);
    printLinkedList(head);
    printf("Removing Item\n");
+   head = removeNode(head, head);
+   printLinkedList(head);
    head = removeNode(head, C1);
    printLinkedList(head);
 
