@@ -4,9 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "macros.h"
 
 typedef struct Node{
-   char* handle;
+   char handle[MAX_HANDLE_SIZE];
    int socketNum;
    struct Node* next;
 } Node;

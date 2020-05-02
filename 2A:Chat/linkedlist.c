@@ -48,7 +48,7 @@ void printLinkedList(Node* head){
 // Dynaically creates a new node and returns a pointer to it
 Node* makeNode(char* handle, int socketNum){
    Node* n = cMalloc(sizeof(Node));
-   n->handle = handle;
+   strcpy(n->handle,handle);
    n->socketNum = socketNum;
    n->next = NULL;
    return n;
@@ -116,7 +116,7 @@ Node* removeNode(Node* head, Node* node){
       temp = curVal;
       printf("Removing the head: '%s' from the handle list\n", temp->handle);
       head = node->next;
-      //free(temp);
+      free(temp);
       return head;
    }
 
@@ -133,7 +133,7 @@ Node* removeNode(Node* head, Node* node){
          printf("Removed %s from the handle list\n", curVal->handle);
          prev->next = node->next;
          printNode(node);
-         //free(curVal);
+         free(curVal);
          return head;
       }
       // Set prev to curVal

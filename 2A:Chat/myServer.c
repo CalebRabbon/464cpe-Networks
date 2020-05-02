@@ -25,16 +25,35 @@
 #include "macros.h"
 
 
-void processSockets(int mainServerSocket);
-void recvFromClient(int clientSocket);
+void processSockets(int mainServerSocket, Node** head);
+void recvFromClient(int clientSocket, Node** head);
 void addNewClient(int mainServerSocket);
 void removeClient(int clientSocket);
 int checkArgs(int argc, char *argv[]);
+void addToList(Node** head, char* strHandle, int socketNum);
+
+/*
+void test(Node** head, char* name, int i){
+   addToList(head, name, i);
+}
+
+void t(Node** head){
+   printLinkedList(*head);
+}
+*/
 
 int main(int argc, char *argv[])
 {
+   /*
+   Node* head = makeLinkedList();
+   test(&head, "hi", 1);
+   test(&head, "yo", 2);
+   t(&head);
+   */
+
 	int mainServerSocket = 0;   //socket descriptor for the server socket
 	int portNumber = 0;
+   Node* head = makeLinkedList();
 	
 	setupPollSet();
 	portNumber = checkArgs(argc, argv);
@@ -43,7 +62,7 @@ int main(int argc, char *argv[])
 	mainServerSocket = tcpServerSetup(portNumber);
 
 	// Main control process (clients and accept())
-	processSockets(mainServerSocket);
+	processSockets(mainServerSocket, &head);
 	
 	// close the socket - never gets here but nice thought
 	close(mainServerSocket);
@@ -51,7 +70,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void processSockets(int mainServerSocket)
+void processSockets(int mainServerSocket, Node** head)
 {
 	int socketToProcess = 0;
 	
@@ -67,7 +86,9 @@ void processSockets(int mainServerSocket)
 			}
 			else
 			{
-				recvFromClient(socketToProcess);
+				recvFromClient(socketToProcess, head);
+            printf("After recv from client\n");
+            printLinkedList(*head);
 			}
 		}
 		else
@@ -146,8 +167,9 @@ void sendFlag(int socketNum, uint8_t flag){
 }
 
 // Adds the handle to the list
-void addToList(char* strHandle){
-
+void addToList(Node** head, char* strHandle, int socketNum){
+   Node* node = makeNode(strHandle, socketNum);
+   *head = addNode(*head, node);
 }
 
 // Sends an error flag of 3 saying the handle is taken
@@ -162,13 +184,15 @@ int taken(char* strHandle){
 
 // Checks to see if the new handle is taken. If it is send flag 3, if not add
 // to list and send flag 2
-void addClient(int socketNum, char* strHandle){
+void checkClient(int socketNum, char* strHandle, Node** head){
    if(taken(strHandle)){
       sendFlag3();
    }
    else
    {
-      addToList(strHandle);
+      printLinkedList(*head);
+      addToList(head, strHandle, socketNum);
+      printLinkedList(*head);
       sendFlag(socketNum, FLAG_2);
    }
 }
@@ -177,7 +201,8 @@ void addClient(int socketNum, char* strHandle){
 
 // Responds to an incoming packet received from the client
 // dataBuf is the buffer of data after the Chat PDU Length
-void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Len, int socketNum)
+// I removed the messagelength since it is really only used for debugging
+void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum, Node** head)
 {
    char* handle = NULL;
    uint8_t handleLen = 0;
@@ -194,13 +219,12 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
 
          printText(handle, handleLen);
 
-         printf("Message Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
+         printf("PDU_Len: %d\n", PDU_Len);
 
          createStrHandle(handle, handleLen, strHandle);
          printf("handle: %s, strHandle: %s\n", handle, strHandle);
 
-         addClient(socketNum, strHandle);
-
+         checkClient(socketNum, strHandle, head);
 
          break;
       case FLAG_4:
@@ -214,7 +238,7 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
    }
 }
 
-void recvFromClient(int clientSocket)
+void recvFromClient(int clientSocket, Node** head)
 {
 	char buf[MAXBUF];
 	int messageLen = 0;
@@ -249,7 +273,7 @@ void recvFromClient(int clientSocket)
    }
    flag = dataBuf[0];
 
-   packetResponse(flag, dataBuf, messageLen, PDU_Len, clientSocket);
+   packetResponse(flag, dataBuf, PDU_Len, clientSocket, head);
 //   return dataBuf;
 }
 
