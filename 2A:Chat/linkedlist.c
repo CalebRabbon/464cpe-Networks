@@ -32,6 +32,10 @@ void printNode(Node* n){
 void printLinkedList(Node* head){
    Node* curVal = head;
    printf("\n");
+   if(head == NULL){
+      printf("-> NULL\n");
+      return;
+   }
    while(curVal != NULL){
       printNode(curVal);
       // Move curVal along
@@ -68,6 +72,11 @@ int available(Node* head, Node* node){
 
 // Adds a node to the beginning of the list and returns the new head of the list
 Node* addNode(Node* head, Node* node){
+   if(node == NULL){
+      printf("Your node is %s. Please add a non NULL node\n", (char*)node);
+      return head;
+   }
+
    if(available(head, node)){
       /*
       printf("availabe\n");
@@ -92,13 +101,22 @@ Node* removeNode(Node* head, Node* node){
    Node* curVal = head;
    Node* temp = NULL;
    Node* prev = NULL;
+   if(node == NULL){
+      printf("Your node is %s. Please remove a non NULL node\n", (char*)node);
+      return head;
+   }
+
+   if(head == NULL){
+      printf("Your head is %s. There are no nodes in your list\n", (char*)head);
+      return head;
+   }
 
    if(strcmp(head->handle,node->handle) == 0){
       // Removing the head of list
       temp = curVal;
       printf("Removing the head: '%s' from the handle list\n", temp->handle);
       head = node->next;
-      free(temp);
+      //free(temp);
       return head;
    }
 
@@ -112,10 +130,10 @@ Node* removeNode(Node* head, Node* node){
       // Removing inner node
       if(strcmp(curVal->handle,node->handle) == 0){
          // Found the node
-         printf("Removed %s from the handle list\n", temp->handle);
+         printf("Removed %s from the handle list\n", curVal->handle);
          prev->next = node->next;
          printNode(node);
-         free(curVal);
+         //free(curVal);
          return head;
       }
       // Set prev to curVal
