@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
    test(&head, "yo", 2);
    t(&head);
    */
+   printf("HI\n");
 
 	int mainServerSocket = 0;   //socket descriptor for the server socket
 	int portNumber = 0;
