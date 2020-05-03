@@ -4,9 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "macros.h"
 
 typedef struct Node{
-   char* handle;
+   char handle[MAX_HANDLE_SIZE];
    int socketNum;
    struct Node* next;
 } Node;
@@ -21,7 +22,7 @@ void* cMalloc(size_t size);
 Node* makeNode(char* handle, int socketNum);
 
 // Checks to see if the given handle is available 
-int available(Node* head, Node* node);
+int available(Node* head, char* node);
 
 // Adds a node to the beginning of the list
 Node* addNode(Node* head, Node* node);

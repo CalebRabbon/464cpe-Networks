@@ -32,6 +32,10 @@ void printNode(Node* n){
 void printLinkedList(Node* head){
    Node* curVal = head;
    printf("\n");
+   if(head == NULL){
+      printf("-> NULL\n");
+      return;
+   }
    while(curVal != NULL){
       printNode(curVal);
       // Move curVal along
@@ -44,18 +48,18 @@ void printLinkedList(Node* head){
 // Dynaically creates a new node and returns a pointer to it
 Node* makeNode(char* handle, int socketNum){
    Node* n = cMalloc(sizeof(Node));
-   n->handle = handle;
+   strcpy(n->handle,handle);
    n->socketNum = socketNum;
    n->next = NULL;
    return n;
 }
 
 // Checks to see if the given handle is available 
-int available(Node* head, Node* node){
+int available(Node* head, char* handle){
    Node* curVal = head;
 
    while(curVal != NULL){
-      if(strcmp(curVal->handle,node->handle) == 0){
+      if(strcmp(curVal->handle,handle) == 0){
          // Found the node
          printf("Could not add Handle: '%s' becuase it already Exists\n", curVal->handle);
          return FALSE;
@@ -68,7 +72,12 @@ int available(Node* head, Node* node){
 
 // Adds a node to the beginning of the list and returns the new head of the list
 Node* addNode(Node* head, Node* node){
-   if(available(head, node)){
+   if(node == NULL){
+      printf("Your node is %s. Please add a non NULL node\n", (char*)node);
+      return head;
+   }
+
+   if(available(head, node->handle)){
       /*
       printf("availabe\n");
       printNode(head);
@@ -92,6 +101,15 @@ Node* removeNode(Node* head, Node* node){
    Node* curVal = head;
    Node* temp = NULL;
    Node* prev = NULL;
+   if(node == NULL){
+      printf("Your node is %s. Please remove a non NULL node\n", (char*)node);
+      return head;
+   }
+
+   if(head == NULL){
+      printf("Your head is %s. There are no nodes in your list\n", (char*)head);
+      return head;
+   }
 
    if(strcmp(head->handle,node->handle) == 0){
       // Removing the head of list
@@ -112,7 +130,7 @@ Node* removeNode(Node* head, Node* node){
       // Removing inner node
       if(strcmp(curVal->handle,node->handle) == 0){
          // Found the node
-         printf("Removed %s from the handle list\n", temp->handle);
+         printf("Removed %s from the handle list\n", curVal->handle);
          prev->next = node->next;
          printNode(node);
          free(curVal);
