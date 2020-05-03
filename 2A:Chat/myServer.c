@@ -172,21 +172,13 @@ void addToList(Node** head, char* strHandle, int socketNum){
    *head = addNode(*head, node);
 }
 
-// Sends an error flag of 3 saying the handle is taken
-void sendFlag3(){
-   return;
-}
-
-// Checks to see if the strHandle is taken
-int taken(char* strHandle){
-   return 0;
-}
-
 // Checks to see if the new handle is taken. If it is send flag 3, if not add
 // to list and send flag 2
 void checkClient(int socketNum, char* strHandle, Node** head){
-   if(taken(strHandle)){
-      sendFlag3();
+   if(!(available(*head, strHandle))){
+      printf("sending flag 3\n");
+      sendFlag(socketNum, FLAG_3);
+      removeClient(socketNum);
    }
    else
    {

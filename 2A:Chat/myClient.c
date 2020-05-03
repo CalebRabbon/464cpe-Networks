@@ -92,9 +92,13 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
    switch(flag)
    {
       case FLAG_2:
-         printf("Flag: %i\n", flag);
+         printf("From Server: Flag: %i\n", flag);
+         printf("From Server: msg Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
 
-         printf("Message Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
+         break;
+      case FLAG_3:
+         printf("From Server: Flag: %i\n", flag);
+         printf("From Server: msg Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
 
          break;
       case FLAG_4:
