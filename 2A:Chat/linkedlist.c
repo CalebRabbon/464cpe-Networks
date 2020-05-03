@@ -16,24 +16,24 @@ void* cMalloc(size_t size){
 
 void printNode(Node* n){
    if(n == NULL){
-      printf("Node == NULL\n");
+      printf("\tNode == NULL\n");
       return;
    }
-   printf("%s | SN: %i |",n->handle, n->socketNum);
+   printf("\t%s | SN: %i |",n->handle, n->socketNum);
    if(n->next != NULL){
       printf("-> %s\n", n->next->handle);
    }
    else if(n->next == NULL){
-      printf("-> NULL\n");
+      printf("\t-> NULL\n");
    }
 }
 
 // Prints all the nodes in the linked list
 void printLinkedList(Node* head){
+   printf("\nCurrent Linked List of Handles:\n");
    Node* curVal = head;
-   printf("\n");
    if(head == NULL){
-      printf("-> NULL\n");
+      printf("\t-> NULL\n");
       return;
    }
    while(curVal != NULL){

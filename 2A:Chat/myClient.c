@@ -18,7 +18,6 @@
 #include <netdb.h>
 
 #include "networks.h"
-#include "linkedlist.h"
 #include "flags.h"
 #include "pollLib.h"
 #include "macros.h"
@@ -81,7 +80,42 @@ void fillBuff(uint8_t len, char* handle, char* buff, int offset)
    }
 }
 
-// Responds to an incoming packet received from the client
+void printServerMsg(uint8_t flag, int messageLen, uint16_t PDU_Len){
+   printf("From Server:\n");
+   printf("\tmsg Len: %d \tPDU_Len: %d\n", messageLen, PDU_Len);
+   switch(flag)
+   {
+      case FLAG_2:
+         printf("\tFlag %i: Good Handle\n", flag);
+         break;
+      case FLAG_3:
+         printf("\tFlag %i: Handle Already Exists\n", flag);
+         break;
+      case FLAG_4:
+         printf("\tFlag %i: Broadcast Message Received\n", flag);
+         break;
+      case FLAG_5:
+         printf("\tFlag %i: Message from Another Client\n", flag);
+         break;
+      case FLAG_7:
+         printf("\tFlag %i: Error When Sending a Message: One or More Clients Don't Exist\n", flag);
+         break;
+      case FLAG_9:
+         printf("\tFlag %i: Message from Server ACKing the FLAG_8 to Terminate\n", flag);
+         break;
+      case FLAG_11:
+         printf("\tFlag %i: Server responding to FLAG_10: Giving the number of clients on the server\n", flag);
+         break;
+      case FLAG_12:
+         printf("\tFlag %i: Following the FLAG_11: Giving a FLAG_12 for each client handle on the server\n", flag);
+         break;
+      case FLAG_13:
+         printf("\tFlag %i: Listing the client handles is finished\n", flag);
+         break;
+   }
+}
+
+// Responds to an incoming packet received from the server
 // dataBuf is the buffer of data after the Chat PDU Length
 void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Len, int socketNum)
 {
@@ -90,13 +124,14 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
    uint8_t handleLen = 0;
    char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
    */
+   printServerMsg(flag, messageLen, PDU_Len);
    switch(flag)
    {
       case FLAG_2:
-         printf("Flag: %i\n", flag);
 
-         printf("Message Len: %d, PDU_Len: %d\n", messageLen, PDU_Len);
-
+         break;
+      case FLAG_3:
+         exit(0);
          break;
       case FLAG_4:
          break;
@@ -148,7 +183,6 @@ void ackFromServer(int socketNum)
    flag = dataBuf[0];
 
    packetResponse(flag, dataBuf, messageLen, PDU_Len, socketNum);
-//   return dataBuf;
 }
 
 // Log the client into the server with the handle
