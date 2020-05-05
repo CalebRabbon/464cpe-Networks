@@ -9,7 +9,7 @@
 #define __NETWORKS_H__
 
 #define BACKLOG 10
-#define MAXBUF 1024
+#define MAXBUF 1400
 
 #define TIME_IS_NULL 1
 #define TIME_IS_NOT_NULL 2

@@ -62,8 +62,11 @@ int available(Node* head, char* handle){
 
    while(curVal != NULL){
       /*
-      printf("curVal->handle: %s\t handle %s\n", curVal->handle, handle);
+      printf("strlen handle %i\n", (int)strlen(handle));
+      printf("strlen curVal->handle %i\n", (int)strlen(curVal->handle));
+      printf("curVal->handle: |%s|\t handle |%s|\n", curVal->handle, handle);
       printf("strcmp(curVal->handle,handle) = %i\n", strcmp(curVal->handle,handle));
+      printf("strcmp((curVal->handle),handle) = %i\n", strcmp((curVal->handle),handle));
       */
       if(strcmp(curVal->handle,handle) == 0){
          // Found the node

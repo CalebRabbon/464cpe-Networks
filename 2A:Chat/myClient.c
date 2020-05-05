@@ -21,15 +21,14 @@
 #include "flags.h"
 #include "pollLib.h"
 #include "macros.h"
+#include "unitTest.h"
 
 void sendToServer(int socketNum);
-int getFromStdin(char * sendBuf, char * prompt);
+int getFromStdin(char * stdbuf, char * prompt);
 void checkArgs(int argc, char * argv[]);
 void login(char* handle, int socketNum, char* loginBuff);
 void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen);
-/*
-void checkHandle(char* handle, int socketNum);
-*/
+int convertCharType(char type);
 
 void printLoginBuff(char* loginBuff)
 {
@@ -45,29 +44,27 @@ void printLoginBuff(char* loginBuff)
    printf("\n");
 }
 
-
 int main(int argc, char * argv[])
 {
-	int socketNum = 0;         //socket descriptor
-   char loginBuff[MAX_LOGIN_SIZE];
-	
-	checkArgs(argc, argv);
-
-	/* set up the TCP Client socket  */
-	socketNum = tcpClientSetup(argv[2], argv[3], DEBUG_FLAG);
-
-   /* Login to the server with the handle */
-   login(argv[1], socketNum, loginBuff);
 
    /*
-   checkHandle(argv[1], socketNum);
+   int socketNum = 0;         //socket descriptor
+   char loginBuff[MAX_LOGIN_SIZE];
+
+   checkArgs(argc, argv);
+
+   // set up the TCP Client socket
+   socketNum = tcpClientSetup(argv[2], argv[3], DEBUG_FLAG);
+
+   // Login to the server with the handle
+   login(argv[1], socketNum, loginBuff);
+
+   sendToServer(socketNum);
+
+   close(socketNum);
    */
-	
-	sendToServer(socketNum);
-	
-	close(socketNum);
-	
-	return 0;
+
+   return 0;
 }
 
 // Copies the string from the handle into the buffer starting at the offset
@@ -217,34 +214,116 @@ void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
    printf("Amount of login data sent is: %d\n", sent);
 }
 
+// Converts the character to the correct int type defined by the MACROS
+int convertCharType(char type){
+   switch(type){
+      case 'M':
+         return TYPE_M;
+         break;
+      case 'B':
+         return TYPE_B;
+         break;
+      case 'E':
+         return TYPE_E;
+         break;
+      case 'L':
+         return TYPE_L;
+         break;
+      case 'm':
+         return TYPE_M;
+         break;
+      case 'b':
+         return TYPE_B;
+         break;
+      case 'e':
+         return TYPE_E;
+         break;
+      case 'l':
+         return TYPE_L;
+         break;
+   }
+   return -1;
+}
+
+// Finds the type of the message and returns an int representing that type or -1
+// if the message is incorrectly formatted
+int findType(char* stdbuf){
+   char* curVal = stdbuf;
+   int i = 0;
+   int type = 0;
+   char charType = '0';
+
+   // Skip over whitespace
+   while(curVal[i] == ' '){
+      i ++;
+   }
+   // Found the % symbol
+   if (curVal[i] == '%'){
+      printf("Found the percent\n");
+      i ++;
+      charType = curVal[i];
+      type = convertCharType(charType);
+      return type;
+   }
+
+   return -1;
+}
+
+void procStdin(int stdlen, char* stdbuf, char* sendbuf){
+   int type;
+
+   type = findType(stdbuf);
+
+   switch(type){
+      case TYPE_M:
+         printf("TYPE_M\n");
+         break;
+      case TYPE_B:
+         printf("TYPE_B\n");
+         break;
+      case TYPE_E:
+         printf("TYPE_E\n");
+         break;
+      case TYPE_L:
+         printf("TYPE_L\n");
+         break;
+   }
+}
+
+
 void sendToServer(int socketNum)
 {
-	char sendBuf[MAXBUF];   //data buffer
-	int sendLen = 0;        //amount of data to send
-	int sent = 0;            //actual amount of data sent/*
+	char stdbuf[MAXBUF];    //data from user input
+   // Add 114 to sendbuf to account for 10 bytes of handles 1 byte for number of
+   // destinations, 3 bytes for Chat-Header, 100 bytes for max sender handle
+	char sendbuf[MAXBUF + 114];   //data sent to server
+	int stdlen = 0;         //amount of data to send
+	int sent = 0;           //actual amount of data sent/*
 			
-	memset(sendBuf, 0, MAXBUF);
+	memset(stdbuf, 0, MAXBUF);
 
-	while (strcmp(sendBuf, "exit"))
+	while (strcmp(stdbuf, "exit"))
 	{
 
-		sendLen = getFromStdin(sendBuf, "$: ");
+		stdlen = getFromStdin(stdbuf, "$: ");
 
+      // Process the stdbuf and organize it into a packet inside the sendbuf
+      procStdin(stdlen, stdbuf, sendbuf);
 		
-		//printf("read: %s string len: %d (including null)\n", sendBuf, sendLen);
+		//printf("read: %s string len: %d (including null)\n", stdbuf, stdlen);
 			
-		sent =  send(socketNum, sendBuf, sendLen, 0);
+		sent =  send(socketNum, stdbuf, stdlen, 0);
 		if (sent < 0)
 		{
 			perror("send call");
 			exit(-1);
-		}
+      }
 
-		printf("Amount of data sent is: %d\n", sent);
-	}
+      printf("Amount of data sent is: %d\n", sent);
+   }
 }
 
-int getFromStdin(char * sendBuf, char * prompt)
+int getFromStdin(char * stdbuf, char * prompt)
 {
 	// Gets input up to MAXBUF-1 (and then appends \0)
 	// Returns length of string including null
@@ -258,12 +337,12 @@ int getFromStdin(char * sendBuf, char * prompt)
 		aChar = getchar();
 		if (aChar != '\n')
 		{
-			sendBuf[inputLen] = aChar;
+			stdbuf[inputLen] = aChar;
 			inputLen++;
 		}
 	}
 
-	sendBuf[inputLen] = '\0';
+	stdbuf[inputLen] = '\0';
 	inputLen++;  //we are going to send the null
 	
 	return inputLen;

@@ -27,7 +27,7 @@
 //#define PRINT
 
 void processSockets(int mainServerSocket, Node** head);
-void recvFromClient(int clientSocket, Node** head);
+char* recvFromClient(int clientSocket, Node** head);
 void addNewClient(int mainServerSocket);
 void removeClient(int clientSocket);
 int checkArgs(int argc, char *argv[]);
@@ -75,18 +75,26 @@ int main(int argc, char *argv[])
    */
 
    /*
-   char* handle = "Caleb0fedaf";
+   char* handle = "CalebQq??";
    uint8_t handleLen = 5;
    char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
 
-   Node* head = makeLinkedList();
+   createStrHandle(handle, handleLen, strHandle);
+   printf("handle = %s\t handleLen = %i\n", handle, handleLen);
+   printf("strHandle = %s\t strlen(strHandle) = %i\n", strHandle, (int)strlen(strHandle));
+
+   handle = "Caleb?2";
 
    createStrHandle(handle, handleLen, strHandle);
+   printf("handle = %s\t handleLen = %i\n", handle, handleLen);
+   printf("strHandle = %s\t strlen(strHandle) = %i\n", strHandle, (int)strlen(strHandle));
    printf("handle: %s, strHandle: %s\n", handle, strHandle);
    printf("False 1: %i\n", available(head, strHandle));
    printf("checking flag 2: %i\n", checkClient(4, strHandle, &head));
    printf("checking flag 3: %i\n", checkClient(5, strHandle, &head));
+   */
 
+   /*
    handle = "Caleb";
    createStrHandle(handle, handleLen, strHandle);
    printf("handle: %s, strHandle: %s\n", handle, strHandle);
@@ -108,12 +116,15 @@ int main(int argc, char *argv[])
 	
 	setupPollSet();
 	portNumber = checkArgs(argc, argv);
-	
-	//create the server socket
-	mainServerSocket = tcpServerSetup(portNumber);
 
-	// Main control process (clients and accept())
-	processSockets(mainServerSocket, &head);
+	
+   while(1){
+	   //create the server socket
+	   mainServerSocket = tcpServerSetup(portNumber);
+
+	   // Main control process (clients and accept())
+	   processSockets(mainServerSocket, &head);
+   }
 	
 	// close the socket - never gets here but nice thought
 	close(mainServerSocket);
@@ -177,9 +188,9 @@ void createStrHandle(char* handle, uint8_t handleLen, char* strHandle)
          printf("%c", strHandle[i]);
 #endif
       }
-      strHandle[handleLen + 1] = '\0';
+      strHandle[handleLen] = '\0';
 #ifdef PRINT
-      printf("|%c|\n", strHandle[handleLen + 1]);
+      printf("|%c|\n", strHandle[handleLen]);
 #endif
    }
    else {
@@ -233,6 +244,7 @@ void addToList(Node** head, char* strHandle, int socketNum){
 // Checks to see if the new handle is taken. If it is send flag 3, if not add
 // to list and send flag 2
 int checkClient(int socketNum, char* strHandle, Node** head){
+
    if(!(available(*head, strHandle))){
       sendFlag(socketNum, FLAG_3);
       removeClient(socketNum);
@@ -240,6 +252,8 @@ int checkClient(int socketNum, char* strHandle, Node** head){
    }
    else
    {
+      printf("checkClient stlen(strHandle): %i\n", (int)strlen(strHandle));
+      printf("checkClient strHandle: %s\n", strHandle);
       addToList(head, strHandle, socketNum);
       sendFlag(socketNum, FLAG_2);
       return 2;
@@ -264,12 +278,16 @@ void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum
    {
       case FLAG_1:
          handleLen = dataBuf[1];
+         printf("handleLen = %i\n", handleLen);
 
          // Setting dataBuf to handle
          handle = dataBuf + sizeof(char)*2;
 
          // Copy handle data to strHandle and add a Null character
          createStrHandle(handle, handleLen, strHandle);
+
+         printf("handle = %s\t handleLen = %i\n", handle, handleLen);
+         printf("strHandle = %s\t strlen(strHandle) = %i\n", strHandle, (int)strlen(strHandle));
 
          printPacketData(flag, dataBuf, PDU_Len, socketNum, strHandle);
 
@@ -290,7 +308,7 @@ void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum
    }
 }
 
-void recvFromClient(int clientSocket, Node** head)
+char* recvFromClient(int clientSocket, Node** head)
 {
 	char buf[MAXBUF];
 	int messageLen = 0;
@@ -311,6 +329,7 @@ void recvFromClient(int clientSocket, Node** head)
 	{
 		// recv() 0 bytes so client is gone
 		removeClient(clientSocket);
+      return NULL;
 	}
 
    PDU_Len = ntohs(((uint16_t*)buf)[0]);
@@ -326,7 +345,7 @@ void recvFromClient(int clientSocket, Node** head)
    flag = dataBuf[0];
 
    packetResponse(flag, dataBuf, PDU_Len, clientSocket, head);
-//   return dataBuf;
+   return dataBuf;
 }
 
 void addNewClient(int mainServerSocket)

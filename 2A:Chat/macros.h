@@ -1,6 +1,10 @@
 #ifndef __MACROS_H__
 #define __MACROS_H__
 
+#define TYPE_M 1
+#define TYPE_B 2
+#define TYPE_E 3
+#define TYPE_L 4
 #define DEFAULT_PDULEN 3
 #define HEADER_LEN 2
 #define DEBUG_FLAG 1
