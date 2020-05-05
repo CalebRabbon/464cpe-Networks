@@ -32,6 +32,8 @@ void addNewClient(int mainServerSocket);
 void removeClient(int clientSocket);
 int checkArgs(int argc, char *argv[]);
 void addToList(Node** head, char* strHandle, int socketNum);
+void createStrHandle(char* handle, uint8_t handleLen, char* strHandle);
+int checkClient(int socketNum, char* strHandle, Node** head);
 
 /*
 void test(Node** head, char* name, int i){
@@ -46,10 +48,58 @@ void t(Node** head){
 int main(int argc, char *argv[])
 {
    /*
+   Node* c1 = makeNode("Caleb1", 4);
+   Node* c2 = makeNode("Caleb2", 5);
+
+   head = addNode(head, c);
+   head = addNode(head, c1);
+   head = addNode(head, c2);
+
+   printLinkedList(head);
+   printf("False 0: %i\n", available(head, "Caleb"));
+   printf("False 0: %i\n", available(head, "Caleb1"));
+   printf("False 0: %i\n", available(head, "Caleb2"));
+   printf("True 1: %i\n", available(head, "Caleb3"));
+   printf("True 1: %i\n", available(head, "afd"));
+   printf("True 1: %i\n", available(head, "afsdd"));
+   printf("True 1: %i\n", available(head, "casd"));
+
+
+   head = removeNode(head, c);
+   printf("True 1: %i\n", available(head, "Caleb"));
+
+   head = removeNode(head, c2);
+   printf("True 1: %i\n", available(head, "Caleb2"));
+   head = removeNode(head, c1);
+   printf("True 1: %i\n", available(head, "Caleb1"));
+   */
+
+   /*
+   char* handle = "Caleb0fedaf";
+   uint8_t handleLen = 5;
+   char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
+
    Node* head = makeLinkedList();
-   test(&head, "hi", 1);
-   test(&head, "yo", 2);
-   t(&head);
+
+   createStrHandle(handle, handleLen, strHandle);
+   printf("handle: %s, strHandle: %s\n", handle, strHandle);
+   printf("False 1: %i\n", available(head, strHandle));
+   printf("checking flag 2: %i\n", checkClient(4, strHandle, &head));
+   printf("checking flag 3: %i\n", checkClient(5, strHandle, &head));
+
+   handle = "Caleb";
+   createStrHandle(handle, handleLen, strHandle);
+   printf("handle: %s, strHandle: %s\n", handle, strHandle);
+   printLinkedList(head);
+   printf("False 0: %i\n", available(head, strHandle));
+   printf("checking flag 3: %i\n", checkClient(4, strHandle, &head));
+
+   handle = "Caleb\0";
+   createStrHandle(handle, handleLen, strHandle);
+   printf("handle: %s, strHandle: %s\n", handle, strHandle);
+   printLinkedList(head);
+   printf("False 0: %i\n", available(head, strHandle));
+   printf("checking flag 3: %i\n", checkClient(4, strHandle, &head));
    */
 
 	int mainServerSocket = 0;   //socket descriptor for the server socket
@@ -115,12 +165,22 @@ void printText(char* buff, uint8_t len)
 void createStrHandle(char* handle, uint8_t handleLen, char* strHandle)
 {
    int i = 0;
+#ifdef PRINT
+   printf("Create String:\n");
+#endif
 
    // Fill in the buffer up to the MAX_HANDLE_SIZE then add the Null
    if (handleLen <= MAX_HANDLE_SIZE){
-      for (i = 0; i < handleLen; i ++)
+      for (i = 0; i < handleLen; i ++){
          strHandle[i] = handle[i];
+#ifdef PRINT
+         printf("%c", strHandle[i]);
+#endif
+      }
       strHandle[handleLen + 1] = '\0';
+#ifdef PRINT
+      printf("|%c|\n", strHandle[handleLen + 1]);
+#endif
    }
    else {
       for (i = 0; i < MAX_HANDLE_SIZE; i ++)
@@ -155,10 +215,6 @@ void sendPacket(int socketNum, char* packet, uint8_t sendLen){
 		perror("send call");
 		exit(-1);
 	}
-
-#ifdef PRINT
-	printf("Amount of data sent is: %d\n", sent);
-#endif
 }
 
 // Sends a designated flag
@@ -176,15 +232,17 @@ void addToList(Node** head, char* strHandle, int socketNum){
 
 // Checks to see if the new handle is taken. If it is send flag 3, if not add
 // to list and send flag 2
-void checkClient(int socketNum, char* strHandle, Node** head){
+int checkClient(int socketNum, char* strHandle, Node** head){
    if(!(available(*head, strHandle))){
       sendFlag(socketNum, FLAG_3);
       removeClient(socketNum);
+      return 3;
    }
    else
    {
       addToList(head, strHandle, socketNum);
       sendFlag(socketNum, FLAG_2);
+      return 2;
    }
 }
 
@@ -205,12 +263,12 @@ void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum
    switch(flag)
    {
       case FLAG_1:
-
          handleLen = dataBuf[1];
 
          // Setting dataBuf to handle
          handle = dataBuf + sizeof(char)*2;
 
+         // Copy handle data to strHandle and add a Null character
          createStrHandle(handle, handleLen, strHandle);
 
          printPacketData(flag, dataBuf, PDU_Len, socketNum, strHandle);
@@ -219,9 +277,9 @@ void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum
          printf("handle: %s, strHandle: %s\n", handle, strHandle);
 #endif
          checkClient(socketNum, strHandle, head);
-
          break;
       case FLAG_4:
+
          break;
       case FLAG_5:
          break;

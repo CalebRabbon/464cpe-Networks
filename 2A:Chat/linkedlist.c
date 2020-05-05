@@ -57,11 +57,17 @@ Node* makeNode(char* handle, int socketNum){
 // Checks to see if the given handle is available 
 int available(Node* head, char* handle){
    Node* curVal = head;
+   //char* temp = curVal->handle;
+
 
    while(curVal != NULL){
+      /*
+      printf("curVal->handle: %s\t handle %s\n", curVal->handle, handle);
+      printf("strcmp(curVal->handle,handle) = %i\n", strcmp(curVal->handle,handle));
+      */
       if(strcmp(curVal->handle,handle) == 0){
          // Found the node
-         printf("Could not add Handle: '%s' becuase it already Exists\n", curVal->handle);
+         // printf("Could not add Handle: '%s' becuase it already Exists\n", curVal->handle);
          return FALSE;
       }
       // Move curVal along

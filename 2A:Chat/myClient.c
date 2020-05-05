@@ -206,7 +206,7 @@ void login(char* handle, int socketNum, char* loginBuff)
 
 void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
 {
-   int sent = 0;            //actual amount of data sent/* get the data and send it   */
+   int sent = 0;            //actual amount of data sent/*
    sent =  send(socketNum, loginBuff, sendLen, 0);
    if (sent < 0)
    {
@@ -214,16 +214,14 @@ void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
       exit(-1);
    }
 
-   printf("Amount of data sent is: %d\n", sent);
+   printf("Amount of login data sent is: %d\n", sent);
 }
-
-
 
 void sendToServer(int socketNum)
 {
 	char sendBuf[MAXBUF];   //data buffer
 	int sendLen = 0;        //amount of data to send
-	int sent = 0;            //actual amount of data sent/* get the data and send it   */
+	int sent = 0;            //actual amount of data sent/*
 			
 	memset(sendBuf, 0, MAXBUF);
 
