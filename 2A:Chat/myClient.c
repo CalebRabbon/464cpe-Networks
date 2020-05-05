@@ -3,32 +3,7 @@
 // Use at your own risk.  Feel free to copy, just leave my name in it.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/uio.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <strings.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-
-#include "networks.h"
-#include "flags.h"
-#include "pollLib.h"
-#include "macros.h"
-#include "unitTest.h"
-
-void sendToServer(int socketNum);
-int getFromStdin(char * stdbuf, char * prompt);
-void checkArgs(int argc, char * argv[]);
-void login(char* handle, int socketNum, char* loginBuff);
-void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen);
-int convertCharType(char type);
+#include "myClient.h"
 
 void printLoginBuff(char* loginBuff)
 {
@@ -46,6 +21,12 @@ void printLoginBuff(char* loginBuff)
 
 int main(int argc, char * argv[])
 {
+   testconvertCharType();
+   testfindType();
+   teststepString();
+   testfindStr();
+   testconvertStrToInt();
+   testgetHandleNum();
 
    /*
    int socketNum = 0;         //socket descriptor
@@ -214,89 +195,12 @@ void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
    printf("Amount of login data sent is: %d\n", sent);
 }
 
-// Converts the character to the correct int type defined by the MACROS
-int convertCharType(char type){
-   switch(type){
-      case 'M':
-         return TYPE_M;
-         break;
-      case 'B':
-         return TYPE_B;
-         break;
-      case 'E':
-         return TYPE_E;
-         break;
-      case 'L':
-         return TYPE_L;
-         break;
-      case 'm':
-         return TYPE_M;
-         break;
-      case 'b':
-         return TYPE_B;
-         break;
-      case 'e':
-         return TYPE_E;
-         break;
-      case 'l':
-         return TYPE_L;
-         break;
-   }
-   return -1;
-}
-
-// Finds the type of the message and returns an int representing that type or -1
-// if the message is incorrectly formatted
-int findType(char* stdbuf){
-   char* curVal = stdbuf;
-   int i = 0;
-   int type = 0;
-   char charType = '0';
-
-   // Skip over whitespace
-   while(curVal[i] == ' '){
-      i ++;
-   }
-   // Found the % symbol
-   if (curVal[i] == '%'){
-      printf("Found the percent\n");
-      i ++;
-      charType = curVal[i];
-      type = convertCharType(charType);
-      return type;
-   }
-
-   return -1;
-}
-
-void procStdin(int stdlen, char* stdbuf, char* sendbuf){
-   int type;
-
-   type = findType(stdbuf);
-
-   switch(type){
-      case TYPE_M:
-         printf("TYPE_M\n");
-         break;
-      case TYPE_B:
-         printf("TYPE_B\n");
-         break;
-      case TYPE_E:
-         printf("TYPE_E\n");
-         break;
-      case TYPE_L:
-         printf("TYPE_L\n");
-         break;
-   }
-}
-
-
 void sendToServer(int socketNum)
 {
 	char stdbuf[MAXBUF];    //data from user input
    // Add 114 to sendbuf to account for 10 bytes of handles 1 byte for number of
    // destinations, 3 bytes for Chat-Header, 100 bytes for max sender handle
-	char sendbuf[MAXBUF + 114];   //data sent to server
+	//char sendbuf[MAXBUF + 114];   //data sent to server
 	int stdlen = 0;         //amount of data to send
 	int sent = 0;           //actual amount of data sent/*
 			
@@ -308,7 +212,7 @@ void sendToServer(int socketNum)
 		stdlen = getFromStdin(stdbuf, "$: ");
 
       // Process the stdbuf and organize it into a packet inside the sendbuf
-      procStdin(stdlen, stdbuf, sendbuf);
+      //procStdin(stdlen, stdbuf, sendbuf);
 		
 		//printf("read: %s string len: %d (including null)\n", stdbuf, stdlen);
 			
