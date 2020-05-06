@@ -11,5 +11,9 @@ void teststepString();
 void testfindStr();
 void testconvertStrToInt();
 void testgetHandleNum();
+void testfillSender();
+void testisNumber();
+void testfindFirstHandle();
+void testfillHandle();
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef __MACROS_H__
 #define __MACROS_H__
 
+#define TRUE 1
+#define FALSE 0
 #define TYPE_M 1
 #define TYPE_B 2
 #define TYPE_E 3

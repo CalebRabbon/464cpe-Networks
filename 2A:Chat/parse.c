@@ -56,7 +56,8 @@ int findType(char* stdbuf){
 }
 
 // Takes in the stdbuf and copies the first string into str. It will append
-// the \0 character to the end of the string at index len.
+// the \0 character to the end of the string. The string ends either by
+// whitespace, \0, \n, or len.
 // Len is the max length of the str excluding the null character
 void findStr(char* stdbuf, char* str, int len){
    int i = 0;
@@ -90,7 +91,6 @@ void findStr(char* stdbuf, char* str, int len){
          str[j] = '\0';
          return;
       }
-
       j ++;
       i ++;
    }
@@ -128,9 +128,10 @@ int8_t convertStrToInt(char* str){
    return 1;
 }
 
-// Takes in the stdbuf and returns an int representing the number of clients to
-// send to. It also fills in the send buf with the number of handles at the correct
-// sendbuf location
+// Takes in the stdbuf, the sendbuf, and a sendHandle which is a string
+// reresenting the name of the sender and returns an int representing the number of clients to
+// send to. It also fills in the sendbuf with the number of handles at the correct
+// sendbuf location.
 // Returns -1 if either stdbuf or sendbuf is NULL
 int getHandleNum(char* stdbuf, char* sendbuf, char* sendHandle){
    char* curVal = NULL;
@@ -190,6 +191,91 @@ char* stepString(char* stdbuf){
 
    return curVal;
 }
+
+// Returns a pointer to the beginning of the destination handles
+char* fillSender(char* sendbuf, char* sendHandle){
+   sendbuf[3] = strlen(sendHandle);
+
+   // Set buffer to beginning of sendHandle
+   sendbuf += 4;
+
+   memcpy(sendbuf, sendHandle, strlen(sendHandle));
+
+   // Set to beginning of destination handles with +1 for Num Desination handles
+   sendbuf += (strlen(sendHandle) + 1);
+
+   return sendbuf;
+}
+
+// Returns true if the string is a number and false if not
+int isNumber(char* str){
+   if(strcmp(str,"1") == 0 || strcmp(str,"2") == 0 || strcmp(str,"3") == 0 || strcmp(str,"4") == 0
+      || strcmp(str,"5") == 0 || strcmp(str,"6") == 0 || strcmp(str,"7") == 0 || strcmp(str,"8") == 0 
+      || strcmp(str,"9") == 0 || strcmp(str,"0") == 0 ){
+      return TRUE;
+   }
+   else{
+      return FALSE;
+   }
+}
+
+// Finds the first handle in the sendbuf
+char* findFirstHandle(char* stdbuf){
+   char* curVal = stdbuf;
+
+   // Plus one for the
+   int len = MAX_HANDLE_SIZE + 1;
+
+   char str[len];
+
+   // Skip over the flag
+   curVal = stepString(curVal);
+
+   // Find the string could either be a number or a flag
+   findStr(curVal, str, len);
+
+   if(isNumber(str)){
+      // Steping over the number
+      curVal = stepString(curVal);
+   }
+
+   // curVal is pointed to the location of the first string
+   return curVal;
+}
+
+// Fills the handle inside the sendbuf and returns a pointer to the next
+// available spot in the sendbuf
+char* fillHandle(char* sendbuf, char* handle){
+   sendbuf[0] = strlen(handle);
+   // Set buffer to beginning of handle
+   sendbuf += 1;
+
+   memcpy(sendbuf, handle, strlen(handle));
+
+   sendbuf += strlen(handle);
+
+   return sendbuf;
+}
+
+void proc_M(int stdlen, char* stdbuf, char* sendbuf, char* sendHandle){
+   char* curVal = NULL;
+   char handle[MAX_HANDLE_SIZE + 1];
+   int handleNum = 0;
+   int i = 0;
+
+   handleNum = getHandleNum(stdbuf, sendbuf, sendHandle);
+
+   sendbuf = fillSender(sendbuf, sendHandle);
+
+   curVal = findFirstHandle(stdbuf);
+
+   for(i = 0; i < handleNum; i++){
+      findStr(curVal, handle, MAX_HANDLE_SIZE);
+      sendbuf = fillHandle(sendbuf, handle);
+      curVal = stepString(curVal);
+   }
+}
+
 
 void procStdin(int stdlen, char* stdbuf, char* sendbuf){
    int type;

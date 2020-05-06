@@ -27,6 +27,10 @@ int main(int argc, char * argv[])
    testfindStr();
    testconvertStrToInt();
    testgetHandleNum();
+   testfillSender();
+   testisNumber();
+   testfindFirstHandle();
+   testfillHandle();
 
    /*
    int socketNum = 0;         //socket descriptor

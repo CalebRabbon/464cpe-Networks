@@ -1,4 +1,5 @@
 #include "test.h"
+#include "macros.h"
 
 // File used to test the parse functions
 
@@ -400,4 +401,90 @@ void testconvertStrToInt(){
    TEST_INT(convertStrToInt("1f"), 1);
 
    printf("Finish: convertStrToInt\n");
+}
+
+void testfillSender(){
+   char sendbuf[MAX_SEND_LEN];
+   char* str;
+
+   printf("TEST: fillSender\n");
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   fillSender(sendbuf, "Caleb");
+   TEST_INT(sendbuf[3], 5);
+   str = sendbuf + 4;
+   TEST_STRING(str, "Caleb");
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   fillSender(sendbuf, "Caleb1");
+   TEST_INT(sendbuf[3], 6);
+   str = sendbuf + 4;
+   TEST_STRING(str, "Caleb1");
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   fillSender(sendbuf, "b1");
+   TEST_INT(sendbuf[3], 2);
+   str = sendbuf + 4;
+   TEST_STRING(str, "b1");
+
+   printf("Finish: fillSender\n");
+}
+
+void testisNumber(){
+   printf("TEST: isNumber\n");
+   TEST_BOOLEAN(isNumber("1"), TRUE);
+   TEST_BOOLEAN(isNumber("0"), TRUE);
+   TEST_BOOLEAN(isNumber("2"), TRUE);
+   TEST_BOOLEAN(isNumber("3"), TRUE);
+   TEST_BOOLEAN(isNumber("3"), TRUE);
+   TEST_BOOLEAN(isNumber("4"), TRUE);
+   TEST_BOOLEAN(isNumber("5"), TRUE);
+   TEST_BOOLEAN(isNumber("6"), TRUE);
+   TEST_BOOLEAN(isNumber("asdf"), FALSE);
+   TEST_BOOLEAN(isNumber("3324"), FALSE);
+   printf("Finish: isNumber\n");
+}
+
+void testfindFirstHandle(){
+   char* str = NULL;
+   str = "%M 1 handle";
+
+   printf("TEST: findFirstHandle\n");
+
+   TEST_STRING(findFirstHandle(str), "handle");
+
+   str = "   %M 2 a";
+   TEST_STRING(findFirstHandle(str), "a");
+
+   str = "   %M 2 aa aab";
+   TEST_STRING(findFirstHandle(str), "aa aab");
+
+   str = "   %M aa aab";
+   TEST_STRING(findFirstHandle(str), "aa aab");
+
+   str = "%L aa aab";
+   TEST_STRING(findFirstHandle(str), "aa aab");
+
+   str = "%L bab";
+   TEST_STRING(findFirstHandle(str), "bab");
+
+   printf("Finish: findFirstHandle\n");
+}
+
+void testfillHandle(){
+   char sendbuf[MAX_SEND_LEN];
+   char* curVal = NULL;
+   char* test = sendbuf;
+
+   printf("TEST: fillHandle\n");
+
+   curVal = fillHandle(sendbuf, "Handle");
+   TEST_INT(sendbuf[0], 6);
+   test += 1;
+   TEST_STRING(test, "Handle");
+
+   curVal = fillHandle(curVal, "handle2");
+
+   printf("Finish: fillHandle\n");
+
 }
