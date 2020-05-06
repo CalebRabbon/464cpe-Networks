@@ -27,7 +27,6 @@ void setupPollSet()
 
 void addToPollSet(int socketNumber)
 {
-	
 	if (socketNumber >= currentPollSetSize)
 	{
 		// needs to increase off of the biggest socket number since

@@ -152,6 +152,10 @@ int getHandleNum(char* stdbuf, char* sendbuf, char* sendHandle){
    // Setting the sendbuf to the right spot and setting Num Destination handles
    sendbuf[CHAT_HEADER_LEN + SEND_HANDLE_BYTE  + strlen(sendHandle)] = val;
 
+#ifdef PRINT
+   printf("val %i\n",CHAT_HEADER_LEN + SEND_HANDLE_BYTE  + (int)strlen(sendHandle));
+#endif
+
    return val;
 }
 
@@ -192,7 +196,7 @@ char* stepString(char* stdbuf){
    return curVal;
 }
 
-// Returns a pointer to the beginning of the destination handles
+// Returns a pointer to the beginning of the destination handles for the sendbuf
 char* fillSender(char* sendbuf, char* sendHandle){
    sendbuf[3] = strlen(sendHandle);
 
@@ -201,7 +205,8 @@ char* fillSender(char* sendbuf, char* sendHandle){
 
    memcpy(sendbuf, sendHandle, strlen(sendHandle));
 
-   // Set to beginning of destination handles with +1 for Num Desination handles
+   // Set to beginning of destination handles 
+   // +1 for Num Desination handles
    sendbuf += (strlen(sendHandle) + 1);
 
    return sendbuf;
@@ -257,10 +262,53 @@ char* fillHandle(char* sendbuf, char* handle){
    return sendbuf;
 }
 
-void proc_M(int stdlen, char* stdbuf, char* sendbuf, char* sendHandle){
+// Fills the sendbuf with the rest of the text and returns a pointer to one
+// after the last address
+char* fillText(char* sendbuf, char* text){
+   int i = 0;
+
+   if(text == NULL){
+      sendbuf[0] = '\n';
+      return sendbuf;
+   }
+
+   while(1){
+      if(text[i] == '\n'){
+         sendbuf += i;
+         return sendbuf;
+      }
+      if(text[i] == '\0'){
+         sendbuf += i;
+         return sendbuf;
+      }
+      if(i == MAX_SEND_TXT){
+         // Max buffer length
+         sendbuf += i;
+         return sendbuf;
+      }
+      // Copy data to sendbuf
+      sendbuf[i] = text[i];
+      i++;
+   }
+   sendbuf += i;
+
+   return sendbuf;
+}
+
+// Fills out the pdu chat header
+void fillChatHeader(char* sendbuf, int flag, int pduLen){
+   (((uint16_t*)sendbuf)[0]) = htons(pduLen);
+   (((uint8_t*)sendbuf)[2]) = flag;
+}
+
+// Fills out the sendbuf with a packet and returns the pdu packet length
+int proc_M(char* stdbuf, char* sendbuf, char* sendHandle){
    char* curVal = NULL;
+   char* startSendBuf = sendbuf;
+   char* end = NULL;
    char handle[MAX_HANDLE_SIZE + 1];
    int handleNum = 0;
+   uint16_t totalLength = 0;
    int i = 0;
 
    handleNum = getHandleNum(stdbuf, sendbuf, sendHandle);
@@ -274,10 +322,28 @@ void proc_M(int stdlen, char* stdbuf, char* sendbuf, char* sendHandle){
       sendbuf = fillHandle(sendbuf, handle);
       curVal = stepString(curVal);
    }
+
+   end = fillText(sendbuf, curVal);
+
+#ifdef PRINT
+   printf("sendbuf beginning %lu\n", (uintptr_t)sendbuf);
+   printf("end %lu\n", (uintptr_t)end);
+   printf("adding sender %lu\n",(uintptr_t)sendbuf - (uintptr_t)startSendBuf);
+#endif
+
+   totalLength = (uintptr_t)end - (uintptr_t)startSendBuf;
+
+   fillChatHeader(startSendBuf, FLAG_5, totalLength);
+
+   return totalLength;
 }
 
+int proc_E(char* sendbuf){
+   fillChatHeader(sendbuf, FLAG_8, DEFAULT_PDULEN);
+   return DEFAULT_PDULEN;
+}
 
-void procStdin(int stdlen, char* stdbuf, char* sendbuf){
+int procStdin(char* stdbuf, char* sendbuf, char* sendHandle){
    int type;
 
    type = findType(stdbuf);
@@ -285,17 +351,20 @@ void procStdin(int stdlen, char* stdbuf, char* sendbuf){
    switch(type){
       case TYPE_M:
          printf("TYPE_M\n");
+         return proc_M(stdbuf, sendbuf, sendHandle);
          break;
       case TYPE_B:
          printf("TYPE_B\n");
          break;
       case TYPE_E:
          printf("TYPE_E\n");
+         return proc_E(sendbuf);
          break;
       case TYPE_L:
          printf("TYPE_L\n");
          break;
    }
+   return 0;
 }
 
 

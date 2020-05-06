@@ -10,6 +10,7 @@
 #define DEFAULT_PDULEN 3
 #define HEADER_LEN 2
 #define DEBUG_FLAG 1
+#define MAX_SEND_TXT 200
 #define MAX_HANDLE_SIZE 100
 #define MAX_SEND_LEN 1515
 #define CHAT_HEADER_LEN 3

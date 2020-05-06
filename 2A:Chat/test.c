@@ -1,5 +1,7 @@
 #include "test.h"
 #include "macros.h"
+#include "flags.h"
+#include "myClient.h"
 
 // File used to test the parse functions
 
@@ -478,13 +480,139 @@ void testfillHandle(){
 
    printf("TEST: fillHandle\n");
 
+   memset(sendbuf, 0, MAX_SEND_LEN);
+
    curVal = fillHandle(sendbuf, "Handle");
    TEST_INT(sendbuf[0], 6);
    test += 1;
    TEST_STRING(test, "Handle");
 
    curVal = fillHandle(curVal, "handle2");
+   TEST_INT(sendbuf[7], 7);
+   test += strlen("Handle");
+   test += 1;
+   TEST_STRING(test, "handle2");
+
+   curVal = fillHandle(curVal, "cal");
+   TEST_INT(sendbuf[15], 3);
+   test += strlen("handle2");
+   test += 1;
+   TEST_STRING(test, "cal");
 
    printf("Finish: fillHandle\n");
 
+}
+
+void testfillText(){
+   char sendbuf[MAX_SEND_TXT];
+   char* curVal = "Hello world";
+   char* ret = NULL;
+
+   printf("TEST: fillText\n");
+
+   memset(sendbuf, 0, MAX_SEND_TXT);
+   curVal = "Hello world";
+   ret = fillText(sendbuf, curVal);
+   TEST_STRING(sendbuf, curVal);
+   //TEST_CHAR(ret[0], 'd');
+
+   memset(sendbuf, 0, MAX_SEND_TXT);
+   curVal = "    another time";
+   ret = fillText(sendbuf, curVal);
+   TEST_STRING(sendbuf, curVal);
+   //TEST_CHAR(ret[0], 'e');
+
+   memset(sendbuf, 0, MAX_SEND_TXT);
+   curVal = "    another time\n";
+   ret = fillText(sendbuf, curVal);
+   TEST_STRING(sendbuf, "    another time");
+   //TEST_CHAR(ret[0], 'e');
+
+   memset(sendbuf, 0, MAX_SEND_TXT);
+   curVal = "    another time\0";
+   ret = fillText(sendbuf, curVal);
+   TEST_STRING(sendbuf, curVal);
+   //TEST_CHAR(ret[0], 'e');
+
+   ret ++;
+
+   printf("Finish: fillText\n");
+}
+
+void testproc_M(){
+   char* stdbuf = NULL;
+   char sendbuf[MAX_SEND_LEN];
+   int pdulen = 0;
+
+   printf("TEST: proc_M\n");
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   stdbuf = "%M Caleb Text";
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   TEST_INT(pdulen, 21);
+   TEST_INT(ntohs(((uint16_t*)sendbuf)[0]), pdulen);
+   TEST_INT(sendbuf[2], FLAG_5);
+   TEST_INT(sendbuf[3], 6);
+   TEST_CHAR(sendbuf[4], 's');
+   TEST_CHAR(sendbuf[5], 'e');
+   TEST_CHAR(sendbuf[6], 'n');
+   TEST_CHAR(sendbuf[7], 'd');
+   TEST_CHAR(sendbuf[8], 'e');
+   TEST_CHAR(sendbuf[9], 'r');
+   TEST_INT(sendbuf[10], 1);
+   TEST_INT(sendbuf[11], 5);
+   TEST_CHAR(sendbuf[12], 'C');
+   TEST_CHAR(sendbuf[13], 'a');
+   TEST_CHAR(sendbuf[14], 'l');
+   TEST_CHAR(sendbuf[15], 'e');
+   TEST_CHAR(sendbuf[16], 'b');
+   TEST_CHAR(sendbuf[17], 'T');
+   TEST_CHAR(sendbuf[18], 'e');
+   TEST_CHAR(sendbuf[19], 'x');
+   TEST_CHAR(sendbuf[20], 't');
+   TEST_CHAR(sendbuf[21], '\0');
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   stdbuf = "  %M   Caleb   Text";
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   TEST_INT(pdulen, 21);
+   TEST_INT(ntohs(((uint16_t*)sendbuf)[0]), pdulen);
+   TEST_INT(sendbuf[2], FLAG_5);
+   TEST_INT(sendbuf[3], 6);
+   TEST_CHAR(sendbuf[4], 's');
+   TEST_CHAR(sendbuf[5], 'e');
+   TEST_CHAR(sendbuf[6], 'n');
+   TEST_CHAR(sendbuf[7], 'd');
+   TEST_CHAR(sendbuf[8], 'e');
+   TEST_CHAR(sendbuf[9], 'r');
+   TEST_INT(sendbuf[10], 1);
+   TEST_INT(sendbuf[11], 5);
+   TEST_CHAR(sendbuf[12], 'C');
+   TEST_CHAR(sendbuf[13], 'a');
+   TEST_CHAR(sendbuf[14], 'l');
+   TEST_CHAR(sendbuf[15], 'e');
+   TEST_CHAR(sendbuf[16], 'b');
+   TEST_CHAR(sendbuf[17], 'T');
+   TEST_CHAR(sendbuf[18], 'e');
+   TEST_CHAR(sendbuf[19], 'x');
+   TEST_CHAR(sendbuf[20], 't');
+   TEST_CHAR(sendbuf[21], '\0');
+   TEST_CHAR(sendbuf[22], '\0');
+   TEST_CHAR(sendbuf[23], '\0');
+
+   printf("Finish: proc_M\n");
+}
+
+void testproc_E(){
+   char sendbuf[100];
+   int ret;
+
+   printf("TEST: proc_E\n");
+   ret = proc_E(sendbuf);
+   TEST_INT(ret, 3);
+
+   TEST_INT(ntohs(((uint16_t*)sendbuf)[0]), 3);
+   TEST_INT(sendbuf[2], FLAG_8);
+
+   printf("Finish: proc_E\n");
 }

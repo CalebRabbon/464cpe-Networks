@@ -23,10 +23,12 @@
 #include "parse.h"
 #include "test.h"
 
-void sendToServer(int socketNum);
+void sendToServer(int socketNum, char* sendHandle);
 int getFromStdin(char * stdbuf, char * prompt);
 void checkArgs(int argc, char * argv[]);
 void login(char* handle, int socketNum, char* loginBuff);
 void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen);
+void runClient(int serverSocket, char* clientHandle);
+void ackFromServer(int socketNum);
 
 #endif

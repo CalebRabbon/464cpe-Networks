@@ -15,5 +15,8 @@ void testfillSender();
 void testisNumber();
 void testfindFirstHandle();
 void testfillHandle();
+void testfillText();
+void testproc_M();
+void testproc_E();
 
 #endif

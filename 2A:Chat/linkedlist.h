@@ -32,6 +32,8 @@ Node* removeNode(Node* head, Node* node);
 
 Node* makeLinkedList();
 
+Node* findNode(Node* head, int socketNum);
+
 /*
 typedef struct LinkedList{
    Node* head;

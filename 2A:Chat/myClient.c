@@ -4,6 +4,7 @@
 //
 
 #include "myClient.h"
+//#define TEST
 
 void printLoginBuff(char* loginBuff)
 {
@@ -21,6 +22,8 @@ void printLoginBuff(char* loginBuff)
 
 int main(int argc, char * argv[])
 {
+
+#ifdef TEST
    testconvertCharType();
    testfindType();
    teststepString();
@@ -31,10 +34,16 @@ int main(int argc, char * argv[])
    testisNumber();
    testfindFirstHandle();
    testfillHandle();
+   testfillText();
+   testproc_M();
+   testproc_E();
+#endif
 
-   /*
+#ifndef TEST
    int socketNum = 0;         //socket descriptor
    char loginBuff[MAX_LOGIN_SIZE];
+
+   setupPollSet();
 
    checkArgs(argc, argv);
 
@@ -44,13 +53,48 @@ int main(int argc, char * argv[])
    // Login to the server with the handle
    login(argv[1], socketNum, loginBuff);
 
-   sendToServer(socketNum);
+   // Runs the client
+   runClient(socketNum, argv[1]);
 
    close(socketNum);
-   */
+#endif
 
    return 0;
 }
+
+void runClient(int serverSocket, char* clientHandle)
+{
+	int socketToProcess = 0;
+	
+	addToPollSet(serverSocket);
+	addToPollSet(STDIN_FILENO);
+
+	while (1)
+	{
+      printf("$: ");
+      fflush(stdout);
+		if ((socketToProcess = pollCall(POLL_WAIT_FOREVER)) != -1)
+		{
+         printf("socketToProcess %i\n", socketToProcess);
+			if (socketToProcess == STDIN_FILENO)
+			{
+            sendToServer(serverSocket, clientHandle);
+			}
+			else
+			{
+            // Receiving from the server
+            ackFromServer(serverSocket);
+			}
+		}
+		else
+		{
+			// Just printing here to let me know what is going on
+			printf("Poll timed out waiting for client to send data\n");
+		}
+		
+	}
+}
+
 
 // Copies the string from the handle into the buffer starting at the offset
 void fillBuff(uint8_t len, char* handle, char* buff, int offset)
@@ -119,7 +163,7 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
          break;
       case FLAG_5:
          break;
-      case FLAG_8:
+      case FLAG_9:
          break;
       case FLAG_10:
          break;
@@ -199,37 +243,34 @@ void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen)
    printf("Amount of login data sent is: %d\n", sent);
 }
 
-void sendToServer(int socketNum)
+void sendToServer(int socketNum, char* sendHandle)
 {
 	char stdbuf[MAXBUF];    //data from user input
    // Add 114 to sendbuf to account for 10 bytes of handles 1 byte for number of
    // destinations, 3 bytes for Chat-Header, 100 bytes for max sender handle
-	//char sendbuf[MAXBUF + 114];   //data sent to server
-	int stdlen = 0;         //amount of data to send
+	char sendbuf[MAX_SEND_LEN];   //data sent to server
+	int sendlen = 0;         //amount of data to send
 	int sent = 0;           //actual amount of data sent/*
 			
 	memset(stdbuf, 0, MAXBUF);
 
-	while (strcmp(stdbuf, "exit"))
-	{
+	getFromStdin(stdbuf, "");
 
-		stdlen = getFromStdin(stdbuf, "$: ");
-
-      // Process the stdbuf and organize it into a packet inside the sendbuf
-      //procStdin(stdlen, stdbuf, sendbuf);
+   // Process the stdbuf and organize it into a packet inside the sendbuf
+   sendlen = procStdin(stdbuf, sendbuf, sendHandle);
+	
+	//printf("read: %s string len: %d (including null)\n", stdbuf, sendlen);
 		
-		//printf("read: %s string len: %d (including null)\n", stdbuf, stdlen);
-			
-		sent =  send(socketNum, stdbuf, stdlen, 0);
-		if (sent < 0)
-		{
-			perror("send call");
-			exit(-1);
-      }
-
-      printf("Amount of data sent is: %d\n", sent);
+	sent =  send(socketNum, sendbuf, sendlen, 0);
+	if (sent < 0)
+	{
+		perror("send call");
+		exit(-1);
    }
+
+   printf("Amount of data sent is: %d\n", sent);
 }
+
 
 int getFromStdin(char * stdbuf, char * prompt)
 {

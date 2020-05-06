@@ -104,6 +104,24 @@ Node* addNode(Node* head, Node* node){
    return head;
 }
 
+// Finds the node associated with the socket number
+Node* findNode(Node* head, int socketNum){
+   if(head == NULL){
+      printf("Your head is %s. Please use a non NULL head\n", (char*)head);
+      return head;
+   }
+
+   while(head != NULL){
+      if(head->socketNum == socketNum){
+         return head;
+      }
+      head = head->next;
+   }
+
+   return head;
+}
+
+
 // Searches through the list and removes the node and returns the new head of
 // the list
 Node* removeNode(Node* head, Node* node){
@@ -126,6 +144,7 @@ Node* removeNode(Node* head, Node* node){
       printf("Removing the head: '%s' from the handle list\n", temp->handle);
       head = node->next;
       free(temp);
+      printf("Head: '%p' \n", (void*)head);
       return head;
    }
 

@@ -47,69 +47,6 @@ void t(Node** head){
 
 int main(int argc, char *argv[])
 {
-   /*
-   Node* c1 = makeNode("Caleb1", 4);
-   Node* c2 = makeNode("Caleb2", 5);
-
-   head = addNode(head, c);
-   head = addNode(head, c1);
-   head = addNode(head, c2);
-
-   printLinkedList(head);
-   printf("False 0: %i\n", available(head, "Caleb"));
-   printf("False 0: %i\n", available(head, "Caleb1"));
-   printf("False 0: %i\n", available(head, "Caleb2"));
-   printf("True 1: %i\n", available(head, "Caleb3"));
-   printf("True 1: %i\n", available(head, "afd"));
-   printf("True 1: %i\n", available(head, "afsdd"));
-   printf("True 1: %i\n", available(head, "casd"));
-
-
-   head = removeNode(head, c);
-   printf("True 1: %i\n", available(head, "Caleb"));
-
-   head = removeNode(head, c2);
-   printf("True 1: %i\n", available(head, "Caleb2"));
-   head = removeNode(head, c1);
-   printf("True 1: %i\n", available(head, "Caleb1"));
-   */
-
-   /*
-   char* handle = "CalebQq??";
-   uint8_t handleLen = 5;
-   char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
-
-   createStrHandle(handle, handleLen, strHandle);
-   printf("handle = %s\t handleLen = %i\n", handle, handleLen);
-   printf("strHandle = %s\t strlen(strHandle) = %i\n", strHandle, (int)strlen(strHandle));
-
-   handle = "Caleb?2";
-
-   createStrHandle(handle, handleLen, strHandle);
-   printf("handle = %s\t handleLen = %i\n", handle, handleLen);
-   printf("strHandle = %s\t strlen(strHandle) = %i\n", strHandle, (int)strlen(strHandle));
-   printf("handle: %s, strHandle: %s\n", handle, strHandle);
-   printf("False 1: %i\n", available(head, strHandle));
-   printf("checking flag 2: %i\n", checkClient(4, strHandle, &head));
-   printf("checking flag 3: %i\n", checkClient(5, strHandle, &head));
-   */
-
-   /*
-   handle = "Caleb";
-   createStrHandle(handle, handleLen, strHandle);
-   printf("handle: %s, strHandle: %s\n", handle, strHandle);
-   printLinkedList(head);
-   printf("False 0: %i\n", available(head, strHandle));
-   printf("checking flag 3: %i\n", checkClient(4, strHandle, &head));
-
-   handle = "Caleb\0";
-   createStrHandle(handle, handleLen, strHandle);
-   printf("handle: %s, strHandle: %s\n", handle, strHandle);
-   printLinkedList(head);
-   printf("False 0: %i\n", available(head, strHandle));
-   printf("checking flag 3: %i\n", checkClient(4, strHandle, &head));
-   */
-
 	int mainServerSocket = 0;   //socket descriptor for the server socket
 	int portNumber = 0;
    Node* head = makeLinkedList();
@@ -117,7 +54,6 @@ int main(int argc, char *argv[])
 	setupPollSet();
 	portNumber = checkArgs(argc, argv);
 
-	
    while(1){
 	   //create the server socket
 	   mainServerSocket = tcpServerSetup(portNumber);
@@ -274,6 +210,7 @@ void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum
    char* handle = NULL;
    uint8_t handleLen = 0;
    char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
+   Node* node;
    switch(flag)
    {
       case FLAG_1:
@@ -297,11 +234,16 @@ void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum
          checkClient(socketNum, strHandle, head);
          break;
       case FLAG_4:
-
          break;
       case FLAG_5:
+         printf("Flag 5 received\n");
          break;
       case FLAG_8:
+         printf("Flag 8 received\n");
+         sendFlag(socketNum, FLAG_9);
+         node = findNode(*head, socketNum);
+         *head = removeNode(*head, node);
+         removeClient(socketNum);
          break;
       case FLAG_10:
          break;
@@ -333,6 +275,7 @@ char* recvFromClient(int clientSocket, Node** head)
 	}
 
    PDU_Len = ntohs(((uint16_t*)buf)[0]);
+   printf("PDU_LEN %i\n", PDU_Len);
 
    dataBuf = buf + sizeof(char)*2;
 
@@ -343,6 +286,7 @@ char* recvFromClient(int clientSocket, Node** head)
       exit(-1);
    }
    flag = dataBuf[0];
+   printf("flag %i\n", flag);
 
    packetResponse(flag, dataBuf, PDU_Len, clientSocket, head);
    return dataBuf;
