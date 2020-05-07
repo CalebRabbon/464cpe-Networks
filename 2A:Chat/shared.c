@@ -11,7 +11,9 @@ void printSentPacket(char* header, int socketNum){
 void safeSend(int socketNum, char* sendbuf, int sendlen){
 	int sent = 0;           //actual amount of data sent/*
 
+#ifdef PRINT
    printSentPacket(sendbuf, socketNum);
+#endif
 
 	sent = send(socketNum, sendbuf, sendlen, 0);
 	if (sent < 0)
@@ -19,5 +21,7 @@ void safeSend(int socketNum, char* sendbuf, int sendlen){
 		perror("send call");
 		exit(-1);
    }
+#ifdef PRINT
    printf("Amount of data sent is: %d\n", sent);
+#endif
 }

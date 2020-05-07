@@ -350,18 +350,26 @@ int procStdin(char* stdbuf, char* sendbuf, char* sendHandle){
 
    switch(type){
       case TYPE_M:
+#ifdef PRINT
          printf("TYPE_M\n");
+#endif
          return proc_M(stdbuf, sendbuf, sendHandle);
          break;
       case TYPE_B:
+#ifdef PRINT
          printf("TYPE_B\n");
+#endif
          break;
       case TYPE_E:
+#ifdef PRINT
          printf("TYPE_E\n");
+#endif
          return proc_E(sendbuf);
          break;
       case TYPE_L:
+#ifdef PRINT
          printf("TYPE_L\n");
+#endif
          break;
    }
    return 0;

@@ -5,6 +5,7 @@
 
 #include "myClient.h"
 //#define TEST
+//#define PRINT
 
 void checkArgs(int argc, char * argv[]);
 
@@ -146,12 +147,16 @@ void printServerMsg(uint8_t flag, int messageLen, uint16_t PDU_Len){
 // dataBuf is the buffer of data after the Chat PDU Length
 void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Len, int socketNum)
 {
+   char sendHandle[MAX_HANDLE_SIZE + 1];
+   char text[MAX_SEND_TXT];
    /*
    char* handle = NULL;
    uint8_t handleLen = 0;
    char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
    */
+#ifdef PRINT
    printServerMsg(flag, messageLen, PDU_Len);
+#endif
    switch(flag)
    {
       case FLAG_2:
@@ -163,6 +168,16 @@ void packetResponse(uint8_t flag, char* dataBuf, int messageLen, uint16_t PDU_Le
       case FLAG_4:
          break;
       case FLAG_5:
+         memset(sendHandle, 0, MAX_HANDLE_SIZE + 1);
+         memset(text, 0, MAX_SEND_TXT);
+         findTextLen(dataBuf, PDU_Len);
+         findSender(dataBuf, sendHandle);
+         getText(dataBuf, text, PDU_Len);
+         printf("%s: %s\n", sendHandle, text);
+         break;
+      case FLAG_7:
+         findSender(dataBuf, sendHandle);
+         printf("Client with handle %s does not exist.\n", sendHandle);
          break;
       case FLAG_9:
          break;
@@ -262,7 +277,6 @@ void sendToServer(int socketNum, char* sendHandle)
 	//printf("read: %s string len: %d (including null)\n", stdbuf, sendlen);
 
    safeSend(socketNum, sendbuf, sendlen);
-   ackFromServer(socketNum);
 }
 
 void checkArgs(int argc, char * argv[])

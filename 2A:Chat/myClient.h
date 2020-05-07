@@ -21,6 +21,7 @@
 #include "macros.h"
 #include "unitTest.h"
 #include "parse.h"
+#include "recvparse.h"
 #include "test.h"
 #include "shared.h"
 
