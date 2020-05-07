@@ -367,4 +367,27 @@ int procStdin(char* stdbuf, char* sendbuf, char* sendHandle){
    return 0;
 }
 
+int getFromStdin(char * stdbuf, char * prompt)
+{
+	// Gets input up to MAXBUF-1 (and then appends \0)
+	// Returns length of string including null
+	char aChar = 0;
+	int inputLen = 0;       
+	
+	// Important you don't input more characters than you have space 
+	printf("%s ", prompt);
+	while (inputLen < (MAXBUF - 1) && aChar != '\n')
+	{
+		aChar = getchar();
+		if (aChar != '\n')
+		{
+			stdbuf[inputLen] = aChar;
+			inputLen++;
+		}
+	}
 
+	stdbuf[inputLen] = '\0';
+	inputLen++;  //we are going to send the null
+	
+	return inputLen;
+}

@@ -34,6 +34,8 @@ Node* makeLinkedList();
 
 Node* findNode(Node* head, int socketNum);
 
+int findSocket(Node* head, char* handle);
+
 /*
 typedef struct LinkedList{
    Node* head;

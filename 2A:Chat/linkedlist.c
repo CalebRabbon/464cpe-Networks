@@ -104,6 +104,22 @@ Node* addNode(Node* head, Node* node){
    return head;
 }
 
+// Finds the socket associated with the handle
+// Returns 0 if the handle was not found
+int findSocket(Node* head, char* handle){
+   Node* curVal = head;
+
+   while(curVal != NULL){
+      if(strcmp(curVal->handle,handle) == 0){
+         // Found the node
+         return curVal->socketNum;
+      }
+      // Move curVal along
+      curVal = curVal->next;
+   }
+   return 0;
+}
+
 // Finds the node associated with the socket number
 Node* findNode(Node* head, int socketNum){
    if(head == NULL){

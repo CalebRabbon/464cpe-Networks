@@ -6,6 +6,8 @@
 #include "myClient.h"
 //#define TEST
 
+void checkArgs(int argc, char * argv[]);
+
 void printLoginBuff(char* loginBuff)
 {
    int i = 0;
@@ -75,7 +77,6 @@ void runClient(int serverSocket, char* clientHandle)
       fflush(stdout);
 		if ((socketToProcess = pollCall(POLL_WAIT_FOREVER)) != -1)
 		{
-         printf("socketToProcess %i\n", socketToProcess);
 			if (socketToProcess == STDIN_FILENO)
 			{
             sendToServer(serverSocket, clientHandle);
@@ -250,9 +251,8 @@ void sendToServer(int socketNum, char* sendHandle)
    // destinations, 3 bytes for Chat-Header, 100 bytes for max sender handle
 	char sendbuf[MAX_SEND_LEN];   //data sent to server
 	int sendlen = 0;         //amount of data to send
-	int sent = 0;           //actual amount of data sent/*
-			
-	memset(stdbuf, 0, MAXBUF);
+
+	memset(stdbuf, '\0', MAXBUF);
 
 	getFromStdin(stdbuf, "");
 
@@ -260,41 +260,8 @@ void sendToServer(int socketNum, char* sendHandle)
    sendlen = procStdin(stdbuf, sendbuf, sendHandle);
 	
 	//printf("read: %s string len: %d (including null)\n", stdbuf, sendlen);
-		
-	sent =  send(socketNum, sendbuf, sendlen, 0);
-	if (sent < 0)
-	{
-		perror("send call");
-		exit(-1);
-   }
 
-   printf("Amount of data sent is: %d\n", sent);
-}
-
-
-int getFromStdin(char * stdbuf, char * prompt)
-{
-	// Gets input up to MAXBUF-1 (and then appends \0)
-	// Returns length of string including null
-	char aChar = 0;
-	int inputLen = 0;       
-	
-	// Important you don't input more characters than you have space 
-	printf("%s ", prompt);
-	while (inputLen < (MAXBUF - 1) && aChar != '\n')
-	{
-		aChar = getchar();
-		if (aChar != '\n')
-		{
-			stdbuf[inputLen] = aChar;
-			inputLen++;
-		}
-	}
-
-	stdbuf[inputLen] = '\0';
-	inputLen++;  //we are going to send the null
-	
-	return inputLen;
+   safeSend(socketNum, sendbuf, sendlen);
 }
 
 void checkArgs(int argc, char * argv[])

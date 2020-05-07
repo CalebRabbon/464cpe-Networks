@@ -2,9 +2,267 @@
 #include "macros.h"
 #include "flags.h"
 #include "myClient.h"
+#include "recvparse.h"
 
 // File used to test the parse functions
 
+// TESTING the recvparse.c
+
+
+void testgetText(){
+	char stdbuf[MAXBUF];    //data from user input
+   char sendbuf[MAX_SEND_LEN];
+   char text[200];
+   char* databuf;
+   int pdulen;
+
+   printf("TEST: getText\n");
+
+//   stdbuf = "%M Caleb Text";
+   memset(stdbuf, '\0', MAXBUF);
+   memset(sendbuf, '\0', MAX_SEND_LEN);
+
+   /*
+   getFromStdin(stdbuf, "");
+   pdulen = procStdin(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   TEST_INT(databuf[0], 6);
+   len = findTextLen(databuf, pdulen);
+   TEST_INT(len, 4);
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "Text");
+   */
+
+   memset(stdbuf, '\0', MAXBUF);
+   memcpy(stdbuf,"%M 1 Caleb Text", 15);
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "Text");
+
+   memset(text, 0, 200);
+   memset(stdbuf, '\0', MAXBUF);
+   memcpy(stdbuf,"%M 2 Caleb Text", 15);
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "\0");
+
+   memset(stdbuf, '\0', MAXBUF);
+   memcpy(stdbuf,"%M 1 Caleb ", 11);
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "\0");
+
+   memset(text, 0, 200);
+   memset(stdbuf, '\0', MAXBUF);
+   memcpy(stdbuf,"%M 1 Caleb", 10);
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "\0");
+
+   memset(text, 0, 200);
+   memset(stdbuf, '\0', MAXBUF);
+   memcpy(stdbuf,"%M 1 Caleb    ", 14);
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "\0");
+
+   memset(text, 0, 200);
+   memset(stdbuf, '\0', MAXBUF);
+   memcpy(stdbuf,"%M 2 Caleb Text Aa", 18);
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   getText(databuf, text, pdulen);
+   TEST_STRING(text, "Aa");
+
+   printf("Finish: getText\n");
+}
+
+void testfindTextStart(){
+   char* stdbuf = NULL;
+   char sendbuf[MAX_SEND_LEN];
+   char* databuf;
+   char* text;
+
+   printf("TEST: findTextStart\n");
+
+   stdbuf = "%M Caleb Text";
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = (char*)sendbuf + 2;
+   text = findTextStart(databuf);
+   TEST_CHAR(text[0], 'T');
+
+   stdbuf = "%M 1 Caleb Text";
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   text = findTextStart(databuf);
+   TEST_CHAR(text[0], 'T');
+
+   stdbuf = "%M 2 Caleb Text";
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   text = findTextStart(databuf);
+   TEST_CHAR(text[0], '\n');
+
+   stdbuf = "%M 2 Caleb Text A";
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   text = findTextStart(databuf);
+   TEST_CHAR(text[0], 'A');
+
+   printf("Finish: findTextStart\n");
+}
+void testfindTextLen(){
+   char* stdbuf = NULL;
+   char sendbuf[MAX_SEND_LEN];
+   char* databuf = NULL;
+   int len;
+   int pdulen;
+
+   printf("TEST: findTextLen\n");
+
+   stdbuf = "%M Caleb Text";
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   len = findTextLen(databuf, pdulen);
+   TEST_INT(len, 4);
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   stdbuf = "%M 2 Caleb Text";
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   len = findTextLen(databuf, pdulen);
+   TEST_INT(len, 0);
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   stdbuf = "%M 1 Caleb      Text";
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   len = findTextLen(databuf, pdulen);
+   TEST_INT(len, 4);
+
+   memset(sendbuf, 0, MAX_SEND_LEN);
+   stdbuf = "%M 2 Caleb Text 12345678";
+   pdulen = proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   len = findTextLen(databuf, pdulen);
+   TEST_INT(len, 8);
+   /*
+   */
+
+   printf("Finish: findTextLen\n");
+}
+
+void testfindDestHandle(){
+   char* stdbuf = NULL;
+   char* databuf = NULL;
+   char sendbuf[MAX_SEND_LEN];
+   char destHandle[101];
+   char* test;
+
+   printf("TEST: findDestHandle\n");
+
+   stdbuf = "%M Caleb Text";
+   proc_M(stdbuf, sendbuf, "sender");
+   // Adding 2 to sendbuf to remove the chat_header
+   databuf = sendbuf + 2;
+   memset(destHandle, 0, 101);
+   test = findDestHandle(databuf, 1, destHandle);
+   TEST_STRING(destHandle, "Caleb");
+   TEST_CHAR(test[0], 'T');
+
+   stdbuf = "%M 2 Caleb Text";
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   memset(destHandle, 0, 101);
+   test = findDestHandle(databuf, 1, destHandle);
+   TEST_STRING(destHandle, "Caleb");
+   TEST_INT(test[0], 4);
+
+   memset(destHandle, 0, 101);
+   findDestHandle(databuf, 2, destHandle);
+   TEST_STRING(destHandle, "Text");
+
+   stdbuf = "%M 3 Caleb Text Man adf";
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   memset(destHandle, 0, 101);
+   findDestHandle(databuf, 1, destHandle);
+   TEST_STRING(destHandle, "Caleb");
+
+   memset(destHandle, 0, 101);
+   findDestHandle(databuf, 2, destHandle);
+   TEST_STRING(destHandle, "Text");
+
+   memset(destHandle, 0, 101);
+   findDestHandle(databuf, 3, destHandle);
+   TEST_STRING(destHandle, "Man");
+
+   memset(destHandle, 0, 101);
+   findDestHandle(databuf, 4, destHandle);
+   TEST_NULL(destHandle, NULL);
+
+   printf("Finish: findDestHandle\n");
+
+}
+void testfindNumHandles(){
+   char* stdbuf = NULL;
+   char* databuf = NULL;
+   char sendbuf[MAX_SEND_LEN];
+
+   printf("TEST: findNumHandles\n");
+
+   stdbuf = "%M Caleb Text";
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   TEST_INT(findNumHandles(databuf, "sender"), 1);
+
+   stdbuf = "%M 2 Caleb Text";
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   TEST_INT(findNumHandles(databuf, "sender"), 2);
+
+   stdbuf = "%M 2 Caleb Text adf";
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+   TEST_INT(findNumHandles(databuf, "sender"), 2);
+
+   printf("Finish: findNumHandles\n");
+}
+
+void testfindSender(){
+   char* stdbuf = NULL;
+   char* databuf = NULL;
+   char sendbuf[MAX_SEND_LEN];
+   char sendHandle[MAX_HANDLE_SIZE + 1];
+
+   printf("TEST: findSender\n");
+   stdbuf = "%M Caleb Text";
+
+   proc_M(stdbuf, sendbuf, "sender");
+   databuf = sendbuf + 2;
+
+   findSender(databuf, sendHandle);
+   TEST_STRING(sendHandle, "sender");
+
+   printf("Finish: findSender\n");
+}
+
+//TESTING the parse.c functions
 void testconvertCharType(){
 // define TEST_INT(_ACTUAL, _EXPECT)
    int type = 0;

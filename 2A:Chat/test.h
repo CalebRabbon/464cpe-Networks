@@ -18,5 +18,11 @@ void testfillHandle();
 void testfillText();
 void testproc_M();
 void testproc_E();
+void testfindSender();
+void testfindNumHandles();
+void testfindDestHandle();
+void testfindTextLen();
+void testfindTextStart();
+void testgetText();
 
 #endif
