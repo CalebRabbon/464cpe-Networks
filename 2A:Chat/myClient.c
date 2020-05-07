@@ -262,6 +262,7 @@ void sendToServer(int socketNum, char* sendHandle)
 	//printf("read: %s string len: %d (including null)\n", stdbuf, sendlen);
 
    safeSend(socketNum, sendbuf, sendlen);
+   ackFromServer(socketNum);
 }
 
 void checkArgs(int argc, char * argv[])

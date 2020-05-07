@@ -160,32 +160,12 @@ void createDefaultChatHeader(char* header, int flag){
    (((uint8_t*)header)[2]) = flag;
 }
 
-// Prints out a default chat header packet
-void printSentPacket(char* header, int socketNum){
-   printf("Sending Packet Data to Socket %i:\n", socketNum);
-   printf("\tChat PDULen:\t%i\n", ntohs(((uint16_t*)header)[0]));
-   printf("\tFlag:\t\t%u\n", ((uint8_t*)header)[2]);
-}
-
-// Sends the packet to the socket number with sendLen
-void sendPacket(int socketNum, char* packet, uint8_t sendLen){
-	int sent = 0;            //actual amount of data sent/* get the data and send it   */
-
-   printSentPacket(packet, socketNum);
-
-	sent =  send(socketNum, packet, sendLen, 0);
-	if (sent < 0)
-	{
-		perror("send call");
-		exit(-1);
-	}
-}
 
 // Sends a designated flag
 void sendFlag(int socketNum, uint8_t flag){
    char header[CHAT_HEADER_LEN];
    createDefaultChatHeader(header, flag);
-   sendPacket(socketNum, header, DEFAULT_PDULEN);
+   safeSend(socketNum, header, DEFAULT_PDULEN);
 }
 
 // Adds the handle to the list
