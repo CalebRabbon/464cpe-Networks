@@ -29,6 +29,6 @@ void sendToServer(int socketNum, char* sendHandle);
 void login(char* handle, int socketNum, char* loginBuff);
 void sendLogin(int socketNum, char* loginBuff, uint16_t sendLen);
 void runClient(int serverSocket, char* clientHandle);
-void ackFromServer(int socketNum);
+int ackFromServer(int socketNum, char* handle);
 
 #endif

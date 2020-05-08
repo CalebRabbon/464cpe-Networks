@@ -17,7 +17,7 @@ int proc_M(char* stdbuf, char* sendbuf, char* sendHandle);
 char* fillText(char* sendbuf, char* text);
 int procStdin(char* stdbuf, char* sendbuf, char* sendHandle);
 int proc_E(char* sendbuf);
-int getFromStdin(char * stdbuf, char * prompt);
+int getFromStdin(char * stdbuf);
 void fillChatHeader(char* sendbuf, int flag, int pduLen);
 
 #endif

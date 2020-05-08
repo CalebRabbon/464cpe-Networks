@@ -1,5 +1,7 @@
 #include "myClient.h"
 
+//#define PRINT
+
 // Converts the character to the correct int type defined by the MACROS
 int convertCharType(char type){
    switch(type){
@@ -301,6 +303,45 @@ void fillChatHeader(char* sendbuf, int flag, int pduLen){
    (((uint8_t*)sendbuf)[2]) = flag;
 }
 
+// Fills out the sendbuf with a %B packet and returns the pdu packet length
+int proc_B(char* stdbuf, char* sendbuf, char* sendHandle){
+   char* curVal = NULL;
+   char* startSendBuf = sendbuf;
+   char* end = NULL;
+   uint16_t totalLength = 0;
+   /*
+   char handle[MAX_HANDLE_SIZE + 1];
+   int handleNum = 0;
+   int i = 0;
+   */
+
+   sendbuf = fillSender(sendbuf, sendHandle);
+
+   // Subtracting 1 since the fillSender returns an extra spot after the Sending
+   // Handle spot
+   sendbuf -= 1;
+
+   // It will think the beginning of the text is a handle
+   curVal = findFirstHandle(stdbuf);
+
+   end = fillText(sendbuf, curVal);
+
+#ifdef PRINT
+   printf("sendbuf beginning %lu\n", (uintptr_t)sendbuf);
+   printf("end %lu\n", (uintptr_t)end);
+#endif
+
+   totalLength = (uintptr_t)end - (uintptr_t)startSendBuf;
+
+#ifdef PRINT
+   printf("totalLength %i\n", totalLength);
+#endif
+
+   fillChatHeader(startSendBuf, FLAG_4, totalLength);
+
+   return totalLength;
+}
+
 // Fills out the sendbuf with a packet and returns the pdu packet length
 int proc_M(char* stdbuf, char* sendbuf, char* sendHandle){
    char* curVal = NULL;
@@ -343,6 +384,11 @@ int proc_E(char* sendbuf){
    return DEFAULT_PDULEN;
 }
 
+int proc_L(char* sendbuf){
+   fillChatHeader(sendbuf, FLAG_10, DEFAULT_PDULEN);
+   return DEFAULT_PDULEN;
+}
+
 int procStdin(char* stdbuf, char* sendbuf, char* sendHandle){
    int type;
 
@@ -359,7 +405,7 @@ int procStdin(char* stdbuf, char* sendbuf, char* sendHandle){
 #ifdef PRINT
          printf("TYPE_B\n");
 #endif
-         break;
+         return proc_B(stdbuf, sendbuf, sendHandle);
       case TYPE_E:
 #ifdef PRINT
          printf("TYPE_E\n");
@@ -370,12 +416,12 @@ int procStdin(char* stdbuf, char* sendbuf, char* sendHandle){
 #ifdef PRINT
          printf("TYPE_L\n");
 #endif
-         break;
+         return proc_L(sendbuf);
    }
    return 0;
 }
 
-int getFromStdin(char * stdbuf, char * prompt)
+int getFromStdin(char * stdbuf)
 {
 	// Gets input up to MAXBUF-1 (and then appends \0)
 	// Returns length of string including null
@@ -383,16 +429,22 @@ int getFromStdin(char * stdbuf, char * prompt)
 	int inputLen = 0;       
 	
 	// Important you don't input more characters than you have space 
-	printf("%s ", prompt);
-	while (inputLen < (MAXBUF - 1) && aChar != '\n')
+	while (aChar != '\n')
 	{
 		aChar = getchar();
 		if (aChar != '\n')
 		{
 			stdbuf[inputLen] = aChar;
-			inputLen++;
+		   inputLen++;
 		}
 	}
+   if(inputLen > MAXBUF - 1){
+      // Error
+      return -1;
+   }
+#ifdef PRINT
+   printf("inputlen %i\n", inputLen);
+#endif
 
 	stdbuf[inputLen] = '\0';
 	inputLen++;  //we are going to send the null

@@ -36,6 +36,10 @@ Node* findNode(Node* head, int socketNum);
 
 int findSocket(Node* head, char* handle);
 
+int findListLength(Node* head);
+
+Node* findNodeIndex(Node* head, int index);
+
 /*
 typedef struct LinkedList{
    Node* head;

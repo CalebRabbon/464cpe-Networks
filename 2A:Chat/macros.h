@@ -13,11 +13,12 @@
 #define MAX_HANDLE_SIZE 100
 #define MAX_SEND_LEN 1515
 #define CHAT_HEADER_LEN 3
-#define DEBUG_FLAG 1
+#define DEBUG_FLAG 0
 #define NUM_DEST_BYTE 1
 #define SEND_HANDLE_BYTE 1
 #define HANDLE_BYTE 1
 #define FLAGBYTE 1
+#define FLAG_11_LEN 11
 #define MAX_LOGIN_SIZE 104 //Max size of 100 Character handle + 4 Bytes Header
 
 #endif

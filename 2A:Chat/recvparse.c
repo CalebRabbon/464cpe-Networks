@@ -4,6 +4,9 @@
 #include "macros.h"
 
 // Finds the sender of a message
+// Takes in a message that is the data portion of a PDU (stuff after the PDU
+// Length)
+// Places the message inside the sendHandle and null terminates it
 void findSender(char* message, char* sendHandle){
    uint8_t sendHandleLen;
    sendHandleLen = message[1];
@@ -93,6 +96,45 @@ char* findTextStart(char* message){
    textStart = findDestHandle(message, handleNum, destHandle);
 
    return textStart;
+}
+
+// Finds the length of the text message
+int findTextLen_B(char* message, int pduLen){
+   char destHandle[MAX_HANDLE_SIZE + 1];
+   char sendHandle[MAX_HANDLE_SIZE + 1];
+   uintptr_t textStart = 0;
+   uintptr_t dataStart = 0;
+   uintptr_t temp = 0;
+   int handleNum = 0;
+   int textLen = 0;
+
+   memset(destHandle, 0, MAX_HANDLE_SIZE + 1);
+   memset(sendHandle, 0, MAX_HANDLE_SIZE + 1);
+
+   dataStart = (uintptr_t)((void*)message);
+
+   findSender(message, sendHandle);
+   /*
+   printf("sender %s\n", sendHandle);
+   */
+   /*
+   printf("handleNum %i\n", handleNum);
+   */
+
+   textStart = (uintptr_t)(findDestHandle(message, handleNum, destHandle));
+
+   temp = textStart - dataStart;
+   textLen = pduLen - temp - CHAT_HEADER_LEN + FLAGBYTE;
+   /*
+   printf("temp %lu\n", temp);
+   printf("pduLen %i\n", pduLen);
+   printf("textStart %lu\n", textStart);
+   printf("dataStart %lu\n", dataStart);
+   printf("CHAT_HEADER_LEN %i\n", CHAT_HEADER_LEN);
+   printf("textLen %i\n", textLen);
+   */
+
+   return textLen;
 }
 
 // Finds the length of the text message

@@ -32,6 +32,7 @@
 //#define PRINT
 //#define TEST
 
+
 void processSockets(int mainServerSocket, Node** head);
 char* recvFromClient(int clientSocket, Node** head);
 void addNewClient(int mainServerSocket);
@@ -41,15 +42,49 @@ void addToList(Node** head, char* strHandle, int socketNum);
 void createStrHandle(char* handle, uint8_t handleLen, char* strHandle);
 int checkClient(int socketNum, char* strHandle, Node** head);
 
-/*
-void test(Node** head, char* name, int i){
-   addToList(head, name, i);
-}
+void fillFlag11(char* message, int len);
 
-void t(Node** head){
-   printLinkedList(*head);
+void testfillFlag11(){
+   char flag11msg[5];
+   void* data;
+   uint32_t length;
+
+   printf("TEST: fillFlag11\n");
+
+   fillFlag11(flag11msg, 1);
+   TEST_INT(flag11msg[0], 11);
+
+   data = flag11msg;
+   data += sizeof(char);
+   length = ntohl(*((uint32_t*)data));
+   TEST_UNSIGNED(length, 1);
+
+   fillFlag11(flag11msg, 2);
+   TEST_INT(flag11msg[0], 11);
+
+   data = flag11msg;
+   data += sizeof(char);
+   length = ntohl(*((uint32_t*)data));
+   TEST_UNSIGNED(length, 2);
+
+   fillFlag11(flag11msg, 3);
+   TEST_INT(flag11msg[0], 11);
+
+   data = flag11msg;
+   data += sizeof(char);
+   length = ntohl(*((uint32_t*)data));
+   TEST_UNSIGNED(length, 3);
+
+   fillFlag11(flag11msg, 0);
+   TEST_INT(flag11msg[0], 11);
+
+   data = flag11msg;
+   data += sizeof(char);
+   length = ntohl(*((uint32_t*)data));
+   TEST_UNSIGNED(length, 0);
+
+   printf("Finish: fillFlag11\n");
 }
-*/
 
 int main(int argc, char *argv[])
 {
@@ -60,6 +95,7 @@ int main(int argc, char *argv[])
    testfindTextLen();
    testfindTextStart();
    testgetText();
+   testfillFlag11();
 #endif
 
 #ifndef TEST
@@ -198,13 +234,14 @@ int checkClient(int socketNum, char* strHandle, Node** head){
 }
 
 
-void printPacketData(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum, char* handle){
+void printPacketData(uint8_t flag, char* databuf, uint16_t PDU_Len, int socketNum, char* handle){
    printf("Packet from Client:\n");
-   printf("\tFlag: %i\tHandle: %s\tHandle Len: %i\tPDU_Len: %d\tSocket: %i\n\n", flag, handle, dataBuf[1], PDU_Len, socketNum);
+   printf("\tFlag: %i\tHandle: %s\tHandle Len: %i\tPDU_Len: %d\tSocket: %i\n\n", flag, handle, databuf[1], PDU_Len, socketNum);
 }
 
 
-// Fills in the new message with the data
+// Fills in the new message with chat header then the additional message
+// components
 void createNewMessage(uint8_t flag, int PDU_Len, char* message, char* newMessage){
    fillChatHeader(newMessage, flag, PDU_Len);
    newMessage += 3;
@@ -224,22 +261,78 @@ void printMessage(char* msg, int len){
    printf("\n");;
 }
 
-void sendFlag7(int sendSocket, int destSocket, char* destHandle){
+void sendFlag7(int sendSocket, char* destHandle){
    int pdulen = 0;
    uint8_t destLen = strlen(destHandle);
-   char message[MAX_HANDLE_SIZE + HANDLE_BYTE];
-   char* mesPtr = message;
+   char databuf[MAX_HANDLE_SIZE + HANDLE_BYTE];
+   char* mesPtr = databuf;
    char newMessage[MAX_HANDLE_SIZE + HANDLE_BYTE];
 
-   message[0] = destLen;
-   mesPtr += 1;
+   //databuf[0] = Flag which will be filled in by createNewMessage
+   databuf[1] = destLen;
+   mesPtr += 2;
    memcpy(mesPtr, destHandle, destLen);
+   mesPtr[destLen] = '\0';
 
    pdulen = CHAT_HEADER_LEN + HANDLE_BYTE + destLen;
+#ifdef PRINT
+   printf("Pdulen %i\n", pdulen);
+#endif
 
-   createNewMessage(FLAG_7, pdulen, message, newMessage);
+   createNewMessage(FLAG_7, pdulen, databuf, newMessage);
 
-   safeSend(destSocket, newMessage, pdulen);
+   safeSend(sendSocket, newMessage, pdulen);
+}
+
+// Sends the %B packet
+void sendB(char* message, Node** head, int PDU_Len, uint8_t flag){
+   char destHandle[MAX_HANDLE_SIZE + 1];
+   char sendHandle[MAX_HANDLE_SIZE + 1];
+   int handleNum = 0;
+   int sendSocket = 0;
+   int i = 0;
+   char newMessage[PDU_Len];
+   Node* node;
+
+   memset(destHandle, 0, MAX_HANDLE_SIZE + 1);
+   memset(sendHandle, 0, MAX_HANDLE_SIZE + 1);
+   memset(newMessage, 0, PDU_Len);
+
+   findSender(message, sendHandle);
+#ifdef PRINT
+   printf("Sender %s\n", sendHandle);
+#endif
+   handleNum = findListLength(*head);
+#ifdef PRINT
+   printf("Handle Numbers %i\n", handleNum);
+#endif
+
+   // Set the message to the right spot
+   //message +=  FLAGBYTE + SEND_HANDLE_BYTE + strlen(sendHandle);
+
+   sendSocket = findSocket(*head, sendHandle);
+
+   // One indexed for the findNodeIndex
+   for(i = 0; i < handleNum; i ++){
+      node = findNodeIndex(*head, i);
+#ifdef PRINT
+      printf("Socket %i\n", node->socketNum);
+      printf("Handle %s\n", node->handle);
+#endif
+      createNewMessage(flag, PDU_Len, message, newMessage);
+      if(node->socketNum == 0){
+#ifdef PRINT
+         printf("User %s doesn't exist\n", node->handle);
+#endif
+         sendFlag7(sendSocket, node->handle);
+      }
+      else if(node->socketNum == sendSocket){
+         //Skip sending message back to sender
+      }
+      else{
+         safeSend(node->socketNum, newMessage, PDU_Len);
+      }
+   }
 }
 
 // Sends the %M packet
@@ -257,7 +350,6 @@ void sendM(char* message, Node** head, int PDU_Len, uint8_t flag){
 
    findTextLen(message, PDU_Len);
    findSender(message, sendHandle);
-   findSender(message, sendHandle);
    handleNum = findNumHandles(message, sendHandle);
 
    sendSocket = findSocket(*head, sendHandle);
@@ -271,8 +363,10 @@ void sendM(char* message, Node** head, int PDU_Len, uint8_t flag){
 #endif
       createNewMessage(flag, PDU_Len, message, newMessage);
       if(destSocket == 0){
+#ifdef PRINT
          printf("User %s doesn't exist\n", destHandle);
-         sendFlag7(sendSocket, destSocket, destHandle);
+#endif
+         sendFlag7(sendSocket, destHandle);
       }
       else{
          safeSend(destSocket, newMessage, PDU_Len);
@@ -280,59 +374,128 @@ void sendM(char* message, Node** head, int PDU_Len, uint8_t flag){
    }
 }
 
+void sendE(int socketNum, Node** head){
+   Node* node;
+   sendFlag(socketNum, FLAG_9);
+   node = findNode(*head, socketNum);
+   *head = removeNode(*head, node);
+   removeClient(socketNum);
+}
+
+void fillFlag11(char* message, int len){
+   uint32_t length = htonl(len);
+   message[0] = FLAG_11;
+   message += 1;
+   memcpy(message, &length, 4);
+}
+
+void sendFlag11(int socketNum, Node** head){
+   int len;
+   char flag11msg[FLAG_11_LEN - 2];
+   char newflag11msg[FLAG_11_LEN];
+
+   len = findListLength(*head);
+   fillFlag11(flag11msg, len);
+
+   // Create Flag_11 Message
+   createNewMessage(FLAG_11, FLAG_11_LEN, flag11msg, newflag11msg);
+   safeSend(socketNum, newflag11msg, FLAG_11_LEN);
+}
+
+// Fills the flag12msg buffer and returns an int representing the packet size
+int fillFlag12(char* message, char* handle){
+   int len = strlen(handle);
+   message[0] = FLAG_12;
+   message[1] = len;
+   message += 2;
+
+   memcpy(message, handle, len);
+   return (FLAGBYTE + HANDLE_BYTE + len);
+}
+
+// Sends a flag 12 packet for each client in the head list
+void sendFlag12(int socketNum, Node** head){
+   int listlen;
+   int i = 0;
+   int sendlen = 0;
+   Node* node;
+   char flag12msg[MAX_HANDLE_SIZE + HANDLE_BYTE + FLAGBYTE];
+   char newflag12msg[MAX_HANDLE_SIZE + HANDLE_BYTE + CHAT_HEADER_LEN];
+
+   memset(flag12msg, 0, MAX_HANDLE_SIZE + HANDLE_BYTE + FLAGBYTE);
+
+   listlen = findListLength(*head);
+
+   for(i = 0; i < listlen; i ++){
+#ifdef PRINT
+      printf("list len %i\n", listlen);
+#endif
+      node = findNodeIndex(*head, i);
+
+      sendlen = fillFlag12(flag12msg, node->handle);
+
+      // Create Flag_12 Message
+      createNewMessage(FLAG_12, sendlen + HEADER_LEN, flag12msg, newflag12msg);
+      safeSend(socketNum, newflag12msg, sendlen + HEADER_LEN);
+   }
+}
+
+void sendL(int socketNum, Node** head){
+   sendFlag11(socketNum, head);
+   sendFlag12(socketNum, head);
+   sendFlag(socketNum, FLAG_13);
+}
+
 // Responds to an incoming packet received from the client
-// dataBuf is the buffer of data after the Chat PDU Length
-// I removed the messagelength since it is really only used for debugging
-void packetResponse(uint8_t flag, char* dataBuf, uint16_t PDU_Len, int socketNum, Node** head)
+// databuf is the buffer of data after the Chat PDU Length
+void packetResponse(uint8_t flag, char* databuf, uint16_t PDU_Len, int socketNum, Node** head)
 {
    char* handle = NULL;
    uint8_t handleLen = 0;
    char strHandle[MAX_HANDLE_SIZE + 1];  // Used for the Handle, 101 becuase one is used for \0
-   Node* node;
 
    switch(flag)
    {
       case FLAG_1:
-         handleLen = dataBuf[1];
-
+         handleLen = databuf[1];
 #ifdef PRINT
          printf("handleLen = %i\n", handleLen);
 #endif
-         // Setting dataBuf to handle
-         handle = dataBuf + sizeof(char)*2;
-
+         // Setting databuf to handle
+         handle = databuf + sizeof(char)*2;
          // Copy handle data to strHandle and add a Null character
          createStrHandle(handle, handleLen, strHandle);
-
 #ifdef PRINT
          printf("handle = %s\t handleLen = %i\n", handle, handleLen);
          printf("strHandle = %s\t strlen(strHandle) = %i\n", strHandle, (int)strlen(strHandle));
-#endif
-         printPacketData(flag, dataBuf, PDU_Len, socketNum, strHandle);
-
-#ifdef PRINT
+         printPacketData(flag, databuf, PDU_Len, socketNum, strHandle);
          printf("handle: %s, strHandle: %s\n", handle, strHandle);
 #endif
          checkClient(socketNum, strHandle, head);
          break;
       case FLAG_4:
+#ifdef PRINT
+         printf("M Flag 4 received\n");
+#endif
+         sendB(databuf, head, PDU_Len, flag);
          break;
       case FLAG_5:
 #ifdef PRINT
          printf("M Flag 5 received\n");
 #endif
-         sendM(dataBuf, head, PDU_Len, flag);
+         sendM(databuf, head, PDU_Len, flag);
          break;
       case FLAG_8:
 #ifdef PRINT
          printf("E Flag 8 received\n");
 #endif
-         sendFlag(socketNum, FLAG_9);
-         node = findNode(*head, socketNum);
-         *head = removeNode(*head, node);
-         removeClient(socketNum);
+         sendE(socketNum, head);
          break;
       case FLAG_10:
+#ifdef PRINT
+         printf("L Flag 10 received\n");
+#endif
+         sendL(socketNum, head);
          break;
    }
 }
@@ -343,7 +506,7 @@ char* recvFromClient(int clientSocket, Node** head)
 	int messageLen = 0;
    
    // Stuff Caleb Added
-   char* dataBuf = NULL;
+   char* databuf = NULL;
    uint16_t PDU_Len = 0;
    uint8_t flag = 0;
    Node* node = NULL;
@@ -366,15 +529,15 @@ char* recvFromClient(int clientSocket, Node** head)
 
    PDU_Len = ntohs(((uint16_t*)buf)[0]);
 
-   dataBuf = buf + sizeof(char)*2;
+   databuf = buf + sizeof(char)*2;
 
    //now get the data from the client_socket (message includes null)
-   if ((messageLen = recv(clientSocket, dataBuf, PDU_Len - HEADER_LEN, MSG_WAITALL)) < 0)
+   if ((messageLen = recv(clientSocket, databuf, PDU_Len - HEADER_LEN, MSG_WAITALL)) < 0)
    {
       perror("recv call");
       exit(-1);
    }
-   flag = dataBuf[0];
+   flag = databuf[0];
 
 #ifdef PRINT
    printf("PDU_LEN %i\n", PDU_Len);
@@ -382,8 +545,8 @@ char* recvFromClient(int clientSocket, Node** head)
    printf("messageLen %i\n", messageLen);
 #endif
 
-   packetResponse(flag, dataBuf, PDU_Len, clientSocket, head);
-   return dataBuf;
+   packetResponse(flag, databuf, PDU_Len, clientSocket, head);
+   return databuf;
 }
 
 void addNewClient(int mainServerSocket)

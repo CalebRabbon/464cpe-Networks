@@ -2,6 +2,7 @@
 
 #define TRUE 1
 #define FALSE 0
+//#define PRINT
 
 // Caleb's malloc to stop errors
 void* cMalloc(size_t size){
@@ -12,6 +13,19 @@ void* cMalloc(size_t size){
       exit(EXIT_FAILURE);
    }
    return val;
+}
+
+int findListLength(Node* head){
+   int i = 0;
+   if(head == NULL){
+      return i;
+   }
+   while(head != NULL){
+      i++;
+      // Move head along
+      head = head->next;
+   }
+   return i;
 }
 
 void printNode(Node* n){
@@ -61,16 +75,8 @@ int available(Node* head, char* handle){
 
 
    while(curVal != NULL){
-      /*
-      printf("strlen handle %i\n", (int)strlen(handle));
-      printf("strlen curVal->handle %i\n", (int)strlen(curVal->handle));
-      printf("curVal->handle: |%s|\t handle |%s|\n", curVal->handle, handle);
-      printf("strcmp(curVal->handle,handle) = %i\n", strcmp(curVal->handle,handle));
-      printf("strcmp((curVal->handle),handle) = %i\n", strcmp((curVal->handle),handle));
-      */
       if(strcmp(curVal->handle,handle) == 0){
          // Found the node
-         // printf("Could not add Handle: '%s' becuase it already Exists\n", curVal->handle);
          return FALSE;
       }
       // Move curVal along
@@ -87,17 +93,8 @@ Node* addNode(Node* head, Node* node){
    }
 
    if(available(head, node->handle)){
-      /*
-      printf("availabe\n");
-      printNode(head);
-      printNode(node);
-      */
       Node* prevHead = head;
       head = node;
-      /*
-      printf("printing the new head\n");
-      printNode(head);
-      */
       head->next = prevHead;
    }
 
@@ -120,10 +117,35 @@ int findSocket(Node* head, char* handle){
    return 0;
 }
 
+// Finds the node at the designated index
+// Index starts at 0 for the first node
+Node* findNodeIndex(Node* head, int index){
+   int i = 0;
+
+   if(head == NULL){
+#ifdef PRINT
+      printf("Your head is %s. Please use a non NULL head\n", (char*)head);
+#endif
+      return head;
+   }
+
+   for(i = 0; i < index; i ++){
+      if(head == NULL){
+         fprintf(stderr, "Index %i is out of range\n", index);
+         return NULL;
+      }
+      head = head->next;
+   }
+
+   return head;
+}
+
 // Finds the node associated with the socket number
 Node* findNode(Node* head, int socketNum){
    if(head == NULL){
+#ifdef PRINT
       printf("Your head is %s. Please use a non NULL head\n", (char*)head);
+#endif
       return head;
    }
 
@@ -137,7 +159,6 @@ Node* findNode(Node* head, int socketNum){
    return head;
 }
 
-
 // Searches through the list and removes the node and returns the new head of
 // the list
 Node* removeNode(Node* head, Node* node){
@@ -145,22 +166,30 @@ Node* removeNode(Node* head, Node* node){
    Node* temp = NULL;
    Node* prev = NULL;
    if(node == NULL){
+#ifdef PRINT
       printf("Your node is %s. Please remove a non NULL node\n", (char*)node);
+#endif
       return head;
    }
 
    if(head == NULL){
+#ifdef PRINT
       printf("Your head is %s. There are no nodes in your list\n", (char*)head);
+#endif
       return head;
    }
 
    if(strcmp(head->handle,node->handle) == 0){
       // Removing the head of list
       temp = curVal;
+#ifdef PRINT
       printf("Removing the head: '%s' from the handle list\n", temp->handle);
+#endif
       head = node->next;
       free(temp);
+#ifdef PRINT
       printf("Head: '%p' \n", (void*)head);
+#endif
       return head;
    }
 
@@ -174,9 +203,13 @@ Node* removeNode(Node* head, Node* node){
       // Removing inner node
       if(strcmp(curVal->handle,node->handle) == 0){
          // Found the node
+#ifdef PRINT
          printf("Removed %s from the handle list\n", curVal->handle);
+#endif
          prev->next = node->next;
+#ifdef PRINT
          printNode(node);
+#endif
          free(curVal);
          return head;
       }
@@ -186,7 +219,9 @@ Node* removeNode(Node* head, Node* node){
       // Move curVal along
       curVal = curVal->next;
    }
+#ifdef PRINT
    printf("Handle could not be removed because it does not exist\n");
+#endif
    return head;
 }
 
