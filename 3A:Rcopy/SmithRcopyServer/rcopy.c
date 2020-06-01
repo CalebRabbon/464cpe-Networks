@@ -6,13 +6,15 @@
 #include "cpe464.h"
 #include "args.h"
 
+#define HEADERLEN 7
+
 typedef enum State STATE;
 enum State
 {
    DONE, FILENAME, RECV_DATA, FILE_OK, START_STATE
 };
-void processFile(char * argv[]);
-STATE start_state(char ** argv, Connection * server, uint32_t * clientSeqNum);
+void stateMachine(Args* args);
+STATE start_state(Args* args, Connection * server, uint32_t * clientSeqNum);
 STATE filename(char * fname, int32_t buf_size, Connection * server);
 STATE recv_data(int32_t output_file, Connection * server, uint32_t * clientSeqNum);
 STATE file_ok(int * outputFileFd, char * outputFileName);
@@ -21,10 +23,13 @@ void check_args(int argc, char ** argv);
 int main ( int argc, char *argv[] )
 {
    Args args;
+
    checkArgs(argc, argv, &args);
-   //check_args(argc, argv);
+
    sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
-   processFile(argv);
+
+   stateMachine(&args);
+
    return 0;
 }
 
@@ -52,9 +57,9 @@ void printState(STATE state){
    }
 }
 
-void processFile(char * argv[])
+void stateMachine(Args* args)
 {
-   // argv needed to get file names, server name and server port number
+   // Args* args needed to get file names, server name and server port number
    Connection server;
    uint32_t clientSeqNum = 0;
    int32_t output_file_fd = 0;
@@ -66,15 +71,15 @@ void processFile(char * argv[])
       {
          case START_STATE:
             printState(state);
-            state = start_state(argv, &server, &clientSeqNum);
+            state = start_state(args, &server, &clientSeqNum);
             break;
          case FILENAME:
             printState(state);
-            state = filename(argv[1], atoi(argv[3]), &server);
+            state = filename(args->fromFile, args->bufferSize, &server);
             break;
          case FILE_OK:
             printState(state);
-            state = file_ok(&output_file_fd, argv[2]);
+            state = file_ok(&output_file_fd, args->toFile);
             break;
          case RECV_DATA:
             printState(state);
@@ -91,17 +96,32 @@ void processFile(char * argv[])
    }
 }
 
-STATE start_state(char ** argv, Connection * server, uint32_t * clientSeqNum)
+void sendFlag(uint8_t * buf, uint32_t dataLen, Connection * server,
+      uint8_t flag, uint32_t seq_num, uint8_t * packet){
+   /* Send the setup flag */
+   // put in buffer size (for sending data) and setup flag
+   printIPv6Info(&server->remote);
+   send_buf(buf, dataLen + HEADERLEN, server, flag, seq_num, packet);
+}
+
+
+STATE start_state(Args* args, Connection * server, uint32_t * clientSeqNum)
 {
    // Returns FILENAME if no error, otherwise DONE (to many connects, cannot
    // connect to sever)
    uint8_t packet[MAX_LEN];
    uint8_t buf[MAX_LEN];
-   int fileNameLen = strlen(argv[1]);
+   int fileNameLen = strlen(args->fromFile);
    STATE returnValue = FILENAME;
    uint32_t bufferSize = 0;
+   /*
+   static int retryCount = 0;
+   uint32_t seq_num = 0;
+   uint32_t dataLen = 0;
+   int32_t recv_check = 0;
+   uint8_t flag = 0;
+   */
 
-   printf("Working inside start_state\n");
    // if we have connected to server before, close it before reconnect
    /* This was in Prof Smith's code but it just closes the client before sending
     * any data
@@ -110,28 +130,60 @@ STATE start_state(char ** argv, Connection * server, uint32_t * clientSeqNum)
       close(server->sk_num);
    }
    */
-   if (udpClientSetup(argv[5], atoi(argv[6]), server) < 0)
+
+   /* Try connecting to the server */
+   if (udpClientSetup(args->remoteMachine, args->remotePort, server) < 0)
    {
       // could not connect to server= DONE;
       returnValue = DONE;
    }
-   else
-   {
+   else {
+      /* Send the file name */
       // put in buffer size (for sending data) and filename
-      bufferSize = htonl(atoi(argv[3]));
+      bufferSize = htonl(args->bufferSize);
       memcpy(buf, &bufferSize, SIZE_OF_BUF_SIZE);
-      memcpy(&buf[SIZE_OF_BUF_SIZE], argv[1], fileNameLen);
+      memcpy(&buf[SIZE_OF_BUF_SIZE], args->fromFile, fileNameLen);
       printIPv6Info(&server->remote);
       send_buf(buf, fileNameLen + SIZE_OF_BUF_SIZE, server, FNAME, *clientSeqNum, packet);
       (*clientSeqNum)++;
       returnValue = FILENAME;
    }
+
    return returnValue;
+
+   /* Send the setup flag */
+   // put in buffer size (for sending data) and setup flag
+   //dataLen = 0;
+   //flag = FSETUP;
+   //sendFlag(buf, dataLen, server, flag, seq_num, packet);
+
+   ///* Process the setup flag */
+   //if ((returnValue = processSelect(server, &retryCount, START_STATE, FILENAME, DONE)) ==
+   //      FILENAME)
+   //{
+   //   recv_check = recv_buf(packet, MAX_LEN, server->sk_num, server, &flag, &seq_num);
+   //   /* check for bit flip */
+   //   if (recv_check == CRC_ERROR)
+   //   {
+   //      returnValue = START_STATE;
+   //   }
+   //   else if (flag == FNAME_BAD)
+   //   {
+   //      printf("File %s not found\n", args->fromFile);
+   //      returnValue = DONE;
+   //   }
+   //   else if (flag == DATA)
+   //   {
+   //      // file yes/no packet lost - instead its a data packet
+   //      returnValue = FILE_OK;
+   //   }
+   //}
 }
+
 STATE filename(char * fname, int32_t buf_size, Connection * server)
 {
    // Send the file name, get response
-   // // return START_STATE if no reply from server, DONE if bad filename,
+   //   return START_STATE if no reply from server, DONE if bad filename,
    // FILE_OK otherwise
    int returnValue = START_STATE;
    uint8_t packet[MAX_LEN];
@@ -139,8 +191,7 @@ STATE filename(char * fname, int32_t buf_size, Connection * server)
    uint32_t seq_num = 0;
    int32_t recv_check = 0;
    static int retryCount = 0;
-   if ((returnValue = processSelect(server, &retryCount, START_STATE, FILE_OK, DONE)) ==
-         FILE_OK)
+   if ((returnValue = processSelect(server, &retryCount, FILENAME, FILE_OK, DONE)) == FILE_OK)
    {
       recv_check = recv_buf(packet, MAX_LEN, server->sk_num, server, &flag, &seq_num);
       /* check for bit flip */
@@ -161,6 +212,7 @@ STATE filename(char * fname, int32_t buf_size, Connection * server)
    }
    return(returnValue);
 }
+
 STATE file_ok(int * outputFileFd, char * outputFileName)
 {
    STATE returnValue = DONE;

@@ -23,6 +23,7 @@ STATE timeout_on_eof_ack(Connection * client, uint8_t * packet, int32_t packet_l
 STATE wait_on_ack(Connection * client);
 STATE wait_on_eof_ack(Connection * client);
 int processArgs(int argc, char ** argv);
+
 int main ( int argc, char *argv[])
 {
    int32_t serverSocketNumber = 0;
@@ -34,6 +35,7 @@ int main ( int argc, char *argv[])
    process_server(serverSocketNumber);
    return 0;
 }
+
 void process_server(int serverSocketNumber)
 {
    pid_t pid = 0;

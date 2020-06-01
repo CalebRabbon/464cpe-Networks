@@ -75,6 +75,9 @@ int udpServerSetup(int portNumber)
 }
 int udpClientSetup(char * hostName, int portNumber, Connection * connection)
 {
+   printf("hostname");
+   printf("hostname %s\n", hostName);
+
    memset(&connection->remote, 0, sizeof(struct sockaddr_in6));
    connection->sk_num = 0;
    connection->len = sizeof(struct sockaddr_in6);

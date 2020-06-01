@@ -15,6 +15,9 @@
 #include "srej.h"
 #include "checksum.h"
 
+// buf is a buffer to the data being sent
+// len is the length of buf
+// packet is a buffer of the entire packet being sent
 int32_t send_buf(uint8_t * buf, uint32_t len, Connection * connection,
       uint8_t flag, uint32_t seq_num, uint8_t * packet)
 {
@@ -73,14 +76,20 @@ int retrieveHeader(uint8_t * data_buf, int recv_len, uint8_t * flag, uint32_t * 
    }
    return returnValue;
 }
+
+// client             - If used in rcopy the client is the server
+// retryCount         - How many times to retry the sending before timing out
+// selectTimeoutState - The state returned if select times out
+// dataReadyState     - The state returned if the data is safely read
+// doneState          - The state returned if the the MAX_TRIES (10) is exceeded
 int processSelect(Connection * client, int * retryCount,
       int selectTimeoutState, int dataReadyState, int doneState)
 {
    // Returns:
-   // // doneState if calling this function exceeds MAX_TRIES
-   // // selectTimeoutState if the select times out without receiving anything
-   // // dataReadyState if select() returns indicating that data is ready for
-   // read
+   //    doneState if calling this function exceeds MAX_TRIES
+   //    selectTimeoutState if the select times out without receiving anything
+   //    dataReadyState if select() returns indicating that data is ready for read
+
    int returnValue = dataReadyState;
    (*retryCount)++;
    if (*retryCount > MAX_TRIES)
@@ -92,7 +101,7 @@ int processSelect(Connection * client, int * retryCount,
    {
       if (select_call(client->sk_num, SHORT_TIME, 0, NOT_NULL) == 1)
       {
-         *retryCount = 0;
+        *retryCount = 0;
          returnValue = dataReadyState;
       }
       else

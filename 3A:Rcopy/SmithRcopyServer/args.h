@@ -11,11 +11,11 @@
 typedef struct Args{
    char* fromFile;
    char* toFile;
+   char* remoteMachine;
    int windowSize;
    int bufferSize;
-   float percentError;
-   char* remoteMachine;
    int remotePort;
+   float percentError;
 } Args;
 
 void printArgs(Args* args);
