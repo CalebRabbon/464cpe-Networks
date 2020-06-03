@@ -5,6 +5,7 @@
 #include "networks.h"
 #include "srej.h"
 #include "cpe464.h"
+
 typedef enum State STATE;
 enum State
 {
@@ -15,7 +16,7 @@ void process_server(int serverSocketNumber);
 void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
       client);
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
-      int32_t * buf_size);
+      int32_t * win_size, int32_t * buf_size);
 STATE send_data(Connection * client, uint8_t * packet, int32_t * packet_len, int32_t data_file,
       int32_t buf_size, uint32_t * seq_num);
 STATE timeout_on_ack(Connection * client, uint8_t * packet, int32_t packet_len);
@@ -29,7 +30,7 @@ int main ( int argc, char *argv[])
    int32_t serverSocketNumber = 0;
    int portNumber = 0;
    portNumber = processArgs(argc, argv);
-   sendtoErr_init(atof(argv[1]), DROP_ON, FLIP_ON, DEBUG_ON, RSEED_ON);
+   sendtoErr_init(atof(argv[1]), DROP_OFF, FLIP_OFF, DEBUG_ON, RSEED_OFF);
    /* set up the main server port */
    serverSocketNumber = udpServerSetup(portNumber);
    process_server(serverSocketNumber);
@@ -74,6 +75,14 @@ void process_server(int serverSocketNumber)
       }
    }
 }
+
+/*
+void printFileName(uint8_t * packet){
+   packet += 7;
+   printf("buf_size = %i\n", ntohl(((uint32_t*)packet)[0]));
+}
+*/
+
 void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
       client)
 {
@@ -81,6 +90,7 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
    int32_t data_file = 0;
    int32_t packet_len = 0;
    uint8_t packet[MAX_LEN];
+   int32_t win_size = 0;
    int32_t buf_size = 0;
    uint32_t seq_num = START_SEQ_NUM;
    while (state != DONE)
@@ -91,7 +101,7 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
             state = FILENAME;
             break;
          case FILENAME:
-            state = filename(client, buf, recv_len, &data_file, &buf_size);
+            state = filename(client, buf, recv_len, &data_file, &win_size, &buf_size);
             break;
          case SEND_DATA:
             state = send_data(client, packet, &packet_len, data_file, buf_size, &seq_num);
@@ -119,7 +129,7 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
 }
 
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
-      int32_t * buf_size)
+      int32_t * win_size, int32_t * buf_size)
 {
    uint8_t response[1];
    char fname[MAX_LEN];
@@ -127,9 +137,17 @@ STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * d
 
    // extract buffer sized used for sending data and also filename
 
-   memcpy(buf_size, buf, SIZE_OF_BUF_SIZE);
+   memcpy(win_size, buf, SIZE_OF_WIN_SIZE);
+   *win_size = ntohl(*win_size);
+   printf("WinSize = %i\n", *win_size);
+
+   memcpy(buf_size, &buf[SIZE_OF_WIN_SIZE], SIZE_OF_BUF_SIZE);
    *buf_size = ntohl(*buf_size);
-   memcpy(fname, &buf[sizeof(*buf_size)], recv_len - SIZE_OF_BUF_SIZE);
+   printf("BufSize = %i\n", *buf_size);
+
+   memcpy(fname, &buf[sizeof(*win_size) + sizeof(*buf_size)], recv_len - SIZE_OF_WIN_SIZE - SIZE_OF_BUF_SIZE);
+   printf("FName = %s\n", fname);
+
    /* Create client socket to allow for processing this particular client */
    client->sk_num = safeGetUdpSocket();
    if (((*data_file) = open(fname, O_RDONLY)) < 0)
@@ -143,6 +161,7 @@ STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * d
    }
    return returnValue;
 }
+
 STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int32_t data_file,
       int buf_size, uint32_t * seq_num)
 {
@@ -168,6 +187,7 @@ STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int3
    }
    return returnValue;
 }
+
 STATE wait_on_ack(Connection * client)
 {
    STATE returnValue = DONE;

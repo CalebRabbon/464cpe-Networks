@@ -12,8 +12,8 @@ typedef struct Args{
    char* fromFile;
    char* toFile;
    char* remoteMachine;
-   int windowSize;
-   int bufferSize;
+   int32_t windowSize; // In host order
+   int32_t bufferSize; // In host order
    int remotePort;
    float percentError;
 } Args;
