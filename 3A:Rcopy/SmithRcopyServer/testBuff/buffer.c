@@ -15,16 +15,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include "srej.h"
-
-#define HEADERLEN 7
-#define EMPTY 0
-#define FULL 1
-
-typedef struct windowelement WindowElement;
-struct windowelement{
-   uint8_t pdu[MAX_LEN];
-   int flag; // Either EMPTY or FULL
-};
+#include "buffer.h"
 
 uint8_t * createPDU(uint32_t sequenceNumber, uint8_t flag, uint8_t * payload, int dataLen)
 {
@@ -161,7 +152,6 @@ void deleteElement(WindowElement element, WindowElement* window, int windowSize)
    window->flag = EMPTY;
 }
 
-/*
 int main ( int argc, char *argv[] )
 {
    int windowSize = 5;
@@ -208,4 +198,3 @@ int main ( int argc, char *argv[] )
 
    return 0;
 }
-*/

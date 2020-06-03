@@ -5,6 +5,7 @@
 #include "srej.h"
 #include "cpe464.h"
 #include "args.h"
+#include "buffer.h"
 
 #define HEADERLEN 7
 //#define PRINT
@@ -73,6 +74,7 @@ void stateMachine(Args* args)
    uint32_t expSeqNum = 0;
    int32_t output_file_fd = 0;
    int8_t srej_fg = 0;
+   WindowElement* window = createWindow(args->windowSize);
 
    STATE state = START_STATE;
    while (state != DONE)
