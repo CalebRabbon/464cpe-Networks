@@ -10,18 +10,57 @@
 #define HEADERLEN 7
 //#define PRINT
 
+// Used to store the variables passed between STATES
+typedef struct statevars StateVars;
+struct statevars{
+   uint8_t data_buf[MAX_LEN];
+   int32_t data_len;
+   int srej_fg;
+   int expSeqNum;
+   int32_t output_file;
+};
+
+/*
+char* convertToString(char* string, uint8_t *databuf, uint32_t data_len){
+   if(data_len == 0){
+      return NULL;
+   }
+   memcpy(string, databuf, data_len);
+   string[data_len] = '\0';
+   return string;
+}
+*/
+
+void createStateVars(StateVars* p){
+   memset(p->data_buf, 0, MAX_LEN);
+   p->data_len = 0;
+   p->srej_fg = 0;
+   p->expSeqNum = 0;
+   p->output_file = 0;
+}
+
+void printStateVars(StateVars* p){
+   char str[MAX_LEN];
+   memset(str, 0, MAX_LEN);
+   printf("Print Vars\n");
+   printf("\tdata_buf: %s\n", convertToString(str, p->data_buf, p->data_len));
+   printf("\tdata_len: %i\n", p->data_len);
+   printf("\tsrej_fg : %i\n", p->srej_fg);
+   printf("\texpSeqNum: %i\n", p->expSeqNum);
+   printf("\toutput_file: %i\n", p->output_file);
+}
+
 typedef enum State STATE;
 enum State
 {
    DONE, FILENAME, RECV_DATA, FILE_OK, START_STATE, CHECK_BUFFER, CHECK_SREJ_FG
 };
 void stateMachine(Args* args);
-STATE start_state(Args* args, Connection * server, uint32_t * expSeqNum);
-STATE filename(char * fname, int32_t buf_size, Connection * server, Args* args);
-STATE recv_data(int32_t output_file, Connection * server, uint32_t * expSeqNum, int32_t win_size, int32_t buf_size, int8_t* srej_fg);
-STATE check_buffer(int32_t output_file, Connection * server, uint32_t * expSeqNum, int32_t win_size, int32_t buf_size);
-STATE check_srej_fg(int32_t output_file, Connection * server, uint32_t * expSeqNum, int32_t win_size, int32_t buf_size, int8_t* srej_fg);
-STATE file_ok(int * outputFileFd, char * outputFileName);
+STATE start_state(StateVars* sv, Args* args, Connection * server);
+STATE filename(char * fname, Connection * server, Args* args);
+STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* window);
+STATE check_buffer(StateVars* sv, Connection * server, Args* args, WindowElement* window);
+STATE file_ok(StateVars* sv, char * outputFileName);
 void check_args(int argc, char ** argv);
 
 int main ( int argc, char *argv[] )
@@ -55,9 +94,6 @@ void printState(STATE state){
       case CHECK_BUFFER:
          printf("State = CHECK_BUFFER\n");
          break;
-      case CHECK_SREJ_FG:
-         printf("State = CHECK_SREJ_FG\n");
-         break;
       case DONE:
          printf("State = DONE\n");
          break;
@@ -71,10 +107,10 @@ void stateMachine(Args* args)
 {
    // Args* args needed to get file names, server name and server port number
    Connection server;
-   uint32_t expSeqNum = 0;
-   int32_t output_file_fd = 0;
-   int8_t srej_fg = 0;
    WindowElement* window = createWindow(args->windowSize);
+   StateVars sv;
+   createStateVars(&sv);
+   printStateVars(&sv);
 
    STATE state = START_STATE;
    while (state != DONE)
@@ -83,28 +119,24 @@ void stateMachine(Args* args)
       {
          case START_STATE:
             printState(state);
-            state = start_state(args, &server, &expSeqNum);
+            state = start_state(&sv, args, &server);
             break;
          case FILENAME:
             printState(state);
-            state = filename(args->fromFile, args->bufferSize, &server, args);
+            state = filename(args->fromFile, &server, args);
             break;
          case FILE_OK:
             printState(state);
-            state = file_ok(&output_file_fd, args->toFile);
+            state = file_ok(&sv, args->toFile);
             break;
          case RECV_DATA:
             printState(state);
-            state = recv_data(output_file_fd, &server, &expSeqNum, args->windowSize, args->bufferSize, &srej_fg);
+            //printStateVars(&sv);
+            state = recv_data(&sv, &server, args, window);
             break;
          case CHECK_BUFFER:
             printState(state);
-            state = check_buffer(output_file_fd, &server, &expSeqNum, args->windowSize, args->bufferSize);
-            break;
-         case CHECK_SREJ_FG:
-            printState(state);
-            state = check_srej_fg(output_file_fd, &server, &expSeqNum, args->windowSize, args->bufferSize, &srej_fg);
-            break;
+            state = check_buffer(&sv, &server, args, window);
             break;
          case DONE:
             printState(state);
@@ -125,7 +157,7 @@ void sendFlag(uint8_t * buf, uint32_t dataLen, Connection * server,
    send_buf(buf, dataLen + HEADERLEN, server, flag, seq_num, packet);
 }
 
-STATE start_state(Args* args, Connection * server, uint32_t * expSeqNum)
+STATE start_state(StateVars* sv, Args* args, Connection * server)
 {
    // Returns FILENAME if no error, otherwise DONE (to many connects, cannot
    // connect to sever)
@@ -165,15 +197,15 @@ STATE start_state(Args* args, Connection * server, uint32_t * expSeqNum)
 #ifdef PRINT
       printIPv6Info(&server->remote);
 #endif
-      send_buf(buf, fileNameLen + SIZE_OF_BUF_SIZE + SIZE_OF_WIN_SIZE, server, FNAME, *expSeqNum, packet);
-      (*expSeqNum) = START_SEQ_NUM;
+      send_buf(buf, fileNameLen + SIZE_OF_BUF_SIZE + SIZE_OF_WIN_SIZE, server, FNAME, sv->expSeqNum, packet);
+      (sv->expSeqNum) = START_SEQ_NUM;
       returnValue = FILENAME;
    }
 
    return returnValue;
 }
 
-STATE filename(char * fname, int32_t buf_size, Connection * server, Args* args)
+STATE filename(char * fname, Connection * server, Args* args)
 {
    // Send the file name, get response
    //   return START_STATE if no reply from server, DONE if bad filename,
@@ -209,10 +241,10 @@ STATE filename(char * fname, int32_t buf_size, Connection * server, Args* args)
    return(returnValue);
 }
 
-STATE file_ok(int * outputFileFd, char * outputFileName)
+STATE file_ok(StateVars* sv, char * outputFileName)
 {
    STATE returnValue = DONE;
-   if ((*outputFileFd = open(outputFileName, O_CREAT | O_TRUNC | O_WRONLY, 0600)) < 0)
+   if ((sv->output_file = open(outputFileName, O_CREAT | O_TRUNC | O_WRONLY, 0600)) < 0)
    {
       perror("File open error: ");
       returnValue = DONE;
@@ -223,21 +255,17 @@ STATE file_ok(int * outputFileFd, char * outputFileName)
    return returnValue;
 }
 
-char* convertToString(char* string, uint8_t *databuf, uint32_t data_len){
-   memcpy(string, databuf, data_len);
-   string[data_len] = '\0';
-   return string;
-}
-
-STATE recv_data(int32_t output_file, Connection * server, uint32_t * expSeqNum, int32_t win_size, int32_t buf_size, int8_t* srej_fg)
+STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* window)
 {
    uint32_t recSeqNum = 0;
    uint32_t ackSeqNum = 0;
    uint8_t flag = 0;
-   int32_t data_len = 0;
-   uint8_t data_buf[buf_size]; // Contains just the data
+   //int32_t data_len = 0;
+   //uint8_t data_buf[args->bufferSize]; // Contains just the data
+   //
    char dataString[MAX_LEN];   // Null terminating string of the data
-   uint8_t packet[buf_size + HEADERLEN];
+   uint8_t packet[args->bufferSize + HEADERLEN];
+   WindowElement element;
    //static int32_t expected_seq_num = START_SEQ_NUM;
 
    if (select_call(server->sk_num, LONG_TIME, 0, NOT_NULL) == 0)
@@ -249,71 +277,96 @@ STATE recv_data(int32_t output_file, Connection * server, uint32_t * expSeqNum, 
    // data_len = length of just the data portion
    // Sets the value of the flag
    // Sets the value of the recSeqNum
-   data_len = recv_buf(data_buf, buf_size + HEADERLEN, server->sk_num, server, &flag, &recSeqNum);
+   sv->data_len = recv_buf(sv->data_buf, args->bufferSize + HEADERLEN, server->sk_num, server, &flag, &recSeqNum);
    /* do state RECV_DATA again if there is a crc error (don't send ack, don't
     * write data) */
-   if (data_len == CRC_ERROR)
+   if (sv->data_len == CRC_ERROR)
    {
       return RECV_DATA;
    }
    if (flag == END_OF_FILE)
    {
       /* send ACK */
-      send_buf(packet, 1, server, EOF_ACK, *expSeqNum, packet);
-      (*expSeqNum)++;
+      (sv->expSeqNum)++;
+
+      send_buf(packet, 1, server, EOF_ACK, sv->expSeqNum, packet);
       printf("File done\n");
       return DONE;
    }
    printf("receieved sequence number: %i\n", recSeqNum);
 
-   if (recSeqNum < *expSeqNum){
-      /* send expSeqNum ACK but don't increase the sequence number as this is an old
+   if (recSeqNum < sv->expSeqNum){
+      /* send sv->expSeqNum ACK but don't increase the sequence number as this is an old
        * packet */
-      ackSeqNum = htonl(*expSeqNum);
-      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, ACK, *expSeqNum, packet);
+      ackSeqNum = htonl(sv->expSeqNum);
+      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, ACK, sv->expSeqNum, packet);
 
       return RECV_DATA;
    }
-   else if (recSeqNum == *expSeqNum)
+   else if (recSeqNum == sv->expSeqNum)
    {
-      /* send ACK */
-      ackSeqNum = htonl(*expSeqNum);
-      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, ACK, *expSeqNum, packet);
+      /* Increase sequence number and set srej flag */
+      (sv->expSeqNum)++;
+      sv->srej_fg = 0;
 
       /* write to file */
-      printf("Outputing to file %s\n", convertToString(dataString, data_buf, data_len));
-      write(output_file, &data_buf, data_len);
-
-      /* Increase sequence number */
-      (*expSeqNum)++;
-
-      *srej_fg = 0;
+      printf("Outputing to file %s\n", convertToString(dataString, sv->data_buf, sv->data_len));
+      write(sv->output_file, &(sv->data_buf), sv->data_len);
 
       return CHECK_BUFFER;
    }
-   else if (recSeqNum > *expSeqNum){
+   else if (recSeqNum > sv->expSeqNum){
       /* Lost a packet so add the received packet to the buffer */
-      //addToBuffer();
-      return CHECK_SREJ_FG;
+      createWindowElement(&element, sv->data_buf, sv->data_len);
+      addElement(recSeqNum, element, window, args->windowSize);
+
+      return RECV_DATA;
    }
    return RECV_DATA;
 }
 
-/*
-void emptyBufer(int32_t output_file, Connection * server, uint32_t * expSeqNum, uint32_t* expectedSeqNum, int32_t win_size, int32_t buf_size){
-   uint32_t = bufferIndex;
-   bufferIndex = *expectedSeqNum % *win_size;
+STATE check_buffer(StateVars* sv, Connection * server, Args* args, WindowElement* window){
+   uint32_t ackSeqNum = 0;
+   uint8_t packet[args->bufferSize + HEADERLEN];
+   char dataString[MAX_LEN];
+   WindowElement newElement;
 
-}
-*/
+   // Check if the whole window is empty. If it is return with an RR of the
+   // current sequence number
+   if(isWindowEmpty(window, args->windowSize) == EMPTY){
+      /* send ACK */
+      ackSeqNum = htonl(sv->expSeqNum);
+      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, ACK, sv->expSeqNum, packet);
 
-STATE check_buffer(int32_t output_file, Connection * server, uint32_t * expSeqNum, int32_t win_size, int32_t buf_size){
-   //emptyBuffer();
-   return RECV_DATA;
-}
+      return RECV_DATA;
+   }
 
-STATE check_srej_fg(int32_t output_file, Connection * server, uint32_t * expSeqNum, int32_t win_size, int32_t buf_size, int8_t* srej_fg)
-{
+   // If window is not empty check the current spot in the buffer if this is empty
+   // send SREJ of the current sequence number since there is other data missing
+   if(isEmptySpot(sv->expSeqNum, window, args->windowSize) == EMPTY){
+      /* send SREJ */
+      ackSeqNum = htonl(sv->expSeqNum);
+      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, FSREJ, sv->expSeqNum, packet);
+
+      return RECV_DATA;
+   }
+   // Not empty
+   else if(isEmptySpot(sv->expSeqNum, window, args->windowSize) == FULL){
+      /* write to file */
+      getElement(sv->expSeqNum, &newElement, window, args->windowSize);
+      printf("Outputing to file %s\n", convertToString(dataString, newElement.data_buf, newElement.data_len));
+      write(sv->output_file, &(newElement.data_buf), newElement.data_len);
+
+      deleteElement(sv->expSeqNum, window, args->windowSize);
+
+      /* Increase sequence number */
+      (sv->expSeqNum)++;
+
+      return CHECK_BUFFER;
+   }
+   else{
+      printf("YOU SHOULD NOT BE HERE: ERROR WITH isEmptySpot Function\n");
+   }
    return RECV_DATA;
 }
 

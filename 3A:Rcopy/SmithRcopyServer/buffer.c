@@ -17,6 +17,7 @@
 #include "srej.h"
 #include "buffer.h"
 
+/*
 uint8_t * createPDU(uint32_t sequenceNumber, uint8_t flag, uint8_t * payload, int dataLen)
 {
    static uint8_t pduBuffer[MAX_LEN];
@@ -65,6 +66,7 @@ void printPDU(uint8_t * pduBuffer, int pduLength)
    printf("\tPayload: %s\n", pduBuffer + HEADERLEN);
    printf("\tPayload Length: %i\n", pduLength - HEADERLEN);
 }
+*/
 
 void printAvailability(int flag){
    if (flag == EMPTY){
@@ -78,12 +80,21 @@ void printAvailability(int flag){
    }
 }
 
+char* convertToString(char* string, uint8_t *databuf, uint32_t data_len){
+   if(data_len == 0){
+      return NULL;
+   }
+   memcpy(string, databuf, data_len);
+   string[data_len] = '\0';
+   return string;
+}
+
 void printWindowElement(WindowElement* window, int i){
    window += i;
-   uint8_t* pduBuffer = window->pdu;
+   char str[MAX_LEN];
+
    printf("Index: %i\n", i);
-   printf("Window Buffer:\n");
-   printPDU(pduBuffer, MAX_LEN);
+   printf("Window Buffer: %s\n", convertToString(str, window->data_buf, window->data_len));
    printAvailability(window->flag);
    printf("\n");
 }
@@ -100,9 +111,10 @@ uint8_t getPDUFlag(uint8_t* pdu){
 }
 
 // Creates a window element by filling in the WindowElement*
-void createWindowElement(WindowElement* win, uint8_t* pdu, int32_t pdu_size){
-   memcpy(win->pdu, pdu, pdu_size);
+void createWindowElement(WindowElement* win, uint8_t* data_buf, int32_t data_len){
+   memcpy(win->data_buf, data_buf, data_len);
    win->flag = FULL;
+   win->data_len = data_len;
 }
 
 // Caleb's malloc to stop errors
@@ -125,52 +137,93 @@ WindowElement* createWindow(int32_t windowSize){
    return window;
 }
 
+/*
 int getSeqNum(WindowElement element){
    uint32_t seqNum = ntohl(((uint32_t*)(element.pdu))[0]);
    printf("seqNum %i\n", seqNum);
    return seqNum;
 }
+*/
 
 // Adds overwrites the data at the index in the window.
 // The index is a circular queue
-void addElement(WindowElement element, WindowElement* window, int windowSize){
-   uint32_t seqNum = getSeqNum(element);
+void addElement(uint32_t seqNum, WindowElement element, WindowElement* window, int windowSize){
+   //uint32_t seqNum = getSeqNum(element);
    int winIndex = seqNum % windowSize;
    printf("winIndex = %i\n", winIndex);
 
    window += winIndex;
-   memcpy(window->pdu, element.pdu, MAX_LEN);
+   memcpy(window->data_buf, element.data_buf, MAX_LEN);
    window->flag = element.flag;
+   window->data_len = element.data_len;
 }
 
-void deleteElement(WindowElement element, WindowElement* window, int windowSize){
-   uint32_t seqNum = getSeqNum(element);
+void deleteElement(uint32_t seqNum, WindowElement* window, int windowSize){
+   //uint32_t seqNum = getSeqNum(element);
    int winIndex = seqNum % windowSize;
 
    window += winIndex;
-   memcpy(window->pdu, element.pdu, MAX_LEN);
    window->flag = EMPTY;
+}
+
+// Returns EMPTY if there is nothing in the buffer at that sequence number
+// else returns FULL
+int isEmptySpot(int seqNum, WindowElement* window, int windowSize){
+   int winIndex = seqNum % windowSize;
+   window += winIndex;
+   if(window->flag == EMPTY){
+      return EMPTY;
+   }
+   else {
+      return FULL;
+   }
+}
+
+// Returns EMPTY if the whole window is empty
+// else returns FULL
+int isWindowEmpty(WindowElement* window, int windowSize){
+   int i = 0;
+
+   for (i = 0; i < windowSize; i ++){
+      if(isEmptySpot(i, window, windowSize) == FULL){
+         return FULL;
+      }
+   }
+   return EMPTY;
+}
+
+// Gets the window element at the given seqNum and fills in the values to the
+// passed in newElement
+void getElement(int seqNum, WindowElement* newElement, WindowElement* window, int windowSize){
+   int winIndex = seqNum % windowSize;
+   window += winIndex;
+
+   memcpy(newElement->data_buf, window->data_buf, window->data_len);
+   newElement->flag = window->flag;
+   newElement->data_len = window->data_len;
 }
 
 /*
 int main ( int argc, char *argv[] )
 {
    int windowSize = 5;
+   uint8_t data_buf[MAX_LEN];
    WindowElement* window = createWindow(windowSize);
    WindowElement element;
    char* payload = "hello";
-   uint8_t* pdu;
 
    printf("ORGININAL\n");
    printf("length = %i\n", (int)(HEADERLEN + strlen(payload)));
 
-   pdu = createPDU(1, 99, (uint8_t*)payload, strlen(payload));
-   createWindowElement(&element, pdu, HEADERLEN + strlen(payload));
+   memcpy(data_buf, "HELLO WORLD", 11);
+
+   //pdu = createPDU(1, 99, (uint8_t*)payload, strlen(payload));
+   createWindowElement(&element, data_buf, (int)sizeof("HELLO WORLD"));
    printWindow(window, windowSize);
-   addElement(element, window, windowSize);
+   addElement(1, element, window, windowSize);
    printWindow(window, windowSize);
 
-   deleteElement(element, window, windowSize);
+   deleteElement(1, window, windowSize);
    printWindow(window, windowSize);
 
    pdu = createPDU(2, 22, (uint8_t*)payload, strlen(payload));
@@ -195,7 +248,6 @@ int main ( int argc, char *argv[] )
    pdu = createPDU(6, 66, (uint8_t*)payload, strlen(payload));
    createWindowElement(&element, pdu, HEADERLEN + strlen(payload));
    addElement(element, window, windowSize);
-   printWindow(window, windowSize);
 
    return 0;
 }

@@ -5,12 +5,12 @@
 #include "networks.h"
 #include "srej.h"
 #include "cpe464.h"
+#include "buffer.h"
 
 typedef enum State STATE;
 enum State
 {
-   START, DONE, FILENAME, SEND_DATA, WAIT_ON_ACK, TIMEOUT_ON_ACK,
-   WAIT_ON_EOF_ACK, TIMEOUT_ON_EOF_ACK
+   START, DONE, FILENAME, CHECK_WINDOW, SEND_DATA, WAIT_ON_ACK, CHECK_RR_SREJ, TIMEOUT_ON_ACK, WAIT_ON_EOF_ACK, TIMEOUT_ON_EOF_ACK
 };
 void process_server(int serverSocketNumber);
 void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
@@ -18,7 +18,7 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
       int32_t * win_size, int32_t * buf_size);
 STATE send_data(Connection * client, uint8_t * packet, int32_t * packet_len, int32_t data_file,
-      int32_t buf_size, uint32_t * seq_num);
+      int32_t buf_size, uint32_t * seq_num, WindowElement* window, uint32_t windowSize);
 STATE timeout_on_ack(Connection * client, uint8_t * packet, int32_t packet_len);
 STATE timeout_on_eof_ack(Connection * client, uint8_t * packet, int32_t packet_len);
 STATE wait_on_ack(Connection * client);
@@ -83,9 +83,18 @@ void printFileName(uint8_t * packet){
 }
 */
 
+STATE check_window(WindowElement* window, uint32_t win_size)
+{
+   if(isWindowEmpty(window, win_size) == EMPTY){
+      return SEND_DATA;
+   }
+   return CHECK_RR_SREJ;
+}
+
 void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
       client)
 {
+   WindowElement* window;
    STATE state = START;
    int32_t data_file = 0;
    int32_t packet_len = 0;
@@ -102,10 +111,19 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
             break;
          case FILENAME:
             state = filename(client, buf, recv_len, &data_file, &win_size, &buf_size);
+            window = createWindow(win_size);
+            break;
+         case CHECK_WINDOW:
+            state = check_window(window, win_size);
             break;
          case SEND_DATA:
-            state = send_data(client, packet, &packet_len, data_file, buf_size, &seq_num);
+            state = send_data(client, packet, &packet_len, data_file, buf_size, &seq_num, window, win_size);
             break;
+            /*
+         case CHECK_RR_SREJ:
+            state = check_rr_srej();
+            break;
+            */
          case WAIT_ON_ACK:
             state = wait_on_ack(client);
             break;
@@ -157,17 +175,17 @@ STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * d
    } else
    {
       send_buf(response, 0, client, FNAME_OK, 0, buf);
-      returnValue = SEND_DATA;
+      returnValue = CHECK_WINDOW;
    }
    return returnValue;
 }
 
-STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int32_t data_file,
-      int buf_size, uint32_t * seq_num)
+STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int32_t data_file, int buf_size, uint32_t * seq_num, WindowElement* window, uint32_t windowSize)
 {
    uint8_t buf[MAX_LEN];
    int32_t len_read = 0;
    STATE returnValue = DONE;
+   WindowElement element;
    len_read = read(data_file, buf, buf_size);
    switch (len_read)
    {
@@ -181,6 +199,9 @@ STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int3
          break;
       default:
          (*packet_len) = send_buf(buf, len_read, client, DATA, *seq_num, packet);
+         createWindowElement(&element, buf, len_read);
+         addElement(*seq_num, element, window, windowSize);
+         printWindow(window, windowSize);
          (*seq_num)++;
          returnValue = WAIT_ON_ACK;
          break;
