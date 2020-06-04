@@ -30,8 +30,6 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
       client);
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
       int32_t * windowSize, int32_t * buf_size);
-STATE timeout_on_ack(Connection * client, uint8_t * packet, int32_t packet_len);
-STATE timeout_on_eof_ack(Connection * client, uint8_t * packet, int32_t packet_len);
 STATE wait_on_eof_ack(Connection * client, uint32_t expSeqNum);
 int processArgs(int argc, char ** argv);
 
@@ -89,13 +87,6 @@ void process_server(int serverSocketNumber)
       }
    }
 }
-
-/*
-void printFileName(uint8_t * packet){
-   packet += 7;
-   printf("buf_size = %i\n", ntohl(((uint32_t*)packet)[0]));
-}
-*/
 
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
       int32_t * windowSize, int32_t * buf_size)
@@ -208,8 +199,6 @@ STATE check_rr_srej(Connection *client, WindowElement* window, uint32_t windowSi
    int32_t len = MAX_LEN;
    uint8_t flag = 0;
    uint32_t seq_num = 0;
-
-   //if ((returnValue = processSelect(client, &retryCount, CHECK_WINDOW, CHECK_WINDOW, DONE)) == CHECK_WINDOW)
 
    if (select_call(client->sk_num, 0, 0, NOT_NULL) == 1)
    {
@@ -373,7 +362,9 @@ STATE wait_on_eof_ack(Connection * client, uint32_t expSeqNum)
       }
       else
       {
+#ifdef PRINT
          printf("File transfer completed successfully.\n");
+#endif
          returnValue = DONE;
       }
    }
@@ -384,16 +375,6 @@ STATE wait_on_eof_ack(Connection * client, uint32_t expSeqNum)
       returnValue = WAIT_ON_EOF_ACK;
    }
    return returnValue;
-}
-STATE timeout_on_ack(Connection * client, uint8_t * packet, int32_t packet_len)
-{
-   safeSendto(packet, packet_len, client);
-   return WAIT_LAST_RR;
-}
-STATE timeout_on_eof_ack(Connection * client, uint8_t * packet, int32_t packet_len)
-{
-   safeSendto(packet, packet_len, client);
-   return WAIT_ON_EOF_ACK;
 }
 
 int processArgs(int argc, char ** argv)
@@ -411,6 +392,10 @@ int processArgs(int argc, char ** argv)
    else
    {
       portNumber = 0;
+   }
+   if((atof(argv[1]) >= 1.0) || (atof(argv[1]) < 0.0)){
+		printf("usage: error-percent: %s, must be between 0 and less than 1\n", argv[1]);
+		exit(1);
    }
    return portNumber;
 }
@@ -448,19 +433,9 @@ void printState(STATE state){
          printf("State = WAIT_LAST_RR\n");
 #endif
          break;
-      case TIMEOUT_ON_ACK:
-#ifdef PRINTSTATES
-         printf("State = TIMEOUT_ON_ACK\n");
-#endif
-         break;
       case WAIT_ON_EOF_ACK:
 #ifdef PRINTSTATES
          printf("State = WAIT_ON_EOF_ACK\n");
-#endif
-         break;
-      case TIMEOUT_ON_EOF_ACK:
-#ifdef PRINTSTATES
-         printf("State = TIMEOUT_ON_EOF_ACK\n");
 #endif
          break;
       case DONE:
@@ -520,17 +495,9 @@ void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len,
             printState(state);
             state = wait_last_rr(client, seq_num, window, windowSize, &wptr);
             break;
-         case TIMEOUT_ON_ACK:
-            printState(state);
-            state = timeout_on_ack(client, packet, packet_len);
-            break;
          case WAIT_ON_EOF_ACK:
             printState(state);
             state = wait_on_eof_ack(client, seq_num);
-            break;
-         case TIMEOUT_ON_EOF_ACK:
-            printState(state);
-            state = timeout_on_eof_ack(client, packet, packet_len);
             break;
          case DONE:
             printState(state);

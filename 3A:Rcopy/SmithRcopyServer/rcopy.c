@@ -22,17 +22,6 @@ struct statevars{
    int32_t output_file;
 };
 
-/*
-char* convertToString(char* string, uint8_t *databuf, uint32_t data_len){
-   if(data_len == 0){
-      return NULL;
-   }
-   memcpy(string, databuf, data_len);
-   string[data_len] = '\0';
-   return string;
-}
-*/
-
 void createStateVars(StateVars* p){
    memset(p->data_buf, 0, MAX_LEN);
    p->data_len = 0;
@@ -147,7 +136,6 @@ void stateMachine(Args* args)
             break;
          case RECV_DATA:
             printState(state);
-            //printStateVars(&sv);
             state = recv_data(&sv, &server, args, window);
             break;
          case CHECK_BUFFER:
@@ -177,23 +165,12 @@ STATE start_state(StateVars* sv, Args* args, Connection * server)
 {
    // Returns FILENAME if no error, otherwise DONE (to many connects, cannot
    // connect to sever)
-   // uint8_t packet[args->bufferSize + HEADERLEN];
-   // uint8_t buf[args->bufferSize];
    uint8_t packet[MAX_LEN];
    uint8_t buf[MAX_LEN];
    int fileNameLen = strlen(args->fromFile);
    STATE returnValue = FILENAME;
    uint32_t bufferSize = 0;
    uint32_t windowSize = 0;
-
-   // if we have connected to server before, close it before reconnect
-   /* This was in Prof Smith's code but it just closes the client before sending
-    * any data
-   if (server->sk_num > 0)
-   {
-      close(server->sk_num);
-   }
-   */
 
    /* Try connecting to the server */
    if (udpClientSetup(args->remoteMachine, args->remotePort, server) < 0)
@@ -228,7 +205,6 @@ STATE filename(char * fname, Connection * server, Args* args)
    //   return START_STATE if no reply from server, DONE if bad filename,
    // FILE_OK otherwise
    int returnValue = START_STATE;
-   //uint8_t packet[args->bufferSize + HEADERLEN];
    uint8_t packet[MAX_LEN];
    uint8_t flag = 0;
    uint32_t seq_num = 0;
@@ -239,7 +215,6 @@ STATE filename(char * fname, Connection * server, Args* args)
 #endif
    if ((returnValue = processSelect(server, &retryCount, START_STATE, FILE_OK, DONE)) == FILE_OK)
    {
-      //recv_check = recv_buf(packet, args->bufferSize + HEADERLEN, server->sk_num, server, &flag, &seq_num);
       recv_check = recv_buf(packet, MAX_LEN, server->sk_num, server, &flag, &seq_num);
       /* check for bit flip */
       if (recv_check == CRC_ERROR)
@@ -279,15 +254,12 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
    uint32_t recSeqNum = 0;
    uint32_t ackSeqNum = 0;
    uint8_t flag = 0;
-   //int32_t data_len = 0;
-   //uint8_t data_buf[args->bufferSize]; // Contains just the data
-   //
+
 #ifdef PRINT
    char dataString[MAX_LEN];   // Null terminating string of the data
 #endif
    uint8_t packet[args->bufferSize + HEADERLEN];
    WindowElement element;
-   //static int32_t expected_seq_num = START_SEQ_NUM;
 
    if (select_call(server->sk_num, LONG_TIME, 0, NOT_NULL) == 0)
    {
@@ -311,7 +283,9 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
       (sv->expSeqNum)++;
 
       send_buf(packet, 1, server, EOF_ACK, sv->expSeqNum, packet);
+#ifdef PRINT
       printf("File done\n");
+#endif
       return DONE;
    }
 #ifdef PRINT
@@ -406,34 +380,3 @@ STATE check_buffer(StateVars* sv, Connection * server, Args* args, WindowElement
    }
    return RECV_DATA;
 }
-
-/*
-void check_args(int argc, char ** argv)
-{
-   if (argc != 7)
-   {
-      printf("Usage %s fromFile toFile buffer_size error_rate hostname port\n", argv[0]);
-      exit(-1);
-   }
-   if (strlen(argv[1]) > 1000)
-   {
-      printf("FROM filename to long needs to be less than 1000 and is: %d\n", (int)strlen(argv[1]));
-      exit(-1);
-   }
-   if (strlen(argv[2]) > 1000)
-   {
-      printf("TO filename to long needs to be less than 1000 and is: %d\n", (int)strlen(argv[1]));
-      exit(-1);
-   }
-   if (atoi(argv[3]) < 400 || atoi(argv[3]) > 1400)
-   {
-      printf("Buffer size needs to be between 400 and 1400 and is: %d\n", atoi(argv[3]));
-      exit(-1);
-   }
-   if (atoi(argv[4]) < 0 || atoi(argv[4]) >= 1 )
-   {
-      printf("Error rate needs to be between 0 and less then 1 and is: %d\n", atoi(argv[4]));
-      exit(-1);
-   }
-}
-*/

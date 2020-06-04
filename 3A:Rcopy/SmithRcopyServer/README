@@ -1,0 +1,15 @@
+My name is Caleb Rabbon
+
+I come from the lab at 3pm
+
+I have finished this project, tooooo ez
+
+To run the code follow the below steps:
+   In the terminal type:
+   make
+
+   Run the server with the command
+   ./server .20 4551
+
+   Run the client by running a script
+   ./sm.sh
