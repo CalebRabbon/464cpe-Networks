@@ -7,6 +7,8 @@
 #include "cpe464.h"
 #include "buffer.h"
 
+//#define PRINT
+
 typedef struct wptr WPtr;
 struct wptr{
    int l;
@@ -34,7 +36,7 @@ int main ( int argc, char *argv[])
    int32_t serverSocketNumber = 0;
    int portNumber = 0;
    portNumber = processArgs(argc, argv);
-   sendtoErr_init(atof(argv[1]), DROP_OFF, FLIP_OFF, DEBUG_ON, RSEED_OFF);
+   sendtoErr_init(atof(argv[1]), DROP_ON, FLIP_ON, DEBUG_OFF, RSEED_OFF);
    /* set up the main server port */
    serverSocketNumber = udpServerSetup(portNumber);
    process_server(serverSocketNumber);

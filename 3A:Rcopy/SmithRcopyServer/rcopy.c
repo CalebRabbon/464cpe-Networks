@@ -69,7 +69,7 @@ int main ( int argc, char *argv[] )
 
    checkArgs(argc, argv, &args);
 
-   sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
+   sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_OFF, RSEED_OFF);
 
    stateMachine(&args);
 
@@ -80,22 +80,34 @@ void printState(STATE state){
    switch(state)
    {
       case START_STATE:
+#ifdef PRINT
          printf("State = START_STATE\n");
+#endif
          break;
       case FILENAME:
+#ifdef PRINT
          printf("State = FILENAME\n");
+#endif
          break;
       case FILE_OK:
+#ifdef PRINT
          printf("State = FILE_OK\n");
+#endif
          break;
       case RECV_DATA:
+#ifdef PRINT
          printf("State = RECV_DATA\n");
+#endif
          break;
       case CHECK_BUFFER:
+#ifdef PRINT
          printf("State = CHECK_BUFFER\n");
+#endif
          break;
       case DONE:
+#ifdef PRINT
          printf("State = DONE\n");
+#endif
          break;
       default:
          printf("ERROR - in default state\n");
@@ -265,7 +277,9 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
    //int32_t data_len = 0;
    //uint8_t data_buf[args->bufferSize]; // Contains just the data
    //
+#ifdef PRINT
    char dataString[MAX_LEN];   // Null terminating string of the data
+#endif
    uint8_t packet[args->bufferSize + HEADERLEN];
    WindowElement element;
    //static int32_t expected_seq_num = START_SEQ_NUM;
@@ -295,7 +309,9 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
       printf("File done\n");
       return DONE;
    }
+#ifdef PRINT
    printf("receieved sequence number: %i\n", recSeqNum);
+#endif
 
    if (recSeqNum < sv->expSeqNum){
       /* send sv->expSeqNum ACK but don't increase the sequence number as this is an old
@@ -307,12 +323,15 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
    }
    else if (recSeqNum == sv->expSeqNum)
    {
+      // Received an expected packet
       /* Increase sequence number and set srej flag */
       (sv->expSeqNum)++;
       sv->srej_fg = 0;
 
       /* write to file */
+#ifdef PRINT
       printf("Outputing to file %s\n", convertToString(dataString, sv->data_buf, sv->data_len));
+#endif
       write(sv->output_file, &(sv->data_buf), sv->data_len);
 
       return CHECK_BUFFER;
@@ -323,8 +342,11 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
       addElement(recSeqNum, element, window, args->windowSize);
 
       /* send SREJ */
-      ackSeqNum = htonl(sv->expSeqNum);
-      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, FSREJ, sv->expSeqNum, packet);
+      if(sv->srej_fg == 0){
+         ackSeqNum = htonl(sv->expSeqNum);
+         send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, FSREJ, sv->expSeqNum, packet);
+         sv->srej_fg = 1;
+      }
 
       return RECV_DATA;
    }
@@ -334,7 +356,9 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
 STATE check_buffer(StateVars* sv, Connection * server, Args* args, WindowElement* window){
    uint32_t ackSeqNum = 0;
    uint8_t packet[args->bufferSize + HEADERLEN];
+#ifdef PRINT
    char dataString[MAX_LEN];
+#endif
    WindowElement newElement;
 
    // Check if the whole window is empty. If it is return with an RR of the
@@ -360,7 +384,9 @@ STATE check_buffer(StateVars* sv, Connection * server, Args* args, WindowElement
    else if(isEmptySpot(sv->expSeqNum, window, args->windowSize) == FULL){
       /* write to file */
       getElement(sv->expSeqNum, &newElement, window, args->windowSize);
+#ifdef PRINT
       printf("Outputing to file %s\n", convertToString(dataString, newElement.data_buf, newElement.data_len));
+#endif
       write(sv->output_file, &(newElement.data_buf), newElement.data_len);
 
       deleteElement(sv->expSeqNum, window, args->windowSize);
