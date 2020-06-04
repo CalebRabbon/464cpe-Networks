@@ -8,7 +8,9 @@
 #include "buffer.h"
 
 #define HEADERLEN 7
-//#define PRINT
+/*
+#define PRINT
+*/
 
 // Used to store the variables passed between STATES
 typedef struct statevars StateVars;
@@ -69,7 +71,7 @@ int main ( int argc, char *argv[] )
 
    checkArgs(argc, argv, &args);
 
-   sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_OFF, RSEED_OFF);
+   sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
 
    stateMachine(&args);
 
@@ -122,7 +124,9 @@ void stateMachine(Args* args)
    WindowElement* window = createWindow(args->windowSize);
    StateVars sv;
    createStateVars(&sv);
+#ifdef PRINT
    printStateVars(&sv);
+#endif
 
    STATE state = START_STATE;
    while (state != DONE)
@@ -136,7 +140,6 @@ void stateMachine(Args* args)
          case FILENAME:
             printState(state);
             state = filename(args->fromFile, &server, args);
-            printf("fromfile = %s\n", args->fromFile);
             break;
          case FILE_OK:
             printState(state);
@@ -209,8 +212,8 @@ STATE start_state(StateVars* sv, Args* args, Connection * server)
 
 #ifdef PRINT
       printIPv6Info(&server->remote);
-#endif
       printf("From file %s, length %i\n", args->fromFile, fileNameLen);
+#endif
       send_buf(buf, fileNameLen + SIZE_OF_BUF_SIZE + SIZE_OF_WIN_SIZE, server, FNAME, sv->expSeqNum, packet);
       (sv->expSeqNum) = START_SEQ_NUM;
       returnValue = FILENAME;
@@ -231,7 +234,9 @@ STATE filename(char * fname, Connection * server, Args* args)
    uint32_t seq_num = 0;
    int32_t recv_check = 0;
    static int retryCount = 0;
+#ifdef PRINT
    printf("Retry count %i\n", retryCount);
+#endif
    if ((returnValue = processSelect(server, &retryCount, START_STATE, FILE_OK, DONE)) == FILE_OK)
    {
       //recv_check = recv_buf(packet, args->bufferSize + HEADERLEN, server->sk_num, server, &flag, &seq_num);

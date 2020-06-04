@@ -7,7 +7,11 @@
 #include "cpe464.h"
 #include "buffer.h"
 
-//#define PRINT
+/*
+#define PRINT
+*/
+#define WAITLASTRR
+#define PRINTSTATES
 
 typedef struct wptr WPtr;
 struct wptr{
@@ -36,7 +40,7 @@ int main ( int argc, char *argv[])
    int32_t serverSocketNumber = 0;
    int portNumber = 0;
    portNumber = processArgs(argc, argv);
-   sendtoErr_init(atof(argv[1]), DROP_ON, FLIP_ON, DEBUG_OFF, RSEED_OFF);
+   sendtoErr_init(atof(argv[1]), DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
    /* set up the main server port */
    serverSocketNumber = udpServerSetup(portNumber);
    process_server(serverSocketNumber);
@@ -142,6 +146,10 @@ void resend(Connection* client, WindowElement* window, uint32_t windowSize, uint
 
    WindowElement element;
    getElement(seq_num, &element, window, windowSize);
+   if(element.flag == EMPTY){
+      element.data_len = 0;
+      printf("EMPTY ELEMENT SENDING ZERO DATA\n");
+   }
 
    send_buf(element.data_buf, element.data_len, client, DATA, seq_num, packet);
 }
@@ -170,6 +178,13 @@ STATE check_window(Connection* client, WindowElement* window, uint32_t windowSiz
    return returnValue;
 }
 
+void updateWPtr(WPtr* wptr, int32_t windowSize, uint32_t seq_num){
+   // Update the lower bound
+   wptr->l = seq_num;
+
+   // Update the upper bound
+   wptr->u = seq_num + windowSize;
+}
 
 void removeFromBuffer(WindowElement* window, uint32_t windowSize, uint32_t seq_num, WPtr* wptr){
    int l = wptr->l;
@@ -177,11 +192,10 @@ void removeFromBuffer(WindowElement* window, uint32_t windowSize, uint32_t seq_n
    for (l = wptr->l; l < seq_num; l++){
       deleteElement(l, window, windowSize);
    }
-   // Update the lower bound
-   wptr->l = seq_num;
+}
 
-   // Update the upper bound
-   wptr->u = seq_num + windowSize;
+void printWPtr(WPtr* wptr){
+   printf("L: %i\tC: %i\tU: %i\n", wptr->l, wptr->c, wptr->u);
 }
 
 STATE check_rr_srej(Connection *client, WindowElement* window, uint32_t windowSize, WPtr* wptr)
@@ -214,10 +228,14 @@ STATE check_rr_srej(Connection *client, WindowElement* window, uint32_t windowSi
       {
          // Remove data from Buffer
          removeFromBuffer(window, windowSize, seq_num, wptr);
+         updateWPtr(wptr, windowSize, seq_num);
+#ifdef PRINT
+         printWPtr(wptr);
+#endif
       }
       else
       {
-         printf("In wait_last_rr but its not an ACK flag (this should never happen) is %d\n", flag);
+         printf("In check_rr_srej but its not an ACK flag (this should never happen) is %d\n", flag);
          returnValue = DONE;
       }
    }
@@ -239,6 +257,7 @@ STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int3
          break;
       case 0:
          //(*seq_num)++;
+         printf("EOF Waiting on seq num %i\n", *seq_num);
          returnValue = WAIT_LAST_RR;
          break;
       default:
@@ -246,8 +265,8 @@ STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int3
          createWindowElement(&element, buf, len_read);
          addElement(*seq_num, element, window, windowSize);
          //printWindow(window, windowSize);
-         wptr->c = *seq_num;
          (*seq_num)++;
+         wptr->c = *seq_num;
          returnValue = CHECK_RR_SREJ;
          break;
    }
@@ -263,6 +282,7 @@ STATE wait_last_rr(Connection * client, uint32_t expSeqNum, WindowElement* windo
    int32_t len = MAX_LEN;
    uint8_t flag = 0;
    uint32_t recSeqNum = 0;
+   uint32_t expRR = expSeqNum;
    static int retryCount = 0;
 
 #ifdef PRINT
@@ -285,13 +305,13 @@ STATE wait_last_rr(Connection * client, uint32_t expSeqNum, WindowElement* windo
       }
       else if (flag == ACK)
       {
-#ifdef PRINT
-         printf("in wait last rr expSeqNum = %i\n", expSeqNum);
+#ifdef WAITLASTRR
+         printf("in wait last rr = %i\n", expRR);
 #endif
          // Received RR
-         if(recSeqNum == expSeqNum){
+         if(recSeqNum == expRR){
             // Send EOF
-            send_buf(buf, 1, client, END_OF_FILE, expSeqNum, packet);
+            send_buf(buf, 1, client, END_OF_FILE, expRR, packet);
 
             returnValue = WAIT_ON_EOF_ACK;
          }
@@ -394,52 +414,52 @@ void printState(STATE state){
    switch(state)
    {
       case START:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = START\n");
 #endif
          break;
       case FILENAME:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = FILENAME\n");
 #endif
          break;
       case CHECK_WINDOW:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = CHECK_WINDOW\n");
 #endif
          break;
       case SEND_DATA:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = SEND_DATA\n");
 #endif
          break;
       case CHECK_RR_SREJ:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = CHECK_RR_SREJ\n");
 #endif
          break;
       case WAIT_LAST_RR:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = WAIT_LAST_RR\n");
 #endif
          break;
       case TIMEOUT_ON_ACK:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = TIMEOUT_ON_ACK\n");
 #endif
          break;
       case WAIT_ON_EOF_ACK:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = WAIT_ON_EOF_ACK\n");
 #endif
          break;
       case TIMEOUT_ON_EOF_ACK:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = TIMEOUT_ON_EOF_ACK\n");
 #endif
          break;
       case DONE:
-#ifdef PRINT
+#ifdef PRINTSTATES
          printf("State = DONE\n");
 #endif
          break;
