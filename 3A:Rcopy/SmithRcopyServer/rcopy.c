@@ -124,6 +124,7 @@ void stateMachine(Args* args)
          case FILENAME:
             printState(state);
             state = filename(args->fromFile, &server, args);
+            printf("fromfile = %s\n", args->fromFile);
             break;
          case FILE_OK:
             printState(state);
@@ -197,6 +198,7 @@ STATE start_state(StateVars* sv, Args* args, Connection * server)
 #ifdef PRINT
       printIPv6Info(&server->remote);
 #endif
+      printf("From file %s, length %i\n", args->fromFile, fileNameLen);
       send_buf(buf, fileNameLen + SIZE_OF_BUF_SIZE + SIZE_OF_WIN_SIZE, server, FNAME, sv->expSeqNum, packet);
       (sv->expSeqNum) = START_SEQ_NUM;
       returnValue = FILENAME;
@@ -319,6 +321,10 @@ STATE recv_data(StateVars* sv, Connection * server, Args* args, WindowElement* w
       /* Lost a packet so add the received packet to the buffer */
       createWindowElement(&element, sv->data_buf, sv->data_len);
       addElement(recSeqNum, element, window, args->windowSize);
+
+      /* send SREJ */
+      ackSeqNum = htonl(sv->expSeqNum);
+      send_buf((uint8_t *)&ackSeqNum, sizeof(ackSeqNum), server, FSREJ, sv->expSeqNum, packet);
 
       return RECV_DATA;
    }

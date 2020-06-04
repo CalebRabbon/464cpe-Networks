@@ -120,7 +120,7 @@ int processSelect(Connection * client, int * retryCount,
    {
       if (select_call(client->sk_num, SHORT_TIME, 0, NOT_NULL) == 1)
       {
-        *retryCount = 0;
+         *retryCount = 0;
          returnValue = dataReadyState;
       }
       else

@@ -101,9 +101,11 @@ void printWindowElement(WindowElement* window, int i){
 
 void printWindow(WindowElement* window, int32_t windowSize){
    int i = 0;
+   printf("\n----------------- WINDOW START ------------------\n");
    for (i = 0; i < windowSize; i ++){
       printWindowElement(window, i);
    }
+   printf("----------------- WINDOW END ------------------\n\n");
 }
 
 uint8_t getPDUFlag(uint8_t* pdu){
@@ -150,7 +152,6 @@ int getSeqNum(WindowElement element){
 void addElement(uint32_t seqNum, WindowElement element, WindowElement* window, int windowSize){
    //uint32_t seqNum = getSeqNum(element);
    int winIndex = seqNum % windowSize;
-   printf("winIndex = %i\n", winIndex);
 
    window += winIndex;
    memcpy(window->data_buf, element.data_buf, MAX_LEN);
@@ -190,6 +191,19 @@ int isWindowEmpty(WindowElement* window, int windowSize){
       }
    }
    return EMPTY;
+}
+
+// Returns FULL if the whole window is full
+// else returns Empty
+int isWindowFull(WindowElement* window, int windowSize){
+   int i = 0;
+
+   for (i = 0; i < windowSize; i ++){
+      if(isEmptySpot(i, window, windowSize) == EMPTY){
+         return EMPTY;
+      }
+   }
+   return FULL;
 }
 
 // Gets the window element at the given seqNum and fills in the values to the

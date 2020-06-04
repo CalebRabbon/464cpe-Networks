@@ -19,6 +19,7 @@ void printWindow(WindowElement* window, int32_t windowSize);
 void deleteElement(uint32_t seqNum, WindowElement* window, int windowSize);
 int isEmptySpot(int seqNum, WindowElement* window, int windowSize);
 int isWindowEmpty(WindowElement* window, int windowSize);
+int isWindowFull(WindowElement* window, int windowSize);
 char* convertToString(char* string, uint8_t *databuf, uint32_t data_len);
 void getElement(int seqNum, WindowElement* newElement, WindowElement* window, int windowSize);
 

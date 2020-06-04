@@ -7,22 +7,26 @@
 #include "cpe464.h"
 #include "buffer.h"
 
+typedef struct wptr WPtr;
+struct wptr{
+   int l;
+   int c;
+   int u;
+};
+
 typedef enum State STATE;
 enum State
 {
-   START, DONE, FILENAME, CHECK_WINDOW, SEND_DATA, WAIT_ON_ACK, CHECK_RR_SREJ, TIMEOUT_ON_ACK, WAIT_ON_EOF_ACK, TIMEOUT_ON_EOF_ACK
+   START, DONE, FILENAME, CHECK_WINDOW, SEND_DATA, WAIT_LAST_RR, CHECK_RR_SREJ, TIMEOUT_ON_ACK, WAIT_ON_EOF_ACK, TIMEOUT_ON_EOF_ACK
 };
 void process_server(int serverSocketNumber);
 void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
       client);
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
-      int32_t * win_size, int32_t * buf_size);
-STATE send_data(Connection * client, uint8_t * packet, int32_t * packet_len, int32_t data_file,
-      int32_t buf_size, uint32_t * seq_num, WindowElement* window, uint32_t windowSize);
+      int32_t * windowSize, int32_t * buf_size);
 STATE timeout_on_ack(Connection * client, uint8_t * packet, int32_t packet_len);
 STATE timeout_on_eof_ack(Connection * client, uint8_t * packet, int32_t packet_len);
-STATE wait_on_ack(Connection * client);
-STATE wait_on_eof_ack(Connection * client);
+STATE wait_on_eof_ack(Connection * client, uint32_t expSeqNum);
 int processArgs(int argc, char ** argv);
 
 int main ( int argc, char *argv[])
@@ -65,6 +69,10 @@ void process_server(int serverSocketNumber)
             {
                // child process - a new process for each client
                printf("Child fork() - child pid: %d\n", getpid());
+#ifdef PRINT
+               printf("buf %s\n", &buf[8]);
+               printf("**rec_len %i\n", recv_len);
+#endif
                process_client(serverSocketNumber, buf, recv_len, &client);
                exit(0); }
          }
@@ -83,71 +91,8 @@ void printFileName(uint8_t * packet){
 }
 */
 
-STATE check_window(WindowElement* window, uint32_t win_size)
-{
-   if(isWindowEmpty(window, win_size) == EMPTY){
-      return SEND_DATA;
-   }
-   return CHECK_RR_SREJ;
-}
-
-void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
-      client)
-{
-   WindowElement* window;
-   STATE state = START;
-   int32_t data_file = 0;
-   int32_t packet_len = 0;
-   uint8_t packet[MAX_LEN];
-   int32_t win_size = 0;
-   int32_t buf_size = 0;
-   uint32_t seq_num = START_SEQ_NUM;
-   while (state != DONE)
-   {
-      switch (state)
-      {
-         case START:
-            state = FILENAME;
-            break;
-         case FILENAME:
-            state = filename(client, buf, recv_len, &data_file, &win_size, &buf_size);
-            window = createWindow(win_size);
-            break;
-         case CHECK_WINDOW:
-            state = check_window(window, win_size);
-            break;
-         case SEND_DATA:
-            state = send_data(client, packet, &packet_len, data_file, buf_size, &seq_num, window, win_size);
-            break;
-            /*
-         case CHECK_RR_SREJ:
-            state = check_rr_srej();
-            break;
-            */
-         case WAIT_ON_ACK:
-            state = wait_on_ack(client);
-            break;
-         case TIMEOUT_ON_ACK:
-            state = timeout_on_ack(client, packet, packet_len);
-            break;
-         case WAIT_ON_EOF_ACK:
-            state = wait_on_eof_ack(client);
-            break;
-         case TIMEOUT_ON_EOF_ACK:
-            state = timeout_on_eof_ack(client, packet, packet_len);
-            break;
-         case DONE:
-            break;
-         default:
-            printf("In default and you should not be here!!!!\n");
-            state = DONE;
-            break;
-      }
-   }
-}
-
 STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * data_file,
-      int32_t * win_size, int32_t * buf_size)
+      int32_t * windowSize, int32_t * buf_size)
 {
    uint8_t response[1];
    char fname[MAX_LEN];
@@ -155,16 +100,26 @@ STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * d
 
    // extract buffer sized used for sending data and also filename
 
-   memcpy(win_size, buf, SIZE_OF_WIN_SIZE);
-   *win_size = ntohl(*win_size);
-   printf("WinSize = %i\n", *win_size);
+   memcpy(windowSize, buf, SIZE_OF_WIN_SIZE);
+   *windowSize = ntohl(*windowSize);
+#ifdef PRINT
+   printf("WinSize = %i\n", *windowSize);
+#endif
 
    memcpy(buf_size, &buf[SIZE_OF_WIN_SIZE], SIZE_OF_BUF_SIZE);
    *buf_size = ntohl(*buf_size);
+#ifdef PRINT
    printf("BufSize = %i\n", *buf_size);
+   printf("Recieved Length = %i\n", recv_len);
+#endif
 
-   memcpy(fname, &buf[sizeof(*win_size) + sizeof(*buf_size)], recv_len - SIZE_OF_WIN_SIZE - SIZE_OF_BUF_SIZE);
+   memcpy(fname, &buf[sizeof(*windowSize) + sizeof(*buf_size)], recv_len - SIZE_OF_WIN_SIZE - SIZE_OF_BUF_SIZE + 1);
+
+   // Null Terminate the string
+   fname[recv_len - SIZE_OF_WIN_SIZE - SIZE_OF_BUF_SIZE] = '\0';
+#ifdef PRINT
    printf("FName = %s\n", fname);
+#endif
 
    /* Create client socket to allow for processing this particular client */
    client->sk_num = safeGetUdpSocket();
@@ -180,7 +135,94 @@ STATE filename(Connection * client, uint8_t * buf, int32_t recv_len, int32_t * d
    return returnValue;
 }
 
-STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int32_t data_file, int buf_size, uint32_t * seq_num, WindowElement* window, uint32_t windowSize)
+void resend(Connection* client, WindowElement* window, uint32_t windowSize, uint32_t seq_num){
+   uint8_t packet[MAX_LEN];
+
+   WindowElement element;
+   getElement(seq_num, &element, window, windowSize);
+
+   send_buf(element.data_buf, element.data_len, client, DATA, seq_num, packet);
+}
+
+STATE check_window(Connection* client, WindowElement* window, uint32_t windowSize, WPtr* wptr)
+{
+   STATE returnValue = CHECK_WINDOW;
+   static int retryCount = 0;
+
+   if(isWindowFull(window, windowSize) == EMPTY){
+      return SEND_DATA;
+   }
+
+#ifdef PRINT
+   printf(" WIndow is full\n");
+#endif
+
+   if ((returnValue = processSelect(client, &retryCount, CHECK_WINDOW, CHECK_RR_SREJ, DONE)) == CHECK_RR_SREJ)
+   {
+      return returnValue;
+   }
+   else if(returnValue == CHECK_WINDOW){
+      resend(client, window, windowSize, wptr->l);
+      return returnValue;
+   }
+   return returnValue;
+}
+
+
+void removeFromBuffer(WindowElement* window, uint32_t windowSize, uint32_t seq_num, WPtr* wptr){
+   int l = wptr->l;
+
+   for (l = wptr->l; l < seq_num; l++){
+      deleteElement(l, window, windowSize);
+   }
+   // Update the lower bound
+   wptr->l = seq_num;
+
+   // Update the upper bound
+   wptr->u = seq_num + windowSize;
+}
+
+STATE check_rr_srej(Connection *client, WindowElement* window, uint32_t windowSize, WPtr* wptr)
+{
+   STATE returnValue = CHECK_WINDOW;
+   uint32_t crc_check = 0;
+   uint8_t buf[MAX_LEN];
+   int32_t len = MAX_LEN;
+   uint8_t flag = 0;
+   uint32_t seq_num = 0;
+
+   //if ((returnValue = processSelect(client, &retryCount, CHECK_WINDOW, CHECK_WINDOW, DONE)) == CHECK_WINDOW)
+
+   if (select_call(client->sk_num, 0, 0, NOT_NULL) == 1)
+   {
+      crc_check = recv_buf(buf, len, client->sk_num, client, &flag, &seq_num);
+      // if crc error ignore packet
+
+      if (crc_check == CRC_ERROR)
+      {
+         // Do nothing
+         returnValue = CHECK_RR_SREJ;
+      }
+      else if (flag == FSREJ)
+      {
+         // Resend the data from SREJ buffer
+         resend(client, window, windowSize, seq_num);
+      }
+      else if (flag == ACK)
+      {
+         // Remove data from Buffer
+         removeFromBuffer(window, windowSize, seq_num, wptr);
+      }
+      else
+      {
+         printf("In wait_last_rr but its not an ACK flag (this should never happen) is %d\n", flag);
+         returnValue = DONE;
+      }
+   }
+   return returnValue;
+}
+
+STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int32_t data_file, int buf_size, uint32_t * seq_num, WindowElement* window, uint32_t windowSize, WPtr* wptr)
 {
    uint8_t buf[MAX_LEN];
    int32_t len_read = 0;
@@ -194,59 +236,101 @@ STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int3
          returnValue = DONE;
          break;
       case 0:
-         (*packet_len) = send_buf(buf, 1, client, END_OF_FILE, *seq_num, packet);
-         returnValue = WAIT_ON_EOF_ACK;
+         //(*seq_num)++;
+         returnValue = WAIT_LAST_RR;
          break;
       default:
          (*packet_len) = send_buf(buf, len_read, client, DATA, *seq_num, packet);
          createWindowElement(&element, buf, len_read);
          addElement(*seq_num, element, window, windowSize);
-         printWindow(window, windowSize);
+         //printWindow(window, windowSize);
+         wptr->c = *seq_num;
          (*seq_num)++;
-         returnValue = WAIT_ON_ACK;
+         returnValue = CHECK_RR_SREJ;
          break;
    }
    return returnValue;
 }
 
-STATE wait_on_ack(Connection * client)
+STATE wait_last_rr(Connection * client, uint32_t expSeqNum, WindowElement* window, uint32_t windowSize, WPtr* wptr)
 {
    STATE returnValue = DONE;
    uint32_t crc_check = 0;
    uint8_t buf[MAX_LEN];
+   uint8_t packet[MAX_LEN];
    int32_t len = MAX_LEN;
    uint8_t flag = 0;
-   uint32_t seq_num = 0;
+   uint32_t recSeqNum = 0;
    static int retryCount = 0;
-   if ((returnValue = processSelect(client, &retryCount, TIMEOUT_ON_ACK, SEND_DATA, DONE)) ==
-         SEND_DATA)
-   {
-      crc_check = recv_buf(buf, len, client->sk_num, client, &flag, &seq_num);
-      // if crc error ignore packet
 
+#ifdef PRINT
+   printf("retryCount = %i\n", retryCount);
+#endif
+   if ((returnValue = processSelect(client, &retryCount, TIMEOUT_ON_ACK, WAIT_LAST_RR, DONE)) == WAIT_LAST_RR)
+   {
+      crc_check = recv_buf(buf, len, client->sk_num, client, &flag, &recSeqNum);
+
+      // if crc error ignore packet
       if (crc_check == CRC_ERROR)
       {
-         returnValue = WAIT_ON_ACK;
+         // Do nothing
+         returnValue = WAIT_LAST_RR;
       }
-      else if (flag != ACK)
+      else if (flag == FSREJ)
       {
-         printf("In wait_on_ack but its not an ACK flag (this should never happen) is %d\n", flag);
+         // Resend the data from SREJ buffer
+         resend(client, window, windowSize, recSeqNum);
+      }
+      else if (flag == ACK)
+      {
+#ifdef PRINT
+         printf("in wait last rr expSeqNum = %i\n", expSeqNum);
+#endif
+         // Received RR
+         if(recSeqNum == expSeqNum){
+            // Send EOF
+            send_buf(buf, 1, client, END_OF_FILE, expSeqNum, packet);
+
+            returnValue = WAIT_ON_EOF_ACK;
+         }
+         else{
+            // Remove RR from Buffer
+#ifdef PRINT
+            printf("Removing from buffer seqNum %i\n", recSeqNum);
+#endif
+            removeFromBuffer(window, windowSize, recSeqNum, wptr);
+
+            returnValue = WAIT_LAST_RR;
+         }
+      }
+      else
+      {
+#ifdef PRINT
+         printf("In wait_last_rr but its not an ACK flag (this should never happen) is %d\n", flag);
+#endif
          returnValue = DONE;
       }
    }
+   else if (returnValue == TIMEOUT_ON_ACK){
+      // Resend the lowest RR
+      resend(client, window, windowSize, wptr->l);
+      returnValue = WAIT_LAST_RR;
+   }
    return returnValue;
 }
-STATE wait_on_eof_ack(Connection * client)
+
+STATE wait_on_eof_ack(Connection * client, uint32_t expSeqNum)
 {
    STATE returnValue = DONE;
    uint32_t crc_check = 0;
    uint8_t buf[MAX_LEN];
+   uint8_t packet[MAX_LEN];
    int32_t len = MAX_LEN;
    uint8_t flag = 0;
    uint32_t seq_num = 0;
    static int retryCount = 0;
-   if ((returnValue = processSelect(client, &retryCount, TIMEOUT_ON_EOF_ACK, DONE, DONE)) ==
-         DONE)
+   if ((returnValue = processSelect(client, &retryCount, TIMEOUT_ON_EOF_ACK, WAIT_ON_EOF_ACK, DONE)) ==
+         WAIT_ON_EOF_ACK)
    {
       crc_check = recv_buf(buf, len, client->sk_num, client, &flag, &seq_num);
       // if crc error ignore packet
@@ -258,7 +342,7 @@ STATE wait_on_eof_ack(Connection * client)
       else if (flag != EOF_ACK)
       {
          printf("In wait_on_eof_ack but its not an EOF_ACK flag (this should never happen) is: %d\n", flag);
-         returnValue = DONE;
+         returnValue = WAIT_ON_EOF_ACK;
       }
       else
       {
@@ -266,12 +350,18 @@ STATE wait_on_eof_ack(Connection * client)
          returnValue = DONE;
       }
    }
+   else if (returnValue == TIMEOUT_ON_EOF_ACK){
+      // Send EOF
+      send_buf(buf, 1, client, END_OF_FILE, expSeqNum, packet);
+
+      returnValue = WAIT_ON_EOF_ACK;
+   }
    return returnValue;
 }
 STATE timeout_on_ack(Connection * client, uint8_t * packet, int32_t packet_len)
 {
    safeSendto(packet, packet_len, client);
-   return WAIT_ON_ACK;
+   return WAIT_LAST_RR;
 }
 STATE timeout_on_eof_ack(Connection * client, uint8_t * packet, int32_t packet_len)
 {
@@ -296,4 +386,132 @@ int processArgs(int argc, char ** argv)
       portNumber = 0;
    }
    return portNumber;
+}
+
+void printState(STATE state){
+   switch(state)
+   {
+      case START:
+#ifdef PRINT
+         printf("State = START\n");
+#endif
+         break;
+      case FILENAME:
+#ifdef PRINT
+         printf("State = FILENAME\n");
+#endif
+         break;
+      case CHECK_WINDOW:
+#ifdef PRINT
+         printf("State = CHECK_WINDOW\n");
+#endif
+         break;
+      case SEND_DATA:
+#ifdef PRINT
+         printf("State = SEND_DATA\n");
+#endif
+         break;
+      case CHECK_RR_SREJ:
+#ifdef PRINT
+         printf("State = CHECK_RR_SREJ\n");
+#endif
+         break;
+      case WAIT_LAST_RR:
+#ifdef PRINT
+         printf("State = WAIT_LAST_RR\n");
+#endif
+         break;
+      case TIMEOUT_ON_ACK:
+#ifdef PRINT
+         printf("State = TIMEOUT_ON_ACK\n");
+#endif
+         break;
+      case WAIT_ON_EOF_ACK:
+#ifdef PRINT
+         printf("State = WAIT_ON_EOF_ACK\n");
+#endif
+         break;
+      case TIMEOUT_ON_EOF_ACK:
+#ifdef PRINT
+         printf("State = TIMEOUT_ON_EOF_ACK\n");
+#endif
+         break;
+      case DONE:
+#ifdef PRINT
+         printf("State = DONE\n");
+#endif
+         break;
+      default:
+         printf("In default and you should not be here!!!!\n");
+         state = DONE;
+         break;
+   }
+}
+
+void process_client(int32_t serverSocketNumber, uint8_t * buf, int32_t recv_len, Connection *
+      client)
+{
+   WindowElement* window;
+   WPtr wptr;
+   wptr.c = 1;
+   wptr.l = 1;
+   wptr.u = 1;
+   STATE state = START;
+   int32_t data_file = 0;
+   int32_t packet_len = 0;
+   uint8_t packet[MAX_LEN];
+   int32_t windowSize = 0;
+   int32_t buf_size = 0;
+   uint32_t seq_num = START_SEQ_NUM; // START_SEQ_NUM = 1
+   while (state != DONE)
+   {
+      switch (state)
+      {
+         case START:
+            printState(state);
+            state = FILENAME;
+            break;
+         case FILENAME:
+            printState(state);
+            state = filename(client, buf, recv_len, &data_file, &windowSize, &buf_size);
+            window = createWindow(windowSize);
+            wptr.u = wptr.l + windowSize;
+            break;
+         case CHECK_WINDOW:
+            printState(state);
+            state = check_window(client, window, windowSize, &wptr);
+            break;
+         case SEND_DATA:
+            printState(state);
+            state = send_data(client, packet, &packet_len, data_file, buf_size, &seq_num, window, windowSize, &wptr);
+            break;
+         case CHECK_RR_SREJ:
+            printState(state);
+            state = check_rr_srej(client, window, windowSize, &wptr);
+            break;
+         case WAIT_LAST_RR:
+            printState(state);
+            state = wait_last_rr(client, seq_num, window, windowSize, &wptr);
+            break;
+         case TIMEOUT_ON_ACK:
+            printState(state);
+            state = timeout_on_ack(client, packet, packet_len);
+            break;
+         case WAIT_ON_EOF_ACK:
+            printState(state);
+            state = wait_on_eof_ack(client, seq_num);
+            break;
+         case TIMEOUT_ON_EOF_ACK:
+            printState(state);
+            state = timeout_on_eof_ack(client, packet, packet_len);
+            break;
+         case DONE:
+            printState(state);
+            break;
+         default:
+            printf("In default and you should not be here!!!!\n");
+            state = DONE;
+            break;
+      }
+   }
 }

@@ -45,7 +45,6 @@ int safeSendto(uint8_t * packet, uint32_t len, Connection * to)
 // Sets the *packet to the value read in from the socket
 // Reads in len amount of data
 // Returns an int with how much data was read from the buffer
-// len - Length of data to read from the socket
 int safeRecvfrom(int recv_sk_num, uint8_t * packet, int len, Connection * from)
 {
    int recv_len = 0;
