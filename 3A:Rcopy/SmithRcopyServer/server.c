@@ -74,8 +74,8 @@ void process_server(int serverSocketNumber)
             if (pid == 0)
             {
                // child process - a new process for each client
-               printf("Child fork() - child pid: %d\n", getpid());
 #ifdef PRINT
+               printf("Child fork() - child pid: %d\n", getpid());
                printf("buf %s\n", &buf[8]);
                printf("**rec_len %i\n", recv_len);
 #endif
@@ -148,7 +148,9 @@ void resend(Connection* client, WindowElement* window, uint32_t windowSize, uint
    getElement(seq_num, &element, window, windowSize);
    if(element.flag == EMPTY){
       element.data_len = 0;
+#ifdef PRINT
       printf("EMPTY ELEMENT SENDING ZERO DATA\n");
+#endif
    }
 
    send_buf(element.data_buf, element.data_len, client, DATA, seq_num, packet);
@@ -257,7 +259,9 @@ STATE send_data(Connection *client, uint8_t * packet, int32_t * packet_len, int3
          break;
       case 0:
          //(*seq_num)++;
+#ifdef PRINT
          printf("EOF Waiting on seq num %i\n", *seq_num);
+#endif
          returnValue = WAIT_LAST_RR;
          break;
       default:
