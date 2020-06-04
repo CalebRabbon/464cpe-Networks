@@ -71,7 +71,7 @@ int main ( int argc, char *argv[] )
 
    checkArgs(argc, argv, &args);
 
-   sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
+   sendErr_init(args.percentError, DROP_ON, FLIP_ON, DEBUG_OFF, RSEED_OFF);
 
    stateMachine(&args);
 
