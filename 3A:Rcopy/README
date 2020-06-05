@@ -4,6 +4,9 @@ I come from the lab at 3pm
 
 I have finished this project, tooooo ez
 
+New Flags
+   FNAME_BAD=9, END_OF_FILE=10, EOF_ACK=11, CRC_ERROR = -1
+
 To run the code follow the below steps:
    In the terminal type:
    make
